@@ -1,17 +1,30 @@
 import * as tfe from "@cdktf/provider-tfe";
 import { TfeProvider } from "@cdktf/provider-tfe";
-import { App, RemoteBackend, TerraformStack, RemoteBackendProps } from "cdktf";
+import { App, RemoteBackend, TerraformStack } from "cdktf";
 import { Construct, IConstruct } from "constructs";
 
 const MULTI_STACK_BASE_SYMBOL = Symbol(`multi-stack-tfe-base`);
 const MULTI_STACK_STACK_SYMBOL = Symbol(`multi-stack-tfe-stack`);
+
+export interface BaseStackOptions {
+  readonly hostname?: string;
+  readonly token?: string;
+  readonly sslSkipVerify?: boolean;
+}
+
+// Omit<RemoteBackendProps, "workspaces">
+export interface RemoteBackendOptions {
+  readonly hostname?: string;
+  readonly organization: string;
+  readonly token?: string;
+}
 
 export class BaseStack extends TerraformStack {
   public static isBaseStack(x: any): x is BaseStack {
     return x !== null && typeof x === "object" && MULTI_STACK_BASE_SYMBOL in x;
   }
 
-  public static of(construct: IConstruct): BaseStack {
+  public static baseStackOf(construct: IConstruct): BaseStack {
     const app = App.of(construct);
 
     const base = app.node.children.find(BaseStack.isBaseStack);
@@ -24,18 +37,14 @@ export class BaseStack extends TerraformStack {
     return base;
   }
 
-  public readonly remoteBackendOptions: Omit<RemoteBackendProps, "workspaces">;
+  public readonly remoteBackendOptions: RemoteBackendOptions;
   public tfeProvider: TfeProvider;
 
   constructor(
     scope: Construct,
     private organization: string,
     private prefix: string,
-    options: {
-      hostname?: string;
-      token?: string;
-      sslSkipVerify?: boolean;
-    } = {}
+    options: BaseStackOptions = {}
   ) {
     super(scope, "base");
     Object.defineProperty(this, MULTI_STACK_BASE_SYMBOL, { value: true });
@@ -88,7 +97,7 @@ export class Stack extends TerraformStack {
     super(scope, stackName);
     Object.defineProperty(this, MULTI_STACK_STACK_SYMBOL, { value: true });
 
-    const baseStack = BaseStack.of(this);
+    const baseStack = BaseStack.baseStackOf(this);
     this.workspace = baseStack.bootstrapWorkspace(stackName);
 
     new RemoteBackend(this, {
@@ -104,10 +113,13 @@ export class Stack extends TerraformStack {
 
     if (Stack.isMultiStackStack(dependency)) {
       dependency.workspace.remoteStateConsumerIdsInput?.push(this.workspace.id);
-      // dependency.workspace.dependsOn = [
-      //   ...(dependency.workspace.dependsOn ?? []),
-      //   this.workspace,
-      // ];
+
+      const currentDependencies: string[] =
+        dependency.workspace.dependsOn ?? [];
+      currentDependencies.push(this.workspace.fqn);
+
+      // This is not working as the result is wrapped in a terraform expression where it's not allowed to
+      dependency.workspace.dependsOn = currentDependencies;
     }
   }
 }

@@ -26,7 +26,7 @@ test("sets up all stacks created", () => {
 
   expect(Testing.renderConstructTree(app)).toMatchInlineSnapshot(`
     "App
-    ├── my-prefix-base (MyAppBaseStack)
+    ├── base (MyAppBaseStack)
         ├── tfe (TfeProvider)
         ├── backend (RemoteBackend)
         ├── tfe-multi-stack-workspace-staging-vpc (Workspace)
@@ -146,7 +146,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
 
   expect(Testing.renderConstructTree(app)).toMatchInlineSnapshot(`
     "App
-    ├── my-prefix-base (MyAppBaseStack)
+    ├── base (MyAppBaseStack)
         ├── tfe (TfeProvider)
         ├── backend (RemoteBackend)
         ├── tfe-multi-stack-workspace-staging-vpc (Workspace)
@@ -180,6 +180,9 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
             ]
           },
           \\"tfe-multi-stack-workspace-staging-vpc\\": {
+            \\"depends_on\\": [
+              \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-cluster}\\"
+            ],
             \\"name\\": \\"my-prefix-staging-vpc\\",
             \\"organization\\": \\"my-company\\",
             \\"remote_state_consumer_ids\\": [
