@@ -29,6 +29,10 @@
       "type": "build"
     },
     {
+      "name": "cdktf-cli",
+      "type": "build"
+    },
+    {
       "name": "cdktf",
       "version": "0.9.0",
       "type": "build"
