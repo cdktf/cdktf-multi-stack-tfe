@@ -1,4 +1,3 @@
-const path = require("path");
 const { CDKTFConstruct } = require("@dschmidt/cdktf-construct-base");
 const project = new CDKTFConstruct({
   author: "Daniel Schmidt",
