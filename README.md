@@ -9,8 +9,7 @@ You need to create the initial workspace yourself, in this case `my-app-base`.
 ```ts
 import * as cdktf from "cdktf";
 import Construct from "constructs";
-import { multiStackTfe } from "cdktf-multi-stack-tfe";
-const { BaseStack, Stack } = multiStackTfe({ prefix: "my-app" });
+import { BaseStack, Stack } from "cdktf-multi-stack-tfe";
 
 // We need to have an already created "base" TFE workspace as a basis.
 // It will store the TFE workspace configuration and state for all stacks.
@@ -19,7 +18,9 @@ class MyAppBaseStack extends BaseStack {
   // The name is set to my-app-base
   constructor(scope: Construct) {
     // This will configure the remote backend to use my-company/my-app-base as a workspace
-    super(scope, "my-company", {
+    // my-company is the Terraform organization
+    // my-app is the prefix to use for all workspaces
+    super(scope, "my-company", "my-app", {
       hostname: "app.terraform.io", // can be set to configure a different Terraform Cloud hostname, e.g. for privately hosted Terraform Enterprise
       token: "my-token", // can be set to configure a token to use
     });
