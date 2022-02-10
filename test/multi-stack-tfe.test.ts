@@ -29,6 +29,7 @@ test("sets up all stacks created", () => {
     ├── base (MyAppBaseStack)
         ├── tfe (TfeProvider)
         ├── backend (RemoteBackend)
+        ├── organization (DataTfeOrganization)
         ├── tfe-multi-stack-workspace-staging-vpc (Workspace)
         └── tfe-multi-stack-workspace-production-vpc (Workspace)
     ├── staging-vpc (VpcStack)
@@ -40,6 +41,13 @@ test("sets up all stacks created", () => {
 
   expect(Testing.synth(base)).toMatchInlineSnapshot(`
     "{
+      \\"data\\": {
+        \\"tfe_organization\\": {
+          \\"organization\\": {
+            \\"name\\": \\"my-company\\"
+          }
+        }
+      },
       \\"provider\\": {
         \\"tfe\\": [
           {
@@ -52,7 +60,7 @@ test("sets up all stacks created", () => {
         \\"tfe_workspace\\": {
           \\"tfe-multi-stack-workspace-production-vpc\\": {
             \\"name\\": \\"my-prefix-production-vpc\\",
-            \\"organization\\": \\"my-company\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
             \\"remote_state_consumer_ids\\": [
             ],
             \\"tag_names\\": [
@@ -61,7 +69,7 @@ test("sets up all stacks created", () => {
           },
           \\"tfe-multi-stack-workspace-staging-vpc\\": {
             \\"name\\": \\"my-prefix-staging-vpc\\",
-            \\"organization\\": \\"my-company\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
             \\"remote_state_consumer_ids\\": [
             ],
             \\"tag_names\\": [
@@ -149,6 +157,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
     ├── base (MyAppBaseStack)
         ├── tfe (TfeProvider)
         ├── backend (RemoteBackend)
+        ├── organization (DataTfeOrganization)
         ├── tfe-multi-stack-workspace-staging-vpc (Workspace)
         └── tfe-multi-stack-workspace-staging-cluster (Workspace)
     ├── staging-vpc (VpcStack)
@@ -162,6 +171,13 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
 
   expect(Testing.synth(base)).toMatchInlineSnapshot(`
     "{
+      \\"data\\": {
+        \\"tfe_organization\\": {
+          \\"organization\\": {
+            \\"name\\": \\"my-company\\"
+          }
+        }
+      },
       \\"provider\\": {
         \\"tfe\\": [
           {
@@ -172,7 +188,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
         \\"tfe_workspace\\": {
           \\"tfe-multi-stack-workspace-staging-cluster\\": {
             \\"name\\": \\"my-prefix-staging-cluster\\",
-            \\"organization\\": \\"my-company\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
             \\"remote_state_consumer_ids\\": [
             ],
             \\"tag_names\\": [
@@ -181,10 +197,10 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
           },
           \\"tfe-multi-stack-workspace-staging-vpc\\": {
             \\"depends_on\\": [
-              \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-cluster}\\"
+              \\"tfe_workspace.tfe-multi-stack-workspace-staging-cluster\\"
             ],
             \\"name\\": \\"my-prefix-staging-vpc\\",
-            \\"organization\\": \\"my-company\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
             \\"remote_state_consumer_ids\\": [
               \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-cluster.id}\\"
             ],

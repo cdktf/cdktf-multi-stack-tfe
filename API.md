@@ -280,6 +280,7 @@ BaseStack.isBaseStack(x: any)
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.remoteBackendOptions">remoteBackendOptions</a></code> | <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions">RemoteBackendOptions</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.organization">organization</a></code> | <code>@cdktf/provider-tfe.DataTfeOrganization</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.tfeProvider">tfeProvider</a></code> | <code>@cdktf/provider-tfe.TfeProvider</code> | *No description.* |
 
 ---
@@ -323,6 +324,16 @@ public readonly remoteBackendOptions: RemoteBackendOptions;
 ```
 
 - *Type:* <a href="#cdktf-multi-stack-tfe.RemoteBackendOptions">RemoteBackendOptions</a>
+
+---
+
+##### `organization`<sup>Required</sup> <a name="organization" id="cdktf-multi-stack-tfe.BaseStack.property.organization"></a>
+
+```typescript
+public readonly organization: DataTfeOrganization;
+```
+
+- *Type:* @cdktf/provider-tfe.DataTfeOrganization
 
 ---
 

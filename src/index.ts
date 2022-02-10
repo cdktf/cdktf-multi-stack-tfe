@@ -1,6 +1,6 @@
 import * as tfe from "@cdktf/provider-tfe";
-import { TfeProvider } from "@cdktf/provider-tfe";
-import { App, RemoteBackend, TerraformStack } from "cdktf";
+import { DataTfeOrganization, TfeProvider } from "@cdktf/provider-tfe";
+import { App, RemoteBackend, TerraformStack, insideTfExpression } from "cdktf";
 import { Construct, IConstruct } from "constructs";
 
 const MULTI_STACK_BASE_SYMBOL = Symbol(`multi-stack-tfe-base`);
@@ -39,10 +39,11 @@ export class BaseStack extends TerraformStack {
 
   public readonly remoteBackendOptions: RemoteBackendOptions;
   public tfeProvider: TfeProvider;
+  public organization: DataTfeOrganization;
 
   constructor(
     scope: Construct,
-    private organization: string,
+    organization: string,
     private prefix: string,
     options: BaseStackOptions = {}
   ) {
@@ -68,6 +69,10 @@ export class BaseStack extends TerraformStack {
       },
     });
 
+    this.organization = new DataTfeOrganization(this, "organization", {
+      name: organization,
+    });
+
     // this.workspace = new DataTfeWorkspace(this, "this", {
     //   provider: this.tfeProvider,
 
@@ -80,7 +85,7 @@ export class BaseStack extends TerraformStack {
     const workspaceName = `${this.prefix}-${name}`;
     return new tfe.Workspace(this, `tfe-multi-stack-workspace-${name}`, {
       name: workspaceName,
-      organization: this.organization,
+      organization: this.organization.name,
       tagNames: [this.prefix],
       remoteStateConsumerIds: [], // this is filled on the fly through addDependency calls
     });
@@ -116,7 +121,7 @@ export class Stack extends TerraformStack {
 
       const currentDependencies: string[] =
         dependency.workspace.dependsOn ?? [];
-      currentDependencies.push(this.workspace.fqn);
+      currentDependencies.push(insideTfExpression(this.workspace.fqn));
 
       // This is not working as the result is wrapped in a terraform expression where it's not allowed to
       dependency.workspace.dependsOn = currentDependencies;

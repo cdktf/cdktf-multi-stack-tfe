@@ -4,7 +4,9 @@ import { BaseStack, Stack } from "../../src/index";
 
 class Base extends BaseStack {
   constructor(scope: Construct) {
-    super(scope, "danielmschmidt", "multi-stack-tfe-demo");
+    super(scope, "danielmschmidt", "multi-stack-tfe-demo", {
+      token: process.env.TFE_TOKEN,
+    });
   }
 }
 
