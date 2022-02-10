@@ -15,7 +15,7 @@ const project = new CDKTFConstruct({
 
 project.testTask.exec(`npx cdktf synth`, {
   name: "synth TS example",
-  cwd: path.resolve(__dirname, "examples/typescript"),
+  cwd: "./examples/typescript",
 });
 
 project.synth();

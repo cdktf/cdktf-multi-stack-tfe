@@ -219,7 +219,7 @@
         {
           "exec": "npx cdktf synth",
           "name": "synth TS example",
-          "cwd": "/Users/danielschmidt/fun/cdktf-multi-stack-tfe/examples/typescript"
+          "cwd": "./examples/typescript"
         }
       ]
     },
