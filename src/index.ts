@@ -114,9 +114,10 @@ export class Stack extends TerraformStack {
   }
 
   addDependency(dependency: TerraformStack): void {
-    super.addDependency(dependency);
-
-    if (Stack.isMultiStackStack(dependency)) {
+    if (
+      !this.dependencies.includes(dependency) &&
+      Stack.isMultiStackStack(dependency)
+    ) {
       dependency.workspace.remoteStateConsumerIdsInput?.push(this.workspace.id);
 
       const currentDependencies: string[] =
@@ -126,5 +127,7 @@ export class Stack extends TerraformStack {
       // This is not working as the result is wrapped in a terraform expression where it's not allowed to
       dependency.workspace.dependsOn = currentDependencies;
     }
+
+    super.addDependency(dependency);
   }
 }

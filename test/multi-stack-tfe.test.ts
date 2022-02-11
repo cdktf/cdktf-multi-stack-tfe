@@ -229,3 +229,71 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
     }"
   `);
 });
+
+test("only one stack is created when using two cross stack references", () => {
+  const app = Testing.app();
+
+  class MyAppBaseStack extends BaseStack {
+    constructor(scope: Construct) {
+      super(scope, "my-company", "my-prefix");
+    }
+  }
+
+  class VpcStack extends Stack {
+    public vpcId: string;
+    public subnetId: string;
+
+    constructor(scope: Construct, stackName: string) {
+      super(scope, stackName);
+
+      this.vpcId = new TerraformLocal(
+        this,
+        "local_value",
+        "a value sent across stacks"
+      ).asString;
+
+      this.subnetId = new TerraformLocal(
+        this,
+        "second_local_value",
+        "another value sent across stacks"
+      ).asString;
+    }
+  }
+
+  class ClusterStack extends Stack {
+    constructor(
+      scope: Construct,
+      stackName: string,
+      vpcId: string,
+      subnetId: string
+    ) {
+      super(scope, stackName);
+
+      new TerraformLocal(this, "other_stacks_value", vpcId);
+      new TerraformLocal(this, "another_stacks_value", subnetId);
+    }
+  }
+
+  new MyAppBaseStack(app);
+  const vpc = new VpcStack(app, "staging-vpc");
+  new ClusterStack(app, "staging-cluster", vpc.vpcId, vpc.subnetId);
+
+  expect(Testing.renderConstructTree(app)).toMatchInlineSnapshot(`
+    "App
+    ├── base (MyAppBaseStack)
+        ├── tfe (TfeProvider)
+        ├── backend (RemoteBackend)
+        ├── organization (DataTfeOrganization)
+        ├── tfe-multi-stack-workspace-staging-vpc (Workspace)
+        └── tfe-multi-stack-workspace-staging-cluster (Workspace)
+    ├── staging-vpc (VpcStack)
+        ├── backend (RemoteBackend)
+        ├── local_value (TerraformLocal)
+        └── second_local_value (TerraformLocal)
+    └── staging-cluster (ClusterStack)
+        ├── backend (RemoteBackend)
+        ├── other_stacks_value (TerraformLocal)
+        └── another_stacks_value (TerraformLocal)
+    "
+  `);
+});
