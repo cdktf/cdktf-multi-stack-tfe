@@ -12,12 +12,15 @@ export interface BaseStackOptions {
   readonly sslSkipVerify?: boolean;
 }
 
-// Omit<RemoteBackendProps, "workspaces">
+export interface RemoteBackendOptionsWorkspace {
+  readonly name: string;
+}
+
 export interface RemoteBackendOptions {
   readonly hostname?: string;
   readonly organization: string;
   readonly token?: string;
-  readonly workspaces: { name: string };
+  readonly workspaces: RemoteBackendOptionsWorkspace;
 }
 
 export class BaseStack extends TerraformStack {

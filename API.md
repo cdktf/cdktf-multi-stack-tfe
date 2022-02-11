@@ -9,13 +9,13 @@
 ```typescript
 import { BaseStack } from 'cdktf-multi-stack-tfe'
 
-new BaseStack(scope: Construct, organization: string, prefix: string, options?: BaseStackOptions)
+new BaseStack(scope: Construct, organizationName: string, prefix: string, options?: BaseStackOptions)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.organization">organization</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.organizationName">organizationName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.prefix">prefix</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.options">options</a></code> | <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions">BaseStackOptions</a></code> | *No description.* |
 
@@ -27,7 +27,7 @@ new BaseStack(scope: Construct, organization: string, prefix: string, options?: 
 
 ---
 
-##### `organization`<sup>Required</sup> <a name="organization" id="cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.organization"></a>
+##### `organizationName`<sup>Required</sup> <a name="organizationName" id="cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.organizationName"></a>
 
 - *Type:* string
 
@@ -61,13 +61,15 @@ new BaseStack(scope: Construct, organization: string, prefix: string, options?: 
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.registerOutgoingCrossStackReference">registerOutgoingCrossStackReference</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.toTerraform">toTerraform</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace">bootstrapWorkspace</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.getRemoteBackendOptions">getRemoteBackendOptions</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.getWorkspaceName">getWorkspaceName</a></code> | If you want to have more control over the workspace name, you can override this method. |
 
 ---
 
 ##### `toString` <a name="toString" id="cdktf-multi-stack-tfe.BaseStack.toString"></a>
 
 ```typescript
-public toString(): string
+public toString()
 ```
 
 Returns a string representation of this construct.
@@ -75,7 +77,7 @@ Returns a string representation of this construct.
 ##### `addDependency` <a name="addDependency" id="cdktf-multi-stack-tfe.BaseStack.addDependency"></a>
 
 ```typescript
-public addDependency(dependency: TerraformStack): void
+public addDependency(dependency: TerraformStack)
 ```
 
 ###### `dependency`<sup>Required</sup> <a name="dependency" id="cdktf-multi-stack-tfe.BaseStack.addDependency.parameter.dependency"></a>
@@ -87,7 +89,7 @@ public addDependency(dependency: TerraformStack): void
 ##### `addOverride` <a name="addOverride" id="cdktf-multi-stack-tfe.BaseStack.addOverride"></a>
 
 ```typescript
-public addOverride(path: string, value: any): void
+public addOverride(path: string, value: any)
 ```
 
 ###### `path`<sup>Required</sup> <a name="path" id="cdktf-multi-stack-tfe.BaseStack.addOverride.parameter.path"></a>
@@ -105,13 +107,13 @@ public addOverride(path: string, value: any): void
 ##### `allProviders` <a name="allProviders" id="cdktf-multi-stack-tfe.BaseStack.allProviders"></a>
 
 ```typescript
-public allProviders(): TerraformProvider[]
+public allProviders()
 ```
 
 ##### `dependsOn` <a name="dependsOn" id="cdktf-multi-stack-tfe.BaseStack.dependsOn"></a>
 
 ```typescript
-public dependsOn(stack: TerraformStack): boolean
+public dependsOn(stack: TerraformStack)
 ```
 
 ###### `stack`<sup>Required</sup> <a name="stack" id="cdktf-multi-stack-tfe.BaseStack.dependsOn.parameter.stack"></a>
@@ -123,13 +125,13 @@ public dependsOn(stack: TerraformStack): boolean
 ##### `ensureBackendExists` <a name="ensureBackendExists" id="cdktf-multi-stack-tfe.BaseStack.ensureBackendExists"></a>
 
 ```typescript
-public ensureBackendExists(): TerraformBackend
+public ensureBackendExists()
 ```
 
 ##### `getLogicalId` <a name="getLogicalId" id="cdktf-multi-stack-tfe.BaseStack.getLogicalId"></a>
 
 ```typescript
-public getLogicalId(tfElement: TerraformElement | Node): string
+public getLogicalId(tfElement: TerraformElement | Node)
 ```
 
 ###### `tfElement`<sup>Required</sup> <a name="tfElement" id="cdktf-multi-stack-tfe.BaseStack.getLogicalId.parameter.tfElement"></a>
@@ -141,13 +143,13 @@ public getLogicalId(tfElement: TerraformElement | Node): string
 ##### `prepareStack` <a name="prepareStack" id="cdktf-multi-stack-tfe.BaseStack.prepareStack"></a>
 
 ```typescript
-public prepareStack(): void
+public prepareStack()
 ```
 
 ##### `registerIncomingCrossStackReference` <a name="registerIncomingCrossStackReference" id="cdktf-multi-stack-tfe.BaseStack.registerIncomingCrossStackReference"></a>
 
 ```typescript
-public registerIncomingCrossStackReference(fromStack: TerraformStack): TerraformRemoteState
+public registerIncomingCrossStackReference(fromStack: TerraformStack)
 ```
 
 ###### `fromStack`<sup>Required</sup> <a name="fromStack" id="cdktf-multi-stack-tfe.BaseStack.registerIncomingCrossStackReference.parameter.fromStack"></a>
@@ -159,7 +161,7 @@ public registerIncomingCrossStackReference(fromStack: TerraformStack): Terraform
 ##### `registerOutgoingCrossStackReference` <a name="registerOutgoingCrossStackReference" id="cdktf-multi-stack-tfe.BaseStack.registerOutgoingCrossStackReference"></a>
 
 ```typescript
-public registerOutgoingCrossStackReference(identifier: string): TerraformOutput
+public registerOutgoingCrossStackReference(identifier: string)
 ```
 
 ###### `identifier`<sup>Required</sup> <a name="identifier" id="cdktf-multi-stack-tfe.BaseStack.registerOutgoingCrossStackReference.parameter.identifier"></a>
@@ -171,16 +173,42 @@ public registerOutgoingCrossStackReference(identifier: string): TerraformOutput
 ##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.BaseStack.toTerraform"></a>
 
 ```typescript
-public toTerraform(): any
+public toTerraform()
 ```
 
 ##### `bootstrapWorkspace` <a name="bootstrapWorkspace" id="cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace"></a>
 
 ```typescript
-public bootstrapWorkspace(name: string): Workspace
+public bootstrapWorkspace(stackName: string)
 ```
 
-###### `name`<sup>Required</sup> <a name="name" id="cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace.parameter.name"></a>
+###### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace.parameter.stackName"></a>
+
+- *Type:* string
+
+---
+
+##### `getRemoteBackendOptions` <a name="getRemoteBackendOptions" id="cdktf-multi-stack-tfe.BaseStack.getRemoteBackendOptions"></a>
+
+```typescript
+public getRemoteBackendOptions(stackName: string)
+```
+
+###### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.BaseStack.getRemoteBackendOptions.parameter.stackName"></a>
+
+- *Type:* string
+
+---
+
+##### `getWorkspaceName` <a name="getWorkspaceName" id="cdktf-multi-stack-tfe.BaseStack.getWorkspaceName"></a>
+
+```typescript
+public getWorkspaceName(stackName: string)
+```
+
+If you want to have more control over the workspace name, you can override this method.
+
+###### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.BaseStack.getWorkspaceName.parameter.stackName"></a>
 
 - *Type:* string
 
@@ -279,7 +307,6 @@ BaseStack.isBaseStack(x: any)
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.remoteBackendOptions">remoteBackendOptions</a></code> | <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions">RemoteBackendOptions</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.organization">organization</a></code> | <code>@cdktf/provider-tfe.DataTfeOrganization</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.tfeProvider">tfeProvider</a></code> | <code>@cdktf/provider-tfe.TfeProvider</code> | *No description.* |
 
@@ -314,16 +341,6 @@ public readonly synthesizer: IStackSynthesizer;
 ```
 
 - *Type:* cdktf.IStackSynthesizer
-
----
-
-##### `remoteBackendOptions`<sup>Required</sup> <a name="remoteBackendOptions" id="cdktf-multi-stack-tfe.BaseStack.property.remoteBackendOptions"></a>
-
-```typescript
-public readonly remoteBackendOptions: RemoteBackendOptions;
-```
-
-- *Type:* <a href="#cdktf-multi-stack-tfe.RemoteBackendOptions">RemoteBackendOptions</a>
 
 ---
 
@@ -398,7 +415,7 @@ new Stack(scope: Construct, stackName: string)
 ##### `toString` <a name="toString" id="cdktf-multi-stack-tfe.Stack.toString"></a>
 
 ```typescript
-public toString(): string
+public toString()
 ```
 
 Returns a string representation of this construct.
@@ -406,7 +423,7 @@ Returns a string representation of this construct.
 ##### `addDependency` <a name="addDependency" id="cdktf-multi-stack-tfe.Stack.addDependency"></a>
 
 ```typescript
-public addDependency(dependency: TerraformStack): void
+public addDependency(dependency: TerraformStack)
 ```
 
 ###### `dependency`<sup>Required</sup> <a name="dependency" id="cdktf-multi-stack-tfe.Stack.addDependency.parameter.dependency"></a>
@@ -418,7 +435,7 @@ public addDependency(dependency: TerraformStack): void
 ##### `addOverride` <a name="addOverride" id="cdktf-multi-stack-tfe.Stack.addOverride"></a>
 
 ```typescript
-public addOverride(path: string, value: any): void
+public addOverride(path: string, value: any)
 ```
 
 ###### `path`<sup>Required</sup> <a name="path" id="cdktf-multi-stack-tfe.Stack.addOverride.parameter.path"></a>
@@ -436,13 +453,13 @@ public addOverride(path: string, value: any): void
 ##### `allProviders` <a name="allProviders" id="cdktf-multi-stack-tfe.Stack.allProviders"></a>
 
 ```typescript
-public allProviders(): TerraformProvider[]
+public allProviders()
 ```
 
 ##### `dependsOn` <a name="dependsOn" id="cdktf-multi-stack-tfe.Stack.dependsOn"></a>
 
 ```typescript
-public dependsOn(stack: TerraformStack): boolean
+public dependsOn(stack: TerraformStack)
 ```
 
 ###### `stack`<sup>Required</sup> <a name="stack" id="cdktf-multi-stack-tfe.Stack.dependsOn.parameter.stack"></a>
@@ -454,13 +471,13 @@ public dependsOn(stack: TerraformStack): boolean
 ##### `ensureBackendExists` <a name="ensureBackendExists" id="cdktf-multi-stack-tfe.Stack.ensureBackendExists"></a>
 
 ```typescript
-public ensureBackendExists(): TerraformBackend
+public ensureBackendExists()
 ```
 
 ##### `getLogicalId` <a name="getLogicalId" id="cdktf-multi-stack-tfe.Stack.getLogicalId"></a>
 
 ```typescript
-public getLogicalId(tfElement: TerraformElement | Node): string
+public getLogicalId(tfElement: TerraformElement | Node)
 ```
 
 ###### `tfElement`<sup>Required</sup> <a name="tfElement" id="cdktf-multi-stack-tfe.Stack.getLogicalId.parameter.tfElement"></a>
@@ -472,13 +489,13 @@ public getLogicalId(tfElement: TerraformElement | Node): string
 ##### `prepareStack` <a name="prepareStack" id="cdktf-multi-stack-tfe.Stack.prepareStack"></a>
 
 ```typescript
-public prepareStack(): void
+public prepareStack()
 ```
 
 ##### `registerIncomingCrossStackReference` <a name="registerIncomingCrossStackReference" id="cdktf-multi-stack-tfe.Stack.registerIncomingCrossStackReference"></a>
 
 ```typescript
-public registerIncomingCrossStackReference(fromStack: TerraformStack): TerraformRemoteState
+public registerIncomingCrossStackReference(fromStack: TerraformStack)
 ```
 
 ###### `fromStack`<sup>Required</sup> <a name="fromStack" id="cdktf-multi-stack-tfe.Stack.registerIncomingCrossStackReference.parameter.fromStack"></a>
@@ -490,7 +507,7 @@ public registerIncomingCrossStackReference(fromStack: TerraformStack): Terraform
 ##### `registerOutgoingCrossStackReference` <a name="registerOutgoingCrossStackReference" id="cdktf-multi-stack-tfe.Stack.registerOutgoingCrossStackReference"></a>
 
 ```typescript
-public registerOutgoingCrossStackReference(identifier: string): TerraformOutput
+public registerOutgoingCrossStackReference(identifier: string)
 ```
 
 ###### `identifier`<sup>Required</sup> <a name="identifier" id="cdktf-multi-stack-tfe.Stack.registerOutgoingCrossStackReference.parameter.identifier"></a>
@@ -502,7 +519,7 @@ public registerOutgoingCrossStackReference(identifier: string): TerraformOutput
 ##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.Stack.toTerraform"></a>
 
 ```typescript
-public toTerraform(): any
+public toTerraform()
 ```
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
@@ -697,6 +714,7 @@ const remoteBackendOptions: RemoteBackendOptions = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions.property.organization">organization</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions.property.workspaces">workspaces</a></code> | <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace">RemoteBackendOptionsWorkspace</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions.property.hostname">hostname</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions.property.token">token</a></code> | <code>string</code> | *No description.* |
 
@@ -709,6 +727,16 @@ public readonly organization: string;
 ```
 
 - *Type:* string
+
+---
+
+##### `workspaces`<sup>Required</sup> <a name="workspaces" id="cdktf-multi-stack-tfe.RemoteBackendOptions.property.workspaces"></a>
+
+```typescript
+public readonly workspaces: RemoteBackendOptionsWorkspace;
+```
+
+- *Type:* <a href="#cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace">RemoteBackendOptionsWorkspace</a>
 
 ---
 
@@ -726,6 +754,34 @@ public readonly hostname: string;
 
 ```typescript
 public readonly token: string;
+```
+
+- *Type:* string
+
+---
+
+### RemoteBackendOptionsWorkspace <a name="RemoteBackendOptionsWorkspace" id="cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace"></a>
+
+#### Initializer <a name="Initializer" id="cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace.Initializer"></a>
+
+```typescript
+import { RemoteBackendOptionsWorkspace } from 'cdktf-multi-stack-tfe'
+
+const remoteBackendOptionsWorkspace: RemoteBackendOptionsWorkspace = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace.property.name">name</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace.property.name"></a>
+
+```typescript
+public readonly name: string;
 ```
 
 - *Type:* string
