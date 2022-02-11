@@ -297,3 +297,121 @@ test("only one stack is created when using two cross stack references", () => {
     "
   `);
 });
+
+test("sets up all stacks created", () => {
+  const app = Testing.app();
+
+  class MyAppBaseStack extends BaseStack {
+    constructor(scope: Construct) {
+      super(scope, "my-company", "my-prefix", {
+        hostname: "app.terraform.io",
+        token: "my-token",
+      });
+    }
+
+    public getWorkspaceName(stackName: string): string {
+      return `our-${stackName}`;
+    }
+  }
+
+  class VpcStack extends Stack {
+    constructor(scope: Construct, stackName: string) {
+      super(scope, stackName);
+    }
+  }
+
+  const base = new MyAppBaseStack(app);
+  const vpc = new VpcStack(app, "staging-vpc");
+  new VpcStack(app, "production-vpc");
+
+  expect(Testing.renderConstructTree(app)).toMatchInlineSnapshot(`
+    "App
+    ├── base (MyAppBaseStack)
+        ├── tfe (TfeProvider)
+        ├── backend (RemoteBackend)
+        ├── organization (DataTfeOrganization)
+        ├── tfe-multi-stack-workspace-staging-vpc (Workspace)
+        └── tfe-multi-stack-workspace-production-vpc (Workspace)
+    ├── staging-vpc (VpcStack)
+        └── backend (RemoteBackend)
+    └── production-vpc (VpcStack)
+        └── backend (RemoteBackend)
+    "
+  `);
+
+  expect(Testing.synth(base)).toMatchInlineSnapshot(`
+    "{
+      \\"data\\": {
+        \\"tfe_organization\\": {
+          \\"organization\\": {
+            \\"name\\": \\"my-company\\"
+          }
+        }
+      },
+      \\"provider\\": {
+        \\"tfe\\": [
+          {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"token\\": \\"my-token\\"
+          }
+        ]
+      },
+      \\"resource\\": {
+        \\"tfe_workspace\\": {
+          \\"tfe-multi-stack-workspace-production-vpc\\": {
+            \\"name\\": \\"our-production-vpc\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
+            \\"remote_state_consumer_ids\\": [
+            ],
+            \\"tag_names\\": [
+              \\"my-prefix\\"
+            ]
+          },
+          \\"tfe-multi-stack-workspace-staging-vpc\\": {
+            \\"name\\": \\"our-staging-vpc\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
+            \\"remote_state_consumer_ids\\": [
+            ],
+            \\"tag_names\\": [
+              \\"my-prefix\\"
+            ]
+          }
+        }
+      },
+      \\"terraform\\": {
+        \\"backend\\": {
+          \\"remote\\": {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"organization\\": \\"my-company\\",
+            \\"token\\": \\"my-token\\",
+            \\"workspaces\\": {
+              \\"name\\": \\"our-base\\"
+            }
+          }
+        },
+        \\"required_providers\\": {
+          \\"tfe\\": {
+            \\"source\\": \\"hashicorp/tfe\\",
+            \\"version\\": \\"~> 0.26.1\\"
+          }
+        }
+      }
+    }"
+  `);
+  expect(Testing.synth(vpc)).toMatchInlineSnapshot(`
+    "{
+      \\"terraform\\": {
+        \\"backend\\": {
+          \\"remote\\": {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"organization\\": \\"my-company\\",
+            \\"token\\": \\"my-token\\",
+            \\"workspaces\\": {
+              \\"name\\": \\"our-staging-vpc\\"
+            }
+          }
+        }
+      }
+    }"
+  `);
+});

@@ -17,6 +17,7 @@ export interface RemoteBackendOptions {
   readonly hostname?: string;
   readonly organization: string;
   readonly token?: string;
+  readonly workspaces: { name: string };
 }
 
 export class BaseStack extends TerraformStack {
@@ -37,15 +38,14 @@ export class BaseStack extends TerraformStack {
     return base;
   }
 
-  public readonly remoteBackendOptions: RemoteBackendOptions;
   public tfeProvider: TfeProvider;
   public organization: DataTfeOrganization;
 
   constructor(
     scope: Construct,
-    organization: string,
+    private organizationName: string,
     private prefix: string,
-    options: BaseStackOptions = {}
+    private options: BaseStackOptions = {}
   ) {
     super(scope, "base");
     Object.defineProperty(this, MULTI_STACK_BASE_SYMBOL, { value: true });
@@ -55,36 +55,35 @@ export class BaseStack extends TerraformStack {
       sslSkipVerify: options.sslSkipVerify,
     });
 
-    this.remoteBackendOptions = {
-      organization,
-      // optional
-      hostname: options.hostname,
-      token: options.token,
-    };
-
-    new RemoteBackend(this, {
-      ...this.remoteBackendOptions,
-      workspaces: {
-        name: `${this.prefix}-base`,
-      },
-    });
+    new RemoteBackend(this, this.getRemoteBackendOptions("base"));
 
     this.organization = new DataTfeOrganization(this, "organization", {
-      name: organization,
+      name: organizationName,
     });
-
-    // this.workspace = new DataTfeWorkspace(this, "this", {
-    //   provider: this.tfeProvider,
-
-    //   name: `${prefix}-base`,
-    //   organization,
-    // });
   }
 
-  public bootstrapWorkspace(name: string) {
-    const workspaceName = `${this.prefix}-${name}`;
-    return new tfe.Workspace(this, `tfe-multi-stack-workspace-${name}`, {
-      name: workspaceName,
+  public getRemoteBackendOptions(stackName: string): RemoteBackendOptions {
+    return {
+      workspaces: {
+        name: this.getWorkspaceName(stackName),
+      },
+      organization: this.organizationName,
+      // optional
+      hostname: this.options.hostname,
+      token: this.options.token,
+    };
+  }
+
+  /**
+   * If you want to have more control over the workspace name, you can override this method.
+   */
+  public getWorkspaceName(stackName: string): string {
+    return `${this.prefix}-${stackName}`;
+  }
+
+  public bootstrapWorkspace(stackName: string) {
+    return new tfe.Workspace(this, `tfe-multi-stack-workspace-${stackName}`, {
+      name: this.getWorkspaceName(stackName),
       organization: this.organization.name,
       tagNames: [this.prefix],
       remoteStateConsumerIds: [], // this is filled on the fly through addDependency calls
@@ -105,12 +104,7 @@ export class Stack extends TerraformStack {
     const baseStack = BaseStack.baseStackOf(this);
     this.workspace = baseStack.bootstrapWorkspace(stackName);
 
-    new RemoteBackend(this, {
-      ...baseStack.remoteBackendOptions,
-      workspaces: {
-        name: this.workspace.nameInput, // We don't want a cross stack reference to be created, we just need the value
-      },
-    });
+    new RemoteBackend(this, baseStack.getRemoteBackendOptions(stackName));
   }
 
   addDependency(dependency: TerraformStack): void {
