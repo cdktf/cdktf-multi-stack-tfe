@@ -1,5 +1,4 @@
 import * as tfe from "@cdktf/provider-tfe";
-import { DataTfeOrganization, TfeProvider } from "@cdktf/provider-tfe";
 import { App, RemoteBackend, TerraformStack, insideTfExpression } from "cdktf";
 import { Construct, IConstruct } from "constructs";
 
@@ -41,8 +40,8 @@ export class BaseStack extends TerraformStack {
     return base;
   }
 
-  public tfeProvider: TfeProvider;
-  public organization: DataTfeOrganization;
+  public tfeProvider: tfe.TfeProvider;
+  public organization: tfe.DataTfeOrganization;
 
   constructor(
     scope: Construct,
@@ -52,7 +51,7 @@ export class BaseStack extends TerraformStack {
   ) {
     super(scope, "base");
     Object.defineProperty(this, MULTI_STACK_BASE_SYMBOL, { value: true });
-    this.tfeProvider = new TfeProvider(this, "tfe", {
+    this.tfeProvider = new tfe.TfeProvider(this, "tfe", {
       hostname: options.hostname,
       token: options.token,
       sslSkipVerify: options.sslSkipVerify,
@@ -60,7 +59,7 @@ export class BaseStack extends TerraformStack {
 
     new RemoteBackend(this, this.getRemoteBackendOptions("base"));
 
-    this.organization = new DataTfeOrganization(this, "organization", {
+    this.organization = new tfe.DataTfeOrganization(this, "organization", {
       name: organizationName,
     });
   }
