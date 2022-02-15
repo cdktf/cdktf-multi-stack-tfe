@@ -65,6 +65,23 @@ new Web(app, "production-web", prodVpc.vpcId);
 app.synth();
 ```
 
+### Configuration
+
+#### Workspace naming
+
+To control the workspace naming please implement the following method on the BaseStack to your liking:
+
+```ts
+public getWorkspaceName(stackName: string): string {
+  return `${this.prefix}-${stackName}`;
+}
+```
+
+### Workspace configuration
+
+You configure the created workspaces by settting the `defaultWorkspaceConfig` property on the BaseStack.
+This config is overwritten by the one specified as the thrid argument of a `Stack` (in the super call).
+
 ## Warning
 
 There are some potentially harmful side effects you could run into, so please always carefully read the diff before applying it.

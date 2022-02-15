@@ -179,12 +179,18 @@ public toTerraform(): any
 ##### `bootstrapWorkspace` <a name="bootstrapWorkspace" id="cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace"></a>
 
 ```typescript
-public bootstrapWorkspace(stackName: string): Workspace
+public bootstrapWorkspace(stackName: string, stackConfig?: WorkspaceConfig): Workspace
 ```
 
 ###### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace.parameter.stackName"></a>
 
 - *Type:* string
+
+---
+
+###### `stackConfig`<sup>Optional</sup> <a name="stackConfig" id="cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace.parameter.stackConfig"></a>
+
+- *Type:* <a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a>
 
 ---
 
@@ -372,13 +378,14 @@ public readonly tfeProvider: TfeProvider;
 ```typescript
 import { Stack } from 'cdktf-multi-stack-tfe'
 
-new Stack(scope: Construct, stackName: string)
+new Stack(scope: Construct, stackName: string, config?: WorkspaceConfig)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.Initializer.parameter.stackName">stackName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.Stack.Initializer.parameter.config">config</a></code> | <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a></code> | *No description.* |
 
 ---
 
@@ -391,6 +398,12 @@ new Stack(scope: Construct, stackName: string)
 ##### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.Stack.Initializer.parameter.stackName"></a>
 
 - *Type:* string
+
+---
+
+##### `config`<sup>Optional</sup> <a name="config" id="cdktf-multi-stack-tfe.Stack.Initializer.parameter.config"></a>
+
+- *Type:* <a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a>
 
 ---
 
@@ -663,9 +676,20 @@ const baseStackOptions: BaseStackOptions = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions.property.defaultWorkspaceConfig">defaultWorkspaceConfig</a></code> | <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions.property.hostname">hostname</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions.property.sslSkipVerify">sslSkipVerify</a></code> | <code>boolean</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions.property.token">token</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `defaultWorkspaceConfig`<sup>Optional</sup> <a name="defaultWorkspaceConfig" id="cdktf-multi-stack-tfe.BaseStackOptions.property.defaultWorkspaceConfig"></a>
+
+```typescript
+public readonly defaultWorkspaceConfig: WorkspaceConfig;
+```
+
+- *Type:* <a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a>
 
 ---
 
@@ -785,6 +809,218 @@ public readonly name: string;
 ```
 
 - *Type:* string
+
+---
+
+### WorkspaceConfig <a name="WorkspaceConfig" id="cdktf-multi-stack-tfe.WorkspaceConfig"></a>
+
+#### Initializer <a name="Initializer" id="cdktf-multi-stack-tfe.WorkspaceConfig.Initializer"></a>
+
+```typescript
+import { WorkspaceConfig } from 'cdktf-multi-stack-tfe'
+
+const workspaceConfig: WorkspaceConfig = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.agentPoolId">agentPoolId</a></code> | <code>string</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#agent_pool_id Workspace#agent_pool_id}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.allowDestroyPlan">allowDestroyPlan</a></code> | <code>boolean \| cdktf.IResolvable</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#allow_destroy_plan Workspace#allow_destroy_plan}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.autoApply">autoApply</a></code> | <code>boolean \| cdktf.IResolvable</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#auto_apply Workspace#auto_apply}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.description">description</a></code> | <code>string</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#description Workspace#description}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.executionMode">executionMode</a></code> | <code>string</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#execution_mode Workspace#execution_mode}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.fileTriggersEnabled">fileTriggersEnabled</a></code> | <code>boolean \| cdktf.IResolvable</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#file_triggers_enabled Workspace#file_triggers_enabled}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.globalRemoteState">globalRemoteState</a></code> | <code>boolean \| cdktf.IResolvable</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#global_remote_state Workspace#global_remote_state}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.queueAllRuns">queueAllRuns</a></code> | <code>boolean \| cdktf.IResolvable</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#queue_all_runs Workspace#queue_all_runs}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.remoteStateConsumerIds">remoteStateConsumerIds</a></code> | <code>string[]</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#remote_state_consumer_ids Workspace#remote_state_consumer_ids}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.speculativeEnabled">speculativeEnabled</a></code> | <code>boolean \| cdktf.IResolvable</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#speculative_enabled Workspace#speculative_enabled}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.sshKeyId">sshKeyId</a></code> | <code>string</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#ssh_key_id Workspace#ssh_key_id}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.structuredRunOutputEnabled">structuredRunOutputEnabled</a></code> | <code>boolean \| cdktf.IResolvable</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#structured_run_output_enabled Workspace#structured_run_output_enabled}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.tagNames">tagNames</a></code> | <code>string[]</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#tag_names Workspace#tag_names}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.terraformVersion">terraformVersion</a></code> | <code>string</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#terraform_version Workspace#terraform_version}. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig.property.triggerPrefixes">triggerPrefixes</a></code> | <code>string[]</code> | Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#trigger_prefixes Workspace#trigger_prefixes}. |
+
+---
+
+##### `agentPoolId`<sup>Optional</sup> <a name="agentPoolId" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.agentPoolId"></a>
+
+```typescript
+public readonly agentPoolId: string;
+```
+
+- *Type:* string
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#agent_pool_id Workspace#agent_pool_id}.
+
+---
+
+##### `allowDestroyPlan`<sup>Optional</sup> <a name="allowDestroyPlan" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.allowDestroyPlan"></a>
+
+```typescript
+public readonly allowDestroyPlan: boolean | IResolvable;
+```
+
+- *Type:* boolean | cdktf.IResolvable
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#allow_destroy_plan Workspace#allow_destroy_plan}.
+
+---
+
+##### `autoApply`<sup>Optional</sup> <a name="autoApply" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.autoApply"></a>
+
+```typescript
+public readonly autoApply: boolean | IResolvable;
+```
+
+- *Type:* boolean | cdktf.IResolvable
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#auto_apply Workspace#auto_apply}.
+
+---
+
+##### `description`<sup>Optional</sup> <a name="description" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.description"></a>
+
+```typescript
+public readonly description: string;
+```
+
+- *Type:* string
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#description Workspace#description}.
+
+---
+
+##### `executionMode`<sup>Optional</sup> <a name="executionMode" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.executionMode"></a>
+
+```typescript
+public readonly executionMode: string;
+```
+
+- *Type:* string
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#execution_mode Workspace#execution_mode}.
+
+---
+
+##### `fileTriggersEnabled`<sup>Optional</sup> <a name="fileTriggersEnabled" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.fileTriggersEnabled"></a>
+
+```typescript
+public readonly fileTriggersEnabled: boolean | IResolvable;
+```
+
+- *Type:* boolean | cdktf.IResolvable
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#file_triggers_enabled Workspace#file_triggers_enabled}.
+
+---
+
+##### `globalRemoteState`<sup>Optional</sup> <a name="globalRemoteState" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.globalRemoteState"></a>
+
+```typescript
+public readonly globalRemoteState: boolean | IResolvable;
+```
+
+- *Type:* boolean | cdktf.IResolvable
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#global_remote_state Workspace#global_remote_state}.
+
+---
+
+##### `queueAllRuns`<sup>Optional</sup> <a name="queueAllRuns" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.queueAllRuns"></a>
+
+```typescript
+public readonly queueAllRuns: boolean | IResolvable;
+```
+
+- *Type:* boolean | cdktf.IResolvable
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#queue_all_runs Workspace#queue_all_runs}.
+
+---
+
+##### `remoteStateConsumerIds`<sup>Optional</sup> <a name="remoteStateConsumerIds" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.remoteStateConsumerIds"></a>
+
+```typescript
+public readonly remoteStateConsumerIds: string[];
+```
+
+- *Type:* string[]
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#remote_state_consumer_ids Workspace#remote_state_consumer_ids}.
+
+---
+
+##### `speculativeEnabled`<sup>Optional</sup> <a name="speculativeEnabled" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.speculativeEnabled"></a>
+
+```typescript
+public readonly speculativeEnabled: boolean | IResolvable;
+```
+
+- *Type:* boolean | cdktf.IResolvable
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#speculative_enabled Workspace#speculative_enabled}.
+
+---
+
+##### `sshKeyId`<sup>Optional</sup> <a name="sshKeyId" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.sshKeyId"></a>
+
+```typescript
+public readonly sshKeyId: string;
+```
+
+- *Type:* string
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#ssh_key_id Workspace#ssh_key_id}.
+
+---
+
+##### `structuredRunOutputEnabled`<sup>Optional</sup> <a name="structuredRunOutputEnabled" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.structuredRunOutputEnabled"></a>
+
+```typescript
+public readonly structuredRunOutputEnabled: boolean | IResolvable;
+```
+
+- *Type:* boolean | cdktf.IResolvable
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#structured_run_output_enabled Workspace#structured_run_output_enabled}.
+
+---
+
+##### `tagNames`<sup>Optional</sup> <a name="tagNames" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.tagNames"></a>
+
+```typescript
+public readonly tagNames: string[];
+```
+
+- *Type:* string[]
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#tag_names Workspace#tag_names}.
+
+---
+
+##### `terraformVersion`<sup>Optional</sup> <a name="terraformVersion" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.terraformVersion"></a>
+
+```typescript
+public readonly terraformVersion: string;
+```
+
+- *Type:* string
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#terraform_version Workspace#terraform_version}.
+
+---
+
+##### `triggerPrefixes`<sup>Optional</sup> <a name="triggerPrefixes" id="cdktf-multi-stack-tfe.WorkspaceConfig.property.triggerPrefixes"></a>
+
+```typescript
+public readonly triggerPrefixes: string[];
+```
+
+- *Type:* string[]
+
+Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/tfe/r/workspace#trigger_prefixes Workspace#trigger_prefixes}.
 
 ---
 
