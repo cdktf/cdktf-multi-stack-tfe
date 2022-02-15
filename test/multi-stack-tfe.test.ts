@@ -1,6 +1,6 @@
 import { TerraformLocal, Testing } from "cdktf";
 import { Construct } from "constructs";
-import { BaseStack, Stack } from "../src";
+import { BaseStack, Stack, WorkspaceConfig } from "../src";
 
 test("sets up all stacks created", () => {
   const app = Testing.app();
@@ -298,7 +298,7 @@ test("only one stack is created when using two cross stack references", () => {
   `);
 });
 
-test("sets up all stacks created", () => {
+test("uses workspace name override", () => {
   const app = Testing.app();
 
   class MyAppBaseStack extends BaseStack {
@@ -409,6 +409,204 @@ test("sets up all stacks created", () => {
             \\"workspaces\\": {
               \\"name\\": \\"our-staging-vpc\\"
             }
+          }
+        }
+      }
+    }"
+  `);
+});
+
+test("uses workspace config options", () => {
+  const app = Testing.app();
+
+  class MyAppBaseStack extends BaseStack {
+    constructor(scope: Construct) {
+      super(scope, "my-company", "my-prefix", {
+        hostname: "app.terraform.io",
+        token: "my-token",
+        defaultWorkspaceConfig: {
+          tagNames: ["another-tag"],
+          agentPoolId: "42",
+          queueAllRuns: true,
+        },
+      });
+    }
+  }
+
+  class VpcStack extends Stack {
+    constructor(scope: Construct, stackName: string) {
+      super(scope, stackName);
+    }
+  }
+
+  const base = new MyAppBaseStack(app);
+  new VpcStack(app, "staging-vpc");
+  new VpcStack(app, "production-vpc");
+
+  expect(Testing.synth(base)).toMatchInlineSnapshot(`
+    "{
+      \\"data\\": {
+        \\"tfe_organization\\": {
+          \\"organization\\": {
+            \\"name\\": \\"my-company\\"
+          }
+        }
+      },
+      \\"provider\\": {
+        \\"tfe\\": [
+          {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"token\\": \\"my-token\\"
+          }
+        ]
+      },
+      \\"resource\\": {
+        \\"tfe_workspace\\": {
+          \\"tfe-multi-stack-workspace-production-vpc\\": {
+            \\"agent_pool_id\\": \\"42\\",
+            \\"name\\": \\"my-prefix-production-vpc\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
+            \\"queue_all_runs\\": true,
+            \\"remote_state_consumer_ids\\": [
+            ],
+            \\"tag_names\\": [
+              \\"my-prefix\\",
+              \\"another-tag\\"
+            ]
+          },
+          \\"tfe-multi-stack-workspace-staging-vpc\\": {
+            \\"agent_pool_id\\": \\"42\\",
+            \\"name\\": \\"my-prefix-staging-vpc\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
+            \\"queue_all_runs\\": true,
+            \\"remote_state_consumer_ids\\": [
+            ],
+            \\"tag_names\\": [
+              \\"my-prefix\\",
+              \\"another-tag\\"
+            ]
+          }
+        }
+      },
+      \\"terraform\\": {
+        \\"backend\\": {
+          \\"remote\\": {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"organization\\": \\"my-company\\",
+            \\"token\\": \\"my-token\\",
+            \\"workspaces\\": {
+              \\"name\\": \\"my-prefix-base\\"
+            }
+          }
+        },
+        \\"required_providers\\": {
+          \\"tfe\\": {
+            \\"source\\": \\"hashicorp/tfe\\",
+            \\"version\\": \\"~> 0.26.1\\"
+          }
+        }
+      }
+    }"
+  `);
+});
+
+test("uses workspace config options with per stack override", () => {
+  const app = Testing.app();
+
+  class MyAppBaseStack extends BaseStack {
+    constructor(scope: Construct) {
+      super(scope, "my-company", "my-prefix", {
+        hostname: "app.terraform.io",
+        token: "my-token",
+        defaultWorkspaceConfig: {
+          tagNames: ["another-tag"],
+          agentPoolId: "42",
+          queueAllRuns: true,
+        },
+      });
+    }
+  }
+
+  class VpcStack extends Stack {
+    constructor(
+      scope: Construct,
+      stackName: string,
+      workspaceConfig: WorkspaceConfig
+    ) {
+      super(scope, stackName, workspaceConfig);
+    }
+  }
+
+  const base = new MyAppBaseStack(app);
+  new VpcStack(app, "staging-vpc", {
+    executionMode: "remote",
+    tagNames: ["staging-tag"],
+  });
+  new VpcStack(app, "production-vpc", {
+    tagNames: ["production-tag"],
+  });
+
+  expect(Testing.synth(base)).toMatchInlineSnapshot(`
+    "{
+      \\"data\\": {
+        \\"tfe_organization\\": {
+          \\"organization\\": {
+            \\"name\\": \\"my-company\\"
+          }
+        }
+      },
+      \\"provider\\": {
+        \\"tfe\\": [
+          {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"token\\": \\"my-token\\"
+          }
+        ]
+      },
+      \\"resource\\": {
+        \\"tfe_workspace\\": {
+          \\"tfe-multi-stack-workspace-production-vpc\\": {
+            \\"agent_pool_id\\": \\"42\\",
+            \\"name\\": \\"my-prefix-production-vpc\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
+            \\"queue_all_runs\\": true,
+            \\"remote_state_consumer_ids\\": [
+            ],
+            \\"tag_names\\": [
+              \\"my-prefix\\",
+              \\"production-tag\\"
+            ]
+          },
+          \\"tfe-multi-stack-workspace-staging-vpc\\": {
+            \\"agent_pool_id\\": \\"42\\",
+            \\"execution_mode\\": \\"remote\\",
+            \\"name\\": \\"my-prefix-staging-vpc\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
+            \\"queue_all_runs\\": true,
+            \\"remote_state_consumer_ids\\": [
+            ],
+            \\"tag_names\\": [
+              \\"my-prefix\\",
+              \\"staging-tag\\"
+            ]
+          }
+        }
+      },
+      \\"terraform\\": {
+        \\"backend\\": {
+          \\"remote\\": {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"organization\\": \\"my-company\\",
+            \\"token\\": \\"my-token\\",
+            \\"workspaces\\": {
+              \\"name\\": \\"my-prefix-base\\"
+            }
+          }
+        },
+        \\"required_providers\\": {
+          \\"tfe\\": {
+            \\"source\\": \\"hashicorp/tfe\\",
+            \\"version\\": \\"~> 0.26.1\\"
           }
         }
       }
