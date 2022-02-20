@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@cdktf/provider-tfe": "0.1.14",
-    "@dschmidt/cdktf-construct-base": "^0.0.41",
+    "@dschmidt/cdktf-construct-base": "^0.0.42",
     "@types/jest": "^27.4.0",
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
@@ -47,7 +47,7 @@
     "cdktf-cli": "^0.9.1",
     "constructs": "10.0.25",
     "eslint": "^8",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.4.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",

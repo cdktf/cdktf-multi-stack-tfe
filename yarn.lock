@@ -348,10 +348,10 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@dschmidt/cdktf-construct-base@^0.0.41":
-  version "0.0.41"
-  resolved "https://registry.yarnpkg.com/@dschmidt/cdktf-construct-base/-/cdktf-construct-base-0.0.41.tgz#d6952cd77bd9c26110c8ccd3c6862cff24398ad8"
-  integrity sha512-kA0ukoPeQvWAavcDcnFCxxsqJrixpQicXYV9AJYNejD12IrMjxikJH5w61+122z++wchjSRzLyeGqV4TEt/ZpQ==
+"@dschmidt/cdktf-construct-base@^0.0.42":
+  version "0.0.42"
+  resolved "https://registry.yarnpkg.com/@dschmidt/cdktf-construct-base/-/cdktf-construct-base-0.0.42.tgz#4f4e79c372c94932a9f3dd695792a7d051273276"
+  integrity sha512-4WNjpebaeILKx+RJJ/germQKKtdnVdkBGFTUqFznKG170C548I8ymh6ObS2FihMyc59zzTwoTecut7eK/GmesA==
   dependencies:
     projen "^0.50.9"
 
@@ -1381,9 +1381,9 @@ browser-process-hrtime@^1.0.0:
   integrity sha512-9o5UecI3GhkpM6DrXr69PblIuWxPKk9Y0jHBRhdocZ2y7YECBFCsHm79Pr3OyR2AvjhDkabFJaDJMYRazHgsow==
 
 browserslist@^4.17.5:
-  version "4.19.2"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.19.2.tgz#9ba98791192a39e1242f0670bb265ceee1baf0a4"
-  integrity sha512-97XU1CTZ5TwU9Qy/Taj+RtiI6SQM1WIhZ9osT7EY0oO2aWXGABZT2OZeRL+6PfaQsiiMIjjwIoYFPq4APgspgQ==
+  version "4.19.3"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.19.3.tgz#29b7caad327ecf2859485f696f9604214bedd383"
+  integrity sha512-XK3X4xtKJ+Txj8G5c30B4gsm71s69lqXlkYui4s6EkKxuv49qjYlY6oVd+IFJ73d4YymtM3+djvvt/R/iJwwDg==
   dependencies:
     caniuse-lite "^1.0.30001312"
     electron-to-chromium "^1.4.71"
@@ -1770,9 +1770,9 @@ constructs@10.0.25:
   integrity sha512-QxY4A7caIW1tI5ztbdZHKU/nWXiqluujmEVj5xCVhFhoBgOqU4ja3z3zXY4DUn2nf+PLxCjulf+viQ/h9RXB8A==
 
 constructs@^10.0.25:
-  version "10.0.65"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.0.65.tgz#55c63dbc1695cbaa7349ead9f9522363669aec65"
-  integrity sha512-jtTd873v+OG/m9xapCENoj2qn2uJE+VrIBjNjdQs8UUSxmw8HpGtSZ3G2QtPjSN3DLOWtGbOVQbmtt/05ceSwA==
+  version "10.0.66"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.0.66.tgz#a3182be52479a6f784ea5e12e20f8e69ff5a6ae5"
+  integrity sha512-luFprSllFDm8iEt/irxsWnm8PHNKNNnZ3pV+5PRXDUOnLaWCv6Vwm+7E0IX6pfgiSphOSsWqhA4ReJA+xe0YHg==
 
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"
@@ -2368,10 +2368,10 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-prettier@^8.3.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"
-  integrity sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
+eslint-config-prettier@^8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.4.0.tgz#8e6d17c7436649e98c4c2189868562921ef563de"
+  integrity sha512-CFotdUcMY18nGRo5KGsnNxpznzhkopOcOo0InID+sgQssPrzjvsyKZPvOgymTFeHrFuC3Tzdf2YndhXtULK9Iw==
 
 eslint-import-resolver-node@^0.3.6:
   version "0.3.6"
@@ -4094,9 +4094,9 @@ jsii-rosetta@^1.53.0, jsii-rosetta@^1.54.0:
     yargs "^16.2.0"
 
 jsii-srcmak@^0.1.471:
-  version "0.1.479"
-  resolved "https://registry.yarnpkg.com/jsii-srcmak/-/jsii-srcmak-0.1.479.tgz#66aa7d081249dccc30035236b930d928842c88a3"
-  integrity sha512-4S+tMw39vl86EU2xuCD5iDsBOXuGhGD5BYlFa1Euzt5hzdlWdeNd6IvH7zBkLUCY8crfacLdUEF3Vm+P+Z5tsg==
+  version "0.1.480"
+  resolved "https://registry.yarnpkg.com/jsii-srcmak/-/jsii-srcmak-0.1.480.tgz#507e378bce1d9ed3b5143350a06fb3f5fa3924b0"
+  integrity sha512-dfbPFhBAWAm+y7c1Sqwmzav8ZsSaxSt9bGAV5oeYztYBVY+4wlgpspY6mtVF6K6IWN4PKsK/6rcJvaMRe2cFtQ==
   dependencies:
     fs-extra "^9.1.0"
     jsii "^1.54.0"
