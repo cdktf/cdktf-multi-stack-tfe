@@ -348,10 +348,10 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@dschmidt/cdktf-construct-base@^0.0.53":
-  version "0.0.53"
-  resolved "https://registry.yarnpkg.com/@dschmidt/cdktf-construct-base/-/cdktf-construct-base-0.0.53.tgz#58751d31448217ec98463734b7af88176445856f"
-  integrity sha512-sx93SDwN5eby3xTKPu+E8tRT7IgJFj06xYCMaF6JlkvwK7D0E52LVQhYVctSkQBOh4ZV5N/+JM5pyme4X1ovtg==
+"@dschmidt/cdktf-construct-base@^0.0.54":
+  version "0.0.54"
+  resolved "https://registry.yarnpkg.com/@dschmidt/cdktf-construct-base/-/cdktf-construct-base-0.0.54.tgz#a77f606cb88d0700cb77c13288caf5f61d39ceaf"
+  integrity sha512-G6J+l48kZJlcmakaoN65H96LdXKnqwdi8eUkWIqle7Engj9S+wR8LA1lLcw5tGMQhaE5BucLGRGECz57JmqLwQ==
   dependencies:
     projen "^0.50.9"
 
@@ -1498,9 +1498,9 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001312:
-  version "1.0.30001312"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001312.tgz#e11eba4b87e24d22697dae05455d5aea28550d5f"
-  integrity sha512-Wiz1Psk2MEK0pX3rUzWaunLTZzqS2JYZFzNKqAiJGiuxIjRPLgV6+VDPOg6lQOUxmDwhTlh198JsTTi8Hzw6aQ==
+  version "1.0.30001313"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001313.tgz#a380b079db91621e1b7120895874e2fd62ed2e2f"
+  integrity sha512-rI1UN0koZUiKINjysQDuRi2VeSCce3bYJNmDcj3PIKREiAmjakugBul1QSkg/fPrlULYl6oWfGg3PbgOSY9X4Q==
 
 case@^1.6.3:
   version "1.6.3"
@@ -1770,9 +1770,9 @@ constructs@10.0.25:
   integrity sha512-QxY4A7caIW1tI5ztbdZHKU/nWXiqluujmEVj5xCVhFhoBgOqU4ja3z3zXY4DUn2nf+PLxCjulf+viQ/h9RXB8A==
 
 constructs@^10.0.25:
-  version "10.0.77"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.0.77.tgz#79c65b973bc7368511a90dbaaf25e151a0c9c0ab"
-  integrity sha512-8078UFOQREavXrlLRYqoz5tm0TI81/Arr1DYFruSVBJiyS3X9sn7sFO6Bz4NTOneihqgQQR6pe4gJxhZPBWncQ==
+  version "10.0.78"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.0.78.tgz#2ae717d0ce86e04e2360d4722cfa097c740b4ab0"
+  integrity sha512-i1dZaygBiliDs17hzcuU9VW4QQnJV7rjzCl66nZcTIjxmoZ+tVzf2wV4+aQOo0MxPAikL9eY34tZ/w8XOTKakA==
 
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"
@@ -4028,10 +4028,10 @@ jsii-diff@^1.54.0:
     typescript "~3.9.10"
     yargs "^16.2.0"
 
-jsii-docgen@^6.1.20:
-  version "6.1.20"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-6.1.20.tgz#2313d468e9aa6ec2f70ac60d896a1bb2ef7aaa14"
-  integrity sha512-RbKhCq9m+7Omw1wLj64NaXSSs+9Sjfh1pNxipFc/at3N96s6DMcTQDObJvOFIjgN9i260bPWsjJ3+6vF7xrBwA==
+jsii-docgen@^6.1.21:
+  version "6.1.21"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-6.1.21.tgz#66ae68a64a85788bdd9eaf84179e257b3667cda0"
+  integrity sha512-UHi3GE6mDh0HJ2fi6gykL5ka84Q6HBPROt+6OtZL+FUf6RRk7t0sLAHHcVNBG+IxlPuoBuTp6Jvd0nD+rsmvNg==
   dependencies:
     "@jsii/spec" "^1.54.0"
     case "^1.6.3"
@@ -4094,9 +4094,9 @@ jsii-rosetta@^1.54.0:
     yargs "^16.2.0"
 
 jsii-srcmak@^0.1.482:
-  version "0.1.491"
-  resolved "https://registry.yarnpkg.com/jsii-srcmak/-/jsii-srcmak-0.1.491.tgz#726dba6c6e10aecd159194782f317c7fe16fff98"
-  integrity sha512-LkzSfljvFDni5lno6XafdQNnNR458YWQg+YU/cbxs67A0xhpxOnrbzsL8IfL3xnvOvgxhKP3LBJA4V5KOtZehg==
+  version "0.1.492"
+  resolved "https://registry.yarnpkg.com/jsii-srcmak/-/jsii-srcmak-0.1.492.tgz#99fd6ccbc1a2793886dd8b65ce4311dcab25cb6a"
+  integrity sha512-0DBrpEWyMCRYi0wo3K8vQSlpS1Aet3mXczYwPsnBfcNR19ya8gICr2QgNq/isjJmZx+yt1MCPRBcakrxtYOUWg==
   dependencies:
     fs-extra "^9.1.0"
     jsii "^1.54.0"
