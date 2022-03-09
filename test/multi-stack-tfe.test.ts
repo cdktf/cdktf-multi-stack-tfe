@@ -1,6 +1,6 @@
 import { TerraformLocal, Testing } from "cdktf";
 import { Construct } from "constructs";
-import { BaseStack, Stack, WorkspaceConfig } from "../src";
+import { BaseStack, Stack, WorkspaceConfig, Variable } from "../src";
 
 test("sets up all stacks created", () => {
   const app = Testing.app();
@@ -608,6 +608,191 @@ test("uses workspace config options with per stack override", () => {
             \\"source\\": \\"hashicorp/tfe\\",
             \\"version\\": \\"~> 0.26.1\\"
           }
+        }
+      }
+    }"
+  `);
+});
+
+test("can propagate variables from the base stack", () => {
+  const app = Testing.app();
+
+  class MyAppBaseStack extends BaseStack {
+    constructor(scope: Construct) {
+      super(scope, "my-company", "my-prefix", {
+        hostname: "app.terraform.io",
+        token: "my-token",
+      });
+    }
+  }
+
+  class VpcStack extends Stack {
+    constructor(scope: Construct, stackName: string) {
+      super(scope, stackName);
+
+      new Variable(this, "vpc-name", {
+        default: `${stackName}-vpc`,
+        type: "string",
+      });
+
+      new Variable(this, "vpc-secret", {
+        sensitive: true,
+      });
+    }
+  }
+
+  const base = new MyAppBaseStack(app);
+  const vpc = new VpcStack(app, "staging-vpc");
+  new VpcStack(app, "production-vpc");
+
+  expect(Testing.renderConstructTree(app)).toMatchInlineSnapshot(`
+    "App
+    ├── base (MyAppBaseStack)
+        ├── tfe (TfeProvider)
+        ├── backend (RemoteBackend)
+        ├── organization (DataTfeOrganization)
+        ├── tfe-multi-stack-workspace-staging-vpc (Workspace)
+        ├── var-staging-vpc-vpc-name (TerraformVariable)
+        ├── tfe-var-staging-vpc-vpc-name (Variable)
+        ├── var-staging-vpc-vpc-secret (TerraformVariable)
+        ├── tfe-var-staging-vpc-vpc-secret (Variable)
+        ├── tfe-multi-stack-workspace-production-vpc (Workspace)
+        ├── var-production-vpc-vpc-name (TerraformVariable)
+        ├── tfe-var-production-vpc-vpc-name (Variable)
+        ├── var-production-vpc-vpc-secret (TerraformVariable)
+        └── tfe-var-production-vpc-vpc-secret (Variable)
+    ├── staging-vpc (VpcStack)
+        ├── backend (RemoteBackend)
+        ├── vpc-name (Variable)
+        └── vpc-secret (Variable)
+    └── production-vpc (VpcStack)
+        ├── backend (RemoteBackend)
+        ├── vpc-name (Variable)
+        └── vpc-secret (Variable)
+    "
+  `);
+
+  expect(Testing.synth(base)).toMatchInlineSnapshot(`
+    "{
+      \\"data\\": {
+        \\"tfe_organization\\": {
+          \\"organization\\": {
+            \\"name\\": \\"my-company\\"
+          }
+        }
+      },
+      \\"provider\\": {
+        \\"tfe\\": [
+          {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"token\\": \\"my-token\\"
+          }
+        ]
+      },
+      \\"resource\\": {
+        \\"tfe_variable\\": {
+          \\"tfe-var-production-vpc-vpc-name\\": {
+            \\"category\\": \\"terraform\\",
+            \\"hcl\\": false,
+            \\"key\\": \\"vpc-name\\",
+            \\"value\\": \\"\${var.vpc-name}\\",
+            \\"workspace_id\\": \\"\${tfe_workspace.tfe-multi-stack-workspace-production-vpc.id}\\"
+          },
+          \\"tfe-var-production-vpc-vpc-secret\\": {
+            \\"category\\": \\"terraform\\",
+            \\"hcl\\": false,
+            \\"key\\": \\"vpc-secret\\",
+            \\"sensitive\\": true,
+            \\"value\\": \\"\${var.vpc-secret}\\",
+            \\"workspace_id\\": \\"\${tfe_workspace.tfe-multi-stack-workspace-production-vpc.id}\\"
+          },
+          \\"tfe-var-staging-vpc-vpc-name\\": {
+            \\"category\\": \\"terraform\\",
+            \\"hcl\\": false,
+            \\"key\\": \\"vpc-name\\",
+            \\"value\\": \\"\${var.vpc-name}\\",
+            \\"workspace_id\\": \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-vpc.id}\\"
+          },
+          \\"tfe-var-staging-vpc-vpc-secret\\": {
+            \\"category\\": \\"terraform\\",
+            \\"hcl\\": false,
+            \\"key\\": \\"vpc-secret\\",
+            \\"sensitive\\": true,
+            \\"value\\": \\"\${var.vpc-secret}\\",
+            \\"workspace_id\\": \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-vpc.id}\\"
+          }
+        },
+        \\"tfe_workspace\\": {
+          \\"tfe-multi-stack-workspace-production-vpc\\": {
+            \\"name\\": \\"my-prefix-production-vpc\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
+            \\"remote_state_consumer_ids\\": [
+            ],
+            \\"tag_names\\": [
+              \\"my-prefix\\"
+            ]
+          },
+          \\"tfe-multi-stack-workspace-staging-vpc\\": {
+            \\"name\\": \\"my-prefix-staging-vpc\\",
+            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
+            \\"remote_state_consumer_ids\\": [
+            ],
+            \\"tag_names\\": [
+              \\"my-prefix\\"
+            ]
+          }
+        }
+      },
+      \\"terraform\\": {
+        \\"backend\\": {
+          \\"remote\\": {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"organization\\": \\"my-company\\",
+            \\"token\\": \\"my-token\\",
+            \\"workspaces\\": {
+              \\"name\\": \\"my-prefix-base\\"
+            }
+          }
+        },
+        \\"required_providers\\": {
+          \\"tfe\\": {
+            \\"source\\": \\"hashicorp/tfe\\",
+            \\"version\\": \\"~> 0.26.1\\"
+          }
+        }
+      },
+      \\"variable\\": {
+        \\"vpc-name\\": {
+          \\"default\\": \\"production-vpc-vpc\\",
+          \\"type\\": \\"string\\"
+        },
+        \\"vpc-secret\\": {
+          \\"sensitive\\": true
+        }
+      }
+    }"
+  `);
+  expect(Testing.synth(vpc)).toMatchInlineSnapshot(`
+    "{
+      \\"terraform\\": {
+        \\"backend\\": {
+          \\"remote\\": {
+            \\"hostname\\": \\"app.terraform.io\\",
+            \\"organization\\": \\"my-company\\",
+            \\"token\\": \\"my-token\\",
+            \\"workspaces\\": {
+              \\"name\\": \\"my-prefix-staging-vpc\\"
+            }
+          }
+        }
+      },
+      \\"variable\\": {
+        \\"vpc-name\\": {
+          \\"default\\": \\"staging-vpc-vpc\\",
+          \\"type\\": \\"string\\"
+        },
+        \\"vpc-secret\\": {
+          \\"sensitive\\": true
         }
       }
     }"

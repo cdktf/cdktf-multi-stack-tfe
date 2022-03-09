@@ -9,7 +9,7 @@ You need to create the initial workspace yourself, in this case `my-app-base`.
 ```ts
 import * as cdktf from "cdktf";
 import Construct from "constructs";
-import { BaseStack, Stack } from "cdktf-multi-stack-tfe";
+import { BaseStack, Stack, Variable } from "cdktf-multi-stack-tfe";
 
 // We need to have an already created "base" TFE workspace as a basis.
 // It will store the TFE workspace configuration and state for all stacks.
@@ -47,7 +47,16 @@ class WebStack extends Stack {
   constructor(scope: Construct, stackName: string, vpcId: string) {
     super(scope, stackName);
 
-    // Setup yourwebapp using the vpcId
+    // This expects a TFC variable called "password" in your base stack and
+    // will create a variable called "password" in this stack. You can use
+    // password.value to get the value as you would do with TerraformVariable.
+    const password = new Variable(this, "password", {
+      type: "string",
+      sensitive: true
+    });
+
+
+    // Setup your webapp using the vpcId
   }
 }
 
