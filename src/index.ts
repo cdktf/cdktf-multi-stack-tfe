@@ -5,6 +5,8 @@ import {
   TerraformStack,
   insideTfExpression,
   IResolvable,
+  TerraformVariable,
+  TerraformVariableConfig,
 } from "cdktf";
 import { Construct, IConstruct } from "constructs";
 
@@ -142,6 +144,7 @@ export class BaseStack extends TerraformStack {
 
   public tfeProvider: tfe.TfeProvider;
   public organization: tfe.DataTfeOrganization;
+  private stackTfeWorkspaceMap: Record<string, tfe.Workspace> = {};
 
   constructor(
     scope: Construct,
@@ -191,12 +194,49 @@ export class BaseStack extends TerraformStack {
       ...(this.options.defaultWorkspaceConfig || {}),
       ...stackConfig,
     };
-    return new tfe.Workspace(this, `tfe-multi-stack-workspace-${stackName}`, {
-      ...config,
-      name: this.getWorkspaceName(stackName),
-      organization: this.organization.name,
-      tagNames: [this.prefix, ...(config.tagNames || [])],
-      remoteStateConsumerIds: [...(config.remoteStateConsumerIds || [])], // this is filled on the fly through addDependency calls
+    const workspace = new tfe.Workspace(
+      this,
+      `tfe-multi-stack-workspace-${stackName}`,
+      {
+        ...config,
+        name: this.getWorkspaceName(stackName),
+        organization: this.organization.name,
+        tagNames: [this.prefix, ...(config.tagNames || [])],
+        remoteStateConsumerIds: [...(config.remoteStateConsumerIds || [])], // this is filled on the fly through addDependency calls
+      }
+    );
+    this.stackTfeWorkspaceMap[stackName] = workspace;
+    return workspace;
+  }
+
+  public createSecret(
+    targetStack: Stack,
+    secretName: string,
+    config: TerraformVariableConfig
+  ): void {
+    const targetStackName = targetStack.node.id;
+    const workspace = this.stackTfeWorkspaceMap[targetStackName];
+    if (!workspace) {
+      throw new Error(
+        `No workspace found for stack ${targetStackName} in multi-stack app. This is a bug.`
+      );
+    }
+
+    const variableInBaseStack = new TerraformVariable(
+      this,
+      `var-${targetStackName}-${secretName}`,
+      config
+    );
+    variableInBaseStack.overrideLogicalId(secretName);
+
+    new tfe.Variable(this, `tfe-var-${targetStackName}-${secretName}`, {
+      key: secretName,
+      value: variableInBaseStack.value,
+      category: "terraform",
+      description: config.description,
+      hcl: false,
+      sensitive: config.sensitive,
+      workspaceId: workspace.id,
     });
   }
 }
@@ -204,6 +244,26 @@ export class BaseStack extends TerraformStack {
 export class Stack extends TerraformStack {
   public static isMultiStackStack(x: any): x is Stack {
     return x !== null && typeof x === "object" && MULTI_STACK_STACK_SYMBOL in x;
+  }
+
+  public static multiStackOf(construct: IConstruct): Stack {
+    return _lookup(construct);
+
+    function _lookup(c: IConstruct): Stack {
+      if (Stack.isMultiStackStack(c)) {
+        return c;
+      }
+
+      const node = c.node;
+
+      if (!node.scope) {
+        throw new Error(
+          `No stack could be identified for the construct at path '${construct.node.path}'`
+        );
+      }
+
+      return _lookup(node.scope);
+    }
   }
 
   public workspace: tfe.Workspace;
@@ -233,5 +293,18 @@ export class Stack extends TerraformStack {
     }
 
     super.addDependency(dependency);
+  }
+}
+
+// Creates a TerraformVariable from creating a tfe.Variable in the base stack
+export class Variable extends TerraformVariable {
+  constructor(scope: Construct, id: string, config: TerraformVariableConfig) {
+    super(scope, id, {
+      ...config,
+    });
+    this.overrideLogicalId(id);
+
+    const baseStack = BaseStack.baseStackOf(this);
+    baseStack.createSecret(Stack.multiStackOf(this), id, config);
   }
 }
