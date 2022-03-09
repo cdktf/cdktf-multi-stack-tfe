@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
 import { App, TerraformLocal } from "cdktf";
-import { BaseStack, Stack } from "../../src/index";
+import { BaseStack, Stack, Variable } from "../../src/index";
 
 class Base extends BaseStack {
   constructor(scope: Construct) {
@@ -15,10 +15,18 @@ class DemoStack extends Stack {
   constructor(scope: Construct, stackName: string, foreignValue?: string) {
     super(scope, stackName);
 
+    const greeting = new Variable(this, "MY_VAR", {
+      type: "string",
+    });
+
+    const secret = new Variable(this, "MY_SECRET", {
+      type: "string",
+    });
+
     this.value = new TerraformLocal(
       this,
       "local",
-      `hello from ${stackName}`
+      `${greeting.value} from ${stackName}, but keep ${secret.value} secret`
     ).asString;
 
     if (foreignValue) {
