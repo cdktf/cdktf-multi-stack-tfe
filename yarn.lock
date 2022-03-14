@@ -348,10 +348,10 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-"@dschmidt/cdktf-construct-base@^0.0.62":
-  version "0.0.62"
-  resolved "https://registry.yarnpkg.com/@dschmidt/cdktf-construct-base/-/cdktf-construct-base-0.0.62.tgz#374753a75a504835bdbe3dd9e5ea29a87e6c503c"
-  integrity sha512-Ej7nger1llryq8yQRcKhDi10qWgbuRtUzFlU7GhHr44bF8X95GBghzEp5ZBYgUnU/bIuZmRDn8Q9GeJhfekIaQ==
+"@dschmidt/cdktf-construct-base@^0.0.63":
+  version "0.0.63"
+  resolved "https://registry.yarnpkg.com/@dschmidt/cdktf-construct-base/-/cdktf-construct-base-0.0.63.tgz#8ee58d6d81946ec5573ac1fff540ecf1605c02c6"
+  integrity sha512-cLUISybqQQApDrsdSlzskRWO4JFy5TrPAz+tw7I4tg2rnFZ5+1wYMlajJIEyGQ7O8/W1NHmwzcjvyTSHFCOtxg==
   dependencies:
     projen "^0.50.9"
 
@@ -1498,9 +1498,9 @@ camelcase@^6.2.0, camelcase@^6.3.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001313:
-  version "1.0.30001314"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001314.tgz#65c7f9fb7e4594fca0a333bec1d8939662377596"
-  integrity sha512-0zaSO+TnCHtHJIbpLroX7nsD+vYuOVjl3uzFbJO1wMVbuveJA0RK2WcQA9ZUIOiO0/ArMiMgHJLxfEZhQiC0kw==
+  version "1.0.30001315"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001315.tgz#f1b1efd1171ee1170d52709a7252632dacbd7c77"
+  integrity sha512-5v7LFQU4Sb/qvkz7JcZkvtSH1Ko+1x2kgo3ocdBeMGZSOFpuE1kkm0kpTwLtWeFrw5qw08ulLxJjVIXIS8MkiQ==
 
 case@^1.6.3:
   version "1.6.3"
@@ -1770,9 +1770,9 @@ constructs@10.0.25:
   integrity sha512-QxY4A7caIW1tI5ztbdZHKU/nWXiqluujmEVj5xCVhFhoBgOqU4ja3z3zXY4DUn2nf+PLxCjulf+viQ/h9RXB8A==
 
 constructs@^10.0.25:
-  version "10.0.85"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.0.85.tgz#5d6482a045e75914b0a080441d41ad5fa55c4f3c"
-  integrity sha512-6+kO30p9ByZRxxPWgzS0Swd5j3INbtWztw7UN+9k+Nm+pNvt35pShYrHl8j8gdFXBgyyx1d2xRSU7g5QkvE5PQ==
+  version "10.0.86"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-10.0.86.tgz#2fe90a81181fdf8c41ac3376cd37dd1176494e4f"
+  integrity sha512-AfQ6M3Z18dOBL179CPcSbsZJfRkkr+/NXRC2X4fASjudEFzNVyx3tyznJpTO1a6lySAjFg6HmiiAsbGOnbWauw==
 
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"
@@ -4022,10 +4022,10 @@ jsii-diff@^1.55.0:
     typescript "~3.9.10"
     yargs "^16.2.0"
 
-jsii-docgen@^6.1.30:
-  version "6.1.30"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-6.1.30.tgz#bfbb75188f55c4494f0a7b078e75cba8ec282e36"
-  integrity sha512-gw7RW1lfJZpwblM7/Jmq9Dp6fgnyYJpgWL/Gdx8qTDC541QrQqfROavD2Pbx9hBVgEJzzjtf4faYBKbodc3JAw==
+jsii-docgen@^6.1.31:
+  version "6.1.31"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-6.1.31.tgz#518aa29330f8812d422a39c5e2614263e09eae16"
+  integrity sha512-4FBFrTaMDPDc68dwkoHwL7YKg4A+LP1wWGgsbIZcFXWV+q1jHvW5s6mMUd+noK2OCtRq+fIPPwDzPaIq1/G9IA==
   dependencies:
     "@jsii/spec" "^1.55.0"
     case "^1.6.3"
@@ -4088,9 +4088,9 @@ jsii-rosetta@^1.54.0, jsii-rosetta@^1.55.0:
     yargs "^16.2.0"
 
 jsii-srcmak@^0.1.482:
-  version "0.1.500"
-  resolved "https://registry.yarnpkg.com/jsii-srcmak/-/jsii-srcmak-0.1.500.tgz#7faac8f2f8b37d3b48472427d66fff6069fee971"
-  integrity sha512-RlWpgEX52QTx4VjYXS0atJpw70lHinBNypxXMLmOi+TqKQKH6iNgMYvKDokwwQjtxTxi5tR/qVG2vKnfyIfe2Q==
+  version "0.1.501"
+  resolved "https://registry.yarnpkg.com/jsii-srcmak/-/jsii-srcmak-0.1.501.tgz#07e7645b9836b0f9ce20884de2e1824197152462"
+  integrity sha512-DZyJuOQB1jFraVDGYpsFGm8T1qEQU2IQsaSZL6sNR2UC8pZzVd2NRCCjJwBsSMpc93vO8/9HV9kcXhzX2nEzHw==
   dependencies:
     fs-extra "^9.1.0"
     jsii "^1.55.0"
@@ -6099,9 +6099,9 @@ ts-node@^10.7.0:
     yn "3.1.1"
 
 tsconfig-paths@^3.12.0, tsconfig-paths@^3.9.0:
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.13.0.tgz#f3e9b8f6876698581d94470c03c95b3a48c0e3d7"
-  integrity sha512-nWuffZppoaYK0vQ1SQmkSsQzJoHA4s6uzdb2waRpD806x9yfq153AdVsWz4je2qZcW+pENrMQXbGQ3sMCkXuhw==
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.14.0.tgz#4fcc48f9ccea8826c41b9ca093479de7f5018976"
+  integrity sha512-cg/1jAZoL57R39+wiw4u/SCC6Ic9Q5NqjBOb+9xISedOYurfog9ZNmKJSxAnb2m/5Bq4lE9lhUcau33Ml8DM0g==
   dependencies:
     "@types/json5" "^0.0.29"
     json5 "^1.0.1"
