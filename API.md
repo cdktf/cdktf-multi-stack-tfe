@@ -257,7 +257,7 @@ If you want to have more control over the workspace name, you can override this 
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdktf-multi-stack-tfe.BaseStack.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdktf-multi-stack-tfe.BaseStack.isConstruct"></a>
 
 ```typescript
 import { BaseStack } from 'cdktf-multi-stack-tfe'
@@ -266,6 +266,20 @@ BaseStack.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.BaseStack.isConstruct.parameter.x"></a>
 
@@ -572,7 +586,7 @@ public toTerraform(): any
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdktf-multi-stack-tfe.Stack.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdktf-multi-stack-tfe.Stack.isConstruct"></a>
 
 ```typescript
 import { Stack } from 'cdktf-multi-stack-tfe'
@@ -581,6 +595,20 @@ Stack.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.Stack.isConstruct.parameter.x"></a>
 
@@ -826,7 +854,7 @@ public synthesizeAttributes(): {[ key: string ]: any}
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdktf-multi-stack-tfe.Variable.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdktf-multi-stack-tfe.Variable.isConstruct"></a>
 
 ```typescript
 import { Variable } from 'cdktf-multi-stack-tfe'
@@ -835,6 +863,20 @@ Variable.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.Variable.isConstruct.parameter.x"></a>
 
