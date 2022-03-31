@@ -16,5 +16,6 @@ project.testTask.exec(`npx cdktf synth`, {
   name: "synth TS example",
   cwd: "./examples/typescript",
 });
+project.gitignore.include("examples/typescript/tsconfig.json");
 
 project.synth();
