@@ -1,4 +1,4 @@
-const { CDKTFConstruct } = require("@dschmidt/cdktf-construct-base");
+import { CDKTFConstruct } from "@dschmidt/cdktf-construct-base";
 const project = new CDKTFConstruct({
   author: "Daniel Schmidt",
   authorAddress: "danielmschmidt92@gmail.com",
@@ -16,5 +16,6 @@ project.testTask.exec(`npx cdktf synth`, {
   name: "synth TS example",
   cwd: "./examples/typescript",
 });
+project.gitignore.include("examples/typescript/tsconfig.json");
 
 project.synth();
