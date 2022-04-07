@@ -37,7 +37,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@cdktf/provider-tfe": "0.1.14",
+    "@cdktf/provider-tfe": "0.2.0",
     "@dschmidt/cdktf-construct-base": "^0.0.93",
     "@types/jest": "^27.4.1",
     "@types/node": "^12",
@@ -67,7 +67,7 @@
     "typescript": "^4.6.3"
   },
   "peerDependencies": {
-    "@cdktf/provider-tfe": ">=0.1.14",
+    "@cdktf/provider-tfe": ">=0.2.0",
     "cdktf": "^0.10.1",
     "constructs": "^10.0.107"
   },

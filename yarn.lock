@@ -323,10 +323,10 @@
     is-valid-domain "^0.1.6"
     jsii-srcmak "^0.1.513"
 
-"@cdktf/provider-tfe@0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@cdktf/provider-tfe/-/provider-tfe-0.1.14.tgz#6c8c949778a958dcba26936a5f67ebf86dbf9a4a"
-  integrity sha512-+4+Svl7mWlZw8iRKm3K6yraoRycdrWNXPEI7h440JVSnt9nvfsVdU00Bi4w65sBEQVoxALuUWBllyhTmzrpvww==
+"@cdktf/provider-tfe@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@cdktf/provider-tfe/-/provider-tfe-0.2.0.tgz#cb1407b6dbbe2f427dc741891c44385ce7d6606c"
+  integrity sha512-xNtA+GwSYM1IHDswJQ/HwJuL2FtSg9O5qWRI7pkQvd4NQfHSqM8gZ0uS/3plia0EwNMW8QexpHCdJUAOddVlgg==
 
 "@dschmidt/cdktf-construct-base@^0.0.93":
   version "0.0.93"
