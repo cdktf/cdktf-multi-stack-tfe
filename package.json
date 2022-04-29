@@ -38,13 +38,13 @@
   },
   "devDependencies": {
     "@cdktf/provider-tfe": "0.2.0",
-    "@dschmidt/cdktf-construct-base": "^0.0.114",
+    "@dschmidt/cdktf-construct-base": "^0.0.115",
     "@types/jest": "^27.4.1",
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "cdktf": "0.10.1",
-    "cdktf-cli": "^0.10.2",
+    "cdktf-cli": "^0.10.3",
     "constructs": "10.0.107",
     "eslint": "^8",
     "eslint-config-prettier": "^8.5.0",
@@ -56,7 +56,7 @@
     "jest-junit": "^13",
     "jsii": "^1.57.0",
     "jsii-diff": "^1.57.0",
-    "jsii-docgen": "^6.3.22",
+    "jsii-docgen": "^6.3.23",
     "json-schema": "^0.4.0",
     "npm-check-updates": "^12",
     "prettier": "^2.6.2",
@@ -64,7 +64,7 @@
     "standard-version": "^9",
     "ts-jest": "^27.1.4",
     "ts-node": "^9",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.4"
   },
   "peerDependencies": {
     "@cdktf/provider-tfe": ">=0.2.0",
