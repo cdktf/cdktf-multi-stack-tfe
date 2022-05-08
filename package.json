@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@cdktf/provider-tfe": "0.2.0",
-    "@dschmidt/cdktf-construct-base": "^0.0.123",
+    "@dschmidt/cdktf-construct-base": "^0.0.124",
     "@types/jest": "^27.5.0",
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
