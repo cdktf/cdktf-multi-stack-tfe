@@ -103,21 +103,21 @@ export interface WorkspaceConfig {
   readonly triggerPrefixes?: string[];
 }
 
-export interface RemoteBackendOptionsWorkspace {
+export interface RemoteBackendConfigWorkspace {
   readonly name: string;
 }
 
-export interface RemoteBackendOptions {
+export interface RemoteBackendConfig {
   readonly hostname?: string;
   readonly organization: string;
   readonly token?: string;
-  readonly workspaces: RemoteBackendOptionsWorkspace;
+  readonly workspaces: RemoteBackendConfigWorkspace;
 }
 
 const MULTI_STACK_BASE_SYMBOL = Symbol(`multi-stack-tfe-base`);
 const MULTI_STACK_STACK_SYMBOL = Symbol(`multi-stack-tfe-stack`);
 
-export interface BaseStackOptions {
+export interface BaseStackConfig {
   readonly hostname?: string;
   readonly token?: string;
   readonly sslSkipVerify?: boolean;
@@ -150,7 +150,7 @@ export class BaseStack extends TerraformStack {
     scope: Construct,
     private organizationName: string,
     private prefix: string,
-    private options: BaseStackOptions = {}
+    private options: BaseStackConfig = {}
   ) {
     super(scope, "base");
     Object.defineProperty(this, MULTI_STACK_BASE_SYMBOL, { value: true });
@@ -160,14 +160,14 @@ export class BaseStack extends TerraformStack {
       sslSkipVerify: options.sslSkipVerify,
     });
 
-    new RemoteBackend(this, this.getRemoteBackendOptions("base"));
+    new RemoteBackend(this, this.getRemoteBackendConfig("base"));
 
     this.organization = new tfe.DataTfeOrganization(this, "organization", {
       name: organizationName,
     });
   }
 
-  public getRemoteBackendOptions(stackName: string): RemoteBackendOptions {
+  public getRemoteBackendConfig(stackName: string): RemoteBackendConfig {
     return {
       workspaces: {
         name: this.getWorkspaceName(stackName),
@@ -274,7 +274,7 @@ export class Stack extends TerraformStack {
     const baseStack = BaseStack.baseStackOf(this);
     this.workspace = baseStack.bootstrapWorkspace(stackName, config);
 
-    new RemoteBackend(this, baseStack.getRemoteBackendOptions(stackName));
+    new RemoteBackend(this, baseStack.getRemoteBackendConfig(stackName));
   }
 
   addDependency(dependency: TerraformStack): void {
