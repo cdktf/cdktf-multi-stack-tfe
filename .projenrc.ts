@@ -7,7 +7,7 @@ const project = new CDKTFConstruct({
   repositoryUrl: "https://github.com/DanielMSchmidt/cdktf-multi-stack-tfe.git",
   deps: [],
   devDeps: ["@dschmidt/cdktf-construct-base", "ts-node", "cdktf-cli"],
-  peerDeps: ["@cdktf/provider-tfe@>=5.0.0"],
+  peerDeps: ["@cdktf/provider-tfe@>=5.0.0", "cdktf@>=0.15.0"],
   description: `Sets up TFE / TFC workspaces for all stacks based on a seed stack.`,
   license: "MIT",
 });
