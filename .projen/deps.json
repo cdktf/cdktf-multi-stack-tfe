@@ -11,12 +11,11 @@
     },
     {
       "name": "@types/jest",
-      "version": "^27",
       "type": "build"
     },
     {
       "name": "@types/node",
-      "version": "^14",
+      "version": "^12",
       "type": "build"
     },
     {
@@ -35,7 +34,7 @@
     },
     {
       "name": "cdktf",
-      "version": "0.12.0",
+      "version": "0.10.1",
       "type": "build"
     },
     {
@@ -69,13 +68,12 @@
       "type": "build"
     },
     {
-      "name": "jest-junit",
-      "version": "^13",
+      "name": "jest",
       "type": "build"
     },
     {
-      "name": "jest",
-      "version": "^27",
+      "name": "jest-junit",
+      "version": "^13",
       "type": "build"
     },
     {
@@ -91,16 +89,12 @@
       "type": "build"
     },
     {
-      "name": "jsii-pacmak",
-      "type": "build"
-    },
-    {
       "name": "json-schema",
       "type": "build"
     },
     {
       "name": "npm-check-updates",
-      "version": "^16",
+      "version": "^12",
       "type": "build"
     },
     {
@@ -118,27 +112,16 @@
     },
     {
       "name": "ts-jest",
-      "version": "^27",
       "type": "build"
     },
     {
       "name": "ts-node",
-      "version": "10.9.1",
+      "version": "^9",
       "type": "build"
     },
     {
       "name": "typescript",
       "type": "build"
-    },
-    {
-      "name": "@types/babel__traverse",
-      "version": "7.18.2",
-      "type": "override"
-    },
-    {
-      "name": "@types/prettier",
-      "version": "2.6.0",
-      "type": "override"
     },
     {
       "name": "@cdktf/provider-tfe",
@@ -147,7 +130,7 @@
     },
     {
       "name": "cdktf",
-      "version": "^0.12.0",
+      "version": "^0.10.1",
       "type": "peer"
     },
     {
