@@ -9,7 +9,7 @@
 ```typescript
 import { BaseStack } from 'cdktf-multi-stack-tfe'
 
-new BaseStack(scope: Construct, organizationName: string, prefix: string, options?: BaseStackOptions)
+new BaseStack(scope: Construct, organizationName: string, prefix: string, options?: BaseStackConfig)
 ```
 
 | **Name** | **Type** | **Description** |
@@ -17,7 +17,7 @@ new BaseStack(scope: Construct, organizationName: string, prefix: string, option
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.organizationName">organizationName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.prefix">prefix</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.options">options</a></code> | <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions">BaseStackOptions</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.options">options</a></code> | <code><a href="#cdktf-multi-stack-tfe.BaseStackConfig">BaseStackConfig</a></code> | *No description.* |
 
 ---
 
@@ -41,7 +41,7 @@ new BaseStack(scope: Construct, organizationName: string, prefix: string, option
 
 ##### `options`<sup>Optional</sup> <a name="options" id="cdktf-multi-stack-tfe.BaseStack.Initializer.parameter.options"></a>
 
-- *Type:* <a href="#cdktf-multi-stack-tfe.BaseStackOptions">BaseStackOptions</a>
+- *Type:* <a href="#cdktf-multi-stack-tfe.BaseStackConfig">BaseStackConfig</a>
 
 ---
 
@@ -59,10 +59,11 @@ new BaseStack(scope: Construct, organizationName: string, prefix: string, option
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.prepareStack">prepareStack</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.registerIncomingCrossStackReference">registerIncomingCrossStackReference</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.registerOutgoingCrossStackReference">registerOutgoingCrossStackReference</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.runAllValidations">runAllValidations</a></code> | Run all validations on the stack. |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.toTerraform">toTerraform</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace">bootstrapWorkspace</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.createSecret">createSecret</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStack.getRemoteBackendOptions">getRemoteBackendOptions</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.getRemoteBackendConfig">getRemoteBackendConfig</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.getWorkspaceName">getWorkspaceName</a></code> | If you want to have more control over the workspace name, you can override this method. |
 
 ---
@@ -171,6 +172,14 @@ public registerOutgoingCrossStackReference(identifier: string): TerraformOutput
 
 ---
 
+##### `runAllValidations` <a name="runAllValidations" id="cdktf-multi-stack-tfe.BaseStack.runAllValidations"></a>
+
+```typescript
+public runAllValidations(): void
+```
+
+Run all validations on the stack.
+
 ##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.BaseStack.toTerraform"></a>
 
 ```typescript
@@ -219,13 +228,13 @@ public createSecret(targetStack: Stack, secretName: string, config: TerraformVar
 
 ---
 
-##### `getRemoteBackendOptions` <a name="getRemoteBackendOptions" id="cdktf-multi-stack-tfe.BaseStack.getRemoteBackendOptions"></a>
+##### `getRemoteBackendConfig` <a name="getRemoteBackendConfig" id="cdktf-multi-stack-tfe.BaseStack.getRemoteBackendConfig"></a>
 
 ```typescript
-public getRemoteBackendOptions(stackName: string): RemoteBackendOptions
+public getRemoteBackendConfig(stackName: string): RemoteBackendConfig
 ```
 
-###### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.BaseStack.getRemoteBackendOptions.parameter.stackName"></a>
+###### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.BaseStack.getRemoteBackendConfig.parameter.stackName"></a>
 
 - *Type:* string
 
@@ -352,8 +361,8 @@ BaseStack.isBaseStack(x: any)
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.organization">organization</a></code> | <code>@cdktf/provider-tfe.DataTfeOrganization</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.tfeProvider">tfeProvider</a></code> | <code>@cdktf/provider-tfe.TfeProvider</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.organization">organization</a></code> | <code>@cdktf/provider-tfe.dataTfeOrganization.DataTfeOrganization</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.tfeProvider">tfeProvider</a></code> | <code>@cdktf/provider-tfe.provider.TfeProvider</code> | *No description.* |
 
 ---
 
@@ -395,7 +404,7 @@ public readonly synthesizer: IStackSynthesizer;
 public readonly organization: DataTfeOrganization;
 ```
 
-- *Type:* @cdktf/provider-tfe.DataTfeOrganization
+- *Type:* @cdktf/provider-tfe.dataTfeOrganization.DataTfeOrganization
 
 ---
 
@@ -405,7 +414,7 @@ public readonly organization: DataTfeOrganization;
 public readonly tfeProvider: TfeProvider;
 ```
 
-- *Type:* @cdktf/provider-tfe.TfeProvider
+- *Type:* @cdktf/provider-tfe.provider.TfeProvider
 
 ---
 
@@ -460,6 +469,7 @@ new Stack(scope: Construct, stackName: string, config?: WorkspaceConfig)
 | <code><a href="#cdktf-multi-stack-tfe.Stack.prepareStack">prepareStack</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.registerIncomingCrossStackReference">registerIncomingCrossStackReference</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.registerOutgoingCrossStackReference">registerOutgoingCrossStackReference</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.Stack.runAllValidations">runAllValidations</a></code> | Run all validations on the stack. |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.toTerraform">toTerraform</a></code> | *No description.* |
 
 ---
@@ -567,6 +577,14 @@ public registerOutgoingCrossStackReference(identifier: string): TerraformOutput
 - *Type:* string
 
 ---
+
+##### `runAllValidations` <a name="runAllValidations" id="cdktf-multi-stack-tfe.Stack.runAllValidations"></a>
+
+```typescript
+public runAllValidations(): void
+```
+
+Run all validations on the stack.
 
 ##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.Stack.toTerraform"></a>
 
@@ -681,7 +699,7 @@ Stack.multiStackOf(construct: IConstruct)
 | <code><a href="#cdktf-multi-stack-tfe.Stack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.property.workspace">workspace</a></code> | <code>@cdktf/provider-tfe.Workspace</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.Stack.property.workspace">workspace</a></code> | <code>@cdktf/provider-tfe.workspace.Workspace</code> | *No description.* |
 
 ---
 
@@ -723,42 +741,42 @@ public readonly synthesizer: IStackSynthesizer;
 public readonly workspace: Workspace;
 ```
 
-- *Type:* @cdktf/provider-tfe.Workspace
+- *Type:* @cdktf/provider-tfe.workspace.Workspace
 
 ---
 
 
-### Variable <a name="Variable" id="cdktf-multi-stack-tfe.Variable"></a>
+### TFVariable <a name="TFVariable" id="cdktf-multi-stack-tfe.TFVariable"></a>
 
-#### Initializers <a name="Initializers" id="cdktf-multi-stack-tfe.Variable.Initializer"></a>
+#### Initializers <a name="Initializers" id="cdktf-multi-stack-tfe.TFVariable.Initializer"></a>
 
 ```typescript
-import { Variable } from 'cdktf-multi-stack-tfe'
+import { TFVariable } from 'cdktf-multi-stack-tfe'
 
-new Variable(scope: Construct, id: string, config: TerraformVariableConfig)
+new TFVariable(scope: Construct, id: string, config: TerraformVariableConfig)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.Initializer.parameter.config">config</a></code> | <code>cdktf.TerraformVariableConfig</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.Initializer.parameter.config">config</a></code> | <code>cdktf.TerraformVariableConfig</code> | *No description.* |
 
 ---
 
-##### `scope`<sup>Required</sup> <a name="scope" id="cdktf-multi-stack-tfe.Variable.Initializer.parameter.scope"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="cdktf-multi-stack-tfe.TFVariable.Initializer.parameter.scope"></a>
 
 - *Type:* constructs.Construct
 
 ---
 
-##### `id`<sup>Required</sup> <a name="id" id="cdktf-multi-stack-tfe.Variable.Initializer.parameter.id"></a>
+##### `id`<sup>Required</sup> <a name="id" id="cdktf-multi-stack-tfe.TFVariable.Initializer.parameter.id"></a>
 
 - *Type:* string
 
 ---
 
-##### `config`<sup>Required</sup> <a name="config" id="cdktf-multi-stack-tfe.Variable.Initializer.parameter.config"></a>
+##### `config`<sup>Required</sup> <a name="config" id="cdktf-multi-stack-tfe.TFVariable.Initializer.parameter.config"></a>
 
 - *Type:* cdktf.TerraformVariableConfig
 
@@ -768,17 +786,18 @@ new Variable(scope: Construct, id: string, config: TerraformVariableConfig)
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.toString">toString</a></code> | Returns a string representation of this construct. |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.addOverride">addOverride</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.overrideLogicalId">overrideLogicalId</a></code> | Overrides the auto-generated logical ID with a specific ID. |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.resetOverrideLogicalId">resetOverrideLogicalId</a></code> | Resets a previously passed logical Id to use the auto-generated logical id again. |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.toMetadata">toMetadata</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.toTerraform">toTerraform</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.synthesizeAttributes">synthesizeAttributes</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.addOverride">addOverride</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.overrideLogicalId">overrideLogicalId</a></code> | Overrides the auto-generated logical ID with a specific ID. |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.resetOverrideLogicalId">resetOverrideLogicalId</a></code> | Resets a previously passed logical Id to use the auto-generated logical id again. |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.toMetadata">toMetadata</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.toTerraform">toTerraform</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.addValidation">addValidation</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.synthesizeAttributes">synthesizeAttributes</a></code> | *No description.* |
 
 ---
 
-##### `toString` <a name="toString" id="cdktf-multi-stack-tfe.Variable.toString"></a>
+##### `toString` <a name="toString" id="cdktf-multi-stack-tfe.TFVariable.toString"></a>
 
 ```typescript
 public toString(): string
@@ -786,25 +805,25 @@ public toString(): string
 
 Returns a string representation of this construct.
 
-##### `addOverride` <a name="addOverride" id="cdktf-multi-stack-tfe.Variable.addOverride"></a>
+##### `addOverride` <a name="addOverride" id="cdktf-multi-stack-tfe.TFVariable.addOverride"></a>
 
 ```typescript
 public addOverride(path: string, value: any): void
 ```
 
-###### `path`<sup>Required</sup> <a name="path" id="cdktf-multi-stack-tfe.Variable.addOverride.parameter.path"></a>
+###### `path`<sup>Required</sup> <a name="path" id="cdktf-multi-stack-tfe.TFVariable.addOverride.parameter.path"></a>
 
 - *Type:* string
 
 ---
 
-###### `value`<sup>Required</sup> <a name="value" id="cdktf-multi-stack-tfe.Variable.addOverride.parameter.value"></a>
+###### `value`<sup>Required</sup> <a name="value" id="cdktf-multi-stack-tfe.TFVariable.addOverride.parameter.value"></a>
 
 - *Type:* any
 
 ---
 
-##### `overrideLogicalId` <a name="overrideLogicalId" id="cdktf-multi-stack-tfe.Variable.overrideLogicalId"></a>
+##### `overrideLogicalId` <a name="overrideLogicalId" id="cdktf-multi-stack-tfe.TFVariable.overrideLogicalId"></a>
 
 ```typescript
 public overrideLogicalId(newLogicalId: string): void
@@ -812,7 +831,7 @@ public overrideLogicalId(newLogicalId: string): void
 
 Overrides the auto-generated logical ID with a specific ID.
 
-###### `newLogicalId`<sup>Required</sup> <a name="newLogicalId" id="cdktf-multi-stack-tfe.Variable.overrideLogicalId.parameter.newLogicalId"></a>
+###### `newLogicalId`<sup>Required</sup> <a name="newLogicalId" id="cdktf-multi-stack-tfe.TFVariable.overrideLogicalId.parameter.newLogicalId"></a>
 
 - *Type:* string
 
@@ -820,7 +839,7 @@ The new logical ID to use for this stack element.
 
 ---
 
-##### `resetOverrideLogicalId` <a name="resetOverrideLogicalId" id="cdktf-multi-stack-tfe.Variable.resetOverrideLogicalId"></a>
+##### `resetOverrideLogicalId` <a name="resetOverrideLogicalId" id="cdktf-multi-stack-tfe.TFVariable.resetOverrideLogicalId"></a>
 
 ```typescript
 public resetOverrideLogicalId(): void
@@ -828,19 +847,31 @@ public resetOverrideLogicalId(): void
 
 Resets a previously passed logical Id to use the auto-generated logical id again.
 
-##### `toMetadata` <a name="toMetadata" id="cdktf-multi-stack-tfe.Variable.toMetadata"></a>
+##### `toMetadata` <a name="toMetadata" id="cdktf-multi-stack-tfe.TFVariable.toMetadata"></a>
 
 ```typescript
 public toMetadata(): any
 ```
 
-##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.Variable.toTerraform"></a>
+##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.TFVariable.toTerraform"></a>
 
 ```typescript
 public toTerraform(): any
 ```
 
-##### `synthesizeAttributes` <a name="synthesizeAttributes" id="cdktf-multi-stack-tfe.Variable.synthesizeAttributes"></a>
+##### `addValidation` <a name="addValidation" id="cdktf-multi-stack-tfe.TFVariable.addValidation"></a>
+
+```typescript
+public addValidation(validation: TerraformVariableValidationConfig): void
+```
+
+###### `validation`<sup>Required</sup> <a name="validation" id="cdktf-multi-stack-tfe.TFVariable.addValidation.parameter.validation"></a>
+
+- *Type:* cdktf.TerraformVariableValidationConfig
+
+---
+
+##### `synthesizeAttributes` <a name="synthesizeAttributes" id="cdktf-multi-stack-tfe.TFVariable.synthesizeAttributes"></a>
 
 ```typescript
 public synthesizeAttributes(): {[ key: string ]: any}
@@ -850,16 +881,17 @@ public synthesizeAttributes(): {[ key: string ]: any}
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.isTerraformElement">isTerraformElement</a></code> | *No description.* |
 
 ---
 
-##### `isConstruct` <a name="isConstruct" id="cdktf-multi-stack-tfe.Variable.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdktf-multi-stack-tfe.TFVariable.isConstruct"></a>
 
 ```typescript
-import { Variable } from 'cdktf-multi-stack-tfe'
+import { TFVariable } from 'cdktf-multi-stack-tfe'
 
-Variable.isConstruct(x: any)
+TFVariable.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
@@ -878,7 +910,7 @@ library can be accidentally installed, and `instanceof` will behave
 unpredictably. It is safest to avoid using `instanceof`, and using
 this type-testing method instead.
 
-###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.Variable.isConstruct.parameter.x"></a>
+###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.TFVariable.isConstruct.parameter.x"></a>
 
 - *Type:* any
 
@@ -886,28 +918,43 @@ Any object.
 
 ---
 
+##### `isTerraformElement` <a name="isTerraformElement" id="cdktf-multi-stack-tfe.TFVariable.isTerraformElement"></a>
+
+```typescript
+import { TFVariable } from 'cdktf-multi-stack-tfe'
+
+TFVariable.isTerraformElement(x: any)
+```
+
+###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.TFVariable.isTerraformElement.parameter.x"></a>
+
+- *Type:* any
+
+---
+
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.cdktfStack">cdktfStack</a></code> | <code>cdktf.TerraformStack</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.friendlyUniqueId">friendlyUniqueId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.booleanValue">booleanValue</a></code> | <code>cdktf.IResolvable</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.fqn">fqn</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.listValue">listValue</a></code> | <code>string[]</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.numberValue">numberValue</a></code> | <code>number</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.stringValue">stringValue</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.value">value</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.default">default</a></code> | <code>any</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.description">description</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.nullable">nullable</a></code> | <code>boolean</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.sensitive">sensitive</a></code> | <code>boolean</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Variable.property.type">type</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.cdktfStack">cdktfStack</a></code> | <code>cdktf.TerraformStack</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.fqn">fqn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.friendlyUniqueId">friendlyUniqueId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.booleanValue">booleanValue</a></code> | <code>cdktf.IResolvable</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.listValue">listValue</a></code> | <code>string[]</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.numberValue">numberValue</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.stringValue">stringValue</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.value">value</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.default">default</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.description">description</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.nullable">nullable</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.sensitive">sensitive</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.type">type</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.property.validation">validation</a></code> | <code>cdktf.TerraformVariableValidationConfig[]</code> | *No description.* |
 
 ---
 
-##### `node`<sup>Required</sup> <a name="node" id="cdktf-multi-stack-tfe.Variable.property.node"></a>
+##### `node`<sup>Required</sup> <a name="node" id="cdktf-multi-stack-tfe.TFVariable.property.node"></a>
 
 ```typescript
 public readonly node: Node;
@@ -919,7 +966,7 @@ The tree node.
 
 ---
 
-##### `cdktfStack`<sup>Required</sup> <a name="cdktfStack" id="cdktf-multi-stack-tfe.Variable.property.cdktfStack"></a>
+##### `cdktfStack`<sup>Required</sup> <a name="cdktfStack" id="cdktf-multi-stack-tfe.TFVariable.property.cdktfStack"></a>
 
 ```typescript
 public readonly cdktfStack: TerraformStack;
@@ -929,27 +976,7 @@ public readonly cdktfStack: TerraformStack;
 
 ---
 
-##### `friendlyUniqueId`<sup>Required</sup> <a name="friendlyUniqueId" id="cdktf-multi-stack-tfe.Variable.property.friendlyUniqueId"></a>
-
-```typescript
-public readonly friendlyUniqueId: string;
-```
-
-- *Type:* string
-
----
-
-##### `booleanValue`<sup>Required</sup> <a name="booleanValue" id="cdktf-multi-stack-tfe.Variable.property.booleanValue"></a>
-
-```typescript
-public readonly booleanValue: IResolvable;
-```
-
-- *Type:* cdktf.IResolvable
-
----
-
-##### `fqn`<sup>Required</sup> <a name="fqn" id="cdktf-multi-stack-tfe.Variable.property.fqn"></a>
+##### `fqn`<sup>Required</sup> <a name="fqn" id="cdktf-multi-stack-tfe.TFVariable.property.fqn"></a>
 
 ```typescript
 public readonly fqn: string;
@@ -959,7 +986,27 @@ public readonly fqn: string;
 
 ---
 
-##### `listValue`<sup>Required</sup> <a name="listValue" id="cdktf-multi-stack-tfe.Variable.property.listValue"></a>
+##### `friendlyUniqueId`<sup>Required</sup> <a name="friendlyUniqueId" id="cdktf-multi-stack-tfe.TFVariable.property.friendlyUniqueId"></a>
+
+```typescript
+public readonly friendlyUniqueId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `booleanValue`<sup>Required</sup> <a name="booleanValue" id="cdktf-multi-stack-tfe.TFVariable.property.booleanValue"></a>
+
+```typescript
+public readonly booleanValue: IResolvable;
+```
+
+- *Type:* cdktf.IResolvable
+
+---
+
+##### `listValue`<sup>Required</sup> <a name="listValue" id="cdktf-multi-stack-tfe.TFVariable.property.listValue"></a>
 
 ```typescript
 public readonly listValue: string[];
@@ -969,7 +1016,7 @@ public readonly listValue: string[];
 
 ---
 
-##### `numberValue`<sup>Required</sup> <a name="numberValue" id="cdktf-multi-stack-tfe.Variable.property.numberValue"></a>
+##### `numberValue`<sup>Required</sup> <a name="numberValue" id="cdktf-multi-stack-tfe.TFVariable.property.numberValue"></a>
 
 ```typescript
 public readonly numberValue: number;
@@ -979,7 +1026,7 @@ public readonly numberValue: number;
 
 ---
 
-##### `stringValue`<sup>Required</sup> <a name="stringValue" id="cdktf-multi-stack-tfe.Variable.property.stringValue"></a>
+##### `stringValue`<sup>Required</sup> <a name="stringValue" id="cdktf-multi-stack-tfe.TFVariable.property.stringValue"></a>
 
 ```typescript
 public readonly stringValue: string;
@@ -989,7 +1036,7 @@ public readonly stringValue: string;
 
 ---
 
-##### `value`<sup>Required</sup> <a name="value" id="cdktf-multi-stack-tfe.Variable.property.value"></a>
+##### `value`<sup>Required</sup> <a name="value" id="cdktf-multi-stack-tfe.TFVariable.property.value"></a>
 
 ```typescript
 public readonly value: any;
@@ -999,7 +1046,7 @@ public readonly value: any;
 
 ---
 
-##### `default`<sup>Optional</sup> <a name="default" id="cdktf-multi-stack-tfe.Variable.property.default"></a>
+##### `default`<sup>Optional</sup> <a name="default" id="cdktf-multi-stack-tfe.TFVariable.property.default"></a>
 
 ```typescript
 public readonly default: any;
@@ -1009,7 +1056,7 @@ public readonly default: any;
 
 ---
 
-##### `description`<sup>Optional</sup> <a name="description" id="cdktf-multi-stack-tfe.Variable.property.description"></a>
+##### `description`<sup>Optional</sup> <a name="description" id="cdktf-multi-stack-tfe.TFVariable.property.description"></a>
 
 ```typescript
 public readonly description: string;
@@ -1019,7 +1066,7 @@ public readonly description: string;
 
 ---
 
-##### `nullable`<sup>Optional</sup> <a name="nullable" id="cdktf-multi-stack-tfe.Variable.property.nullable"></a>
+##### `nullable`<sup>Optional</sup> <a name="nullable" id="cdktf-multi-stack-tfe.TFVariable.property.nullable"></a>
 
 ```typescript
 public readonly nullable: boolean;
@@ -1029,7 +1076,7 @@ public readonly nullable: boolean;
 
 ---
 
-##### `sensitive`<sup>Optional</sup> <a name="sensitive" id="cdktf-multi-stack-tfe.Variable.property.sensitive"></a>
+##### `sensitive`<sup>Optional</sup> <a name="sensitive" id="cdktf-multi-stack-tfe.TFVariable.property.sensitive"></a>
 
 ```typescript
 public readonly sensitive: boolean;
@@ -1039,7 +1086,7 @@ public readonly sensitive: boolean;
 
 ---
 
-##### `type`<sup>Optional</sup> <a name="type" id="cdktf-multi-stack-tfe.Variable.property.type"></a>
+##### `type`<sup>Optional</sup> <a name="type" id="cdktf-multi-stack-tfe.TFVariable.property.type"></a>
 
 ```typescript
 public readonly type: string;
@@ -1049,31 +1096,41 @@ public readonly type: string;
 
 ---
 
+##### `validation`<sup>Optional</sup> <a name="validation" id="cdktf-multi-stack-tfe.TFVariable.property.validation"></a>
+
+```typescript
+public readonly validation: TerraformVariableValidationConfig[];
+```
+
+- *Type:* cdktf.TerraformVariableValidationConfig[]
+
+---
+
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### BaseStackOptions <a name="BaseStackOptions" id="cdktf-multi-stack-tfe.BaseStackOptions"></a>
+### BaseStackConfig <a name="BaseStackConfig" id="cdktf-multi-stack-tfe.BaseStackConfig"></a>
 
-#### Initializer <a name="Initializer" id="cdktf-multi-stack-tfe.BaseStackOptions.Initializer"></a>
+#### Initializer <a name="Initializer" id="cdktf-multi-stack-tfe.BaseStackConfig.Initializer"></a>
 
 ```typescript
-import { BaseStackOptions } from 'cdktf-multi-stack-tfe'
+import { BaseStackConfig } from 'cdktf-multi-stack-tfe'
 
-const baseStackOptions: BaseStackOptions = { ... }
+const baseStackConfig: BaseStackConfig = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions.property.defaultWorkspaceConfig">defaultWorkspaceConfig</a></code> | <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions.property.hostname">hostname</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions.property.sslSkipVerify">sslSkipVerify</a></code> | <code>boolean</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.BaseStackOptions.property.token">token</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStackConfig.property.defaultWorkspaceConfig">defaultWorkspaceConfig</a></code> | <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStackConfig.property.hostname">hostname</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStackConfig.property.sslSkipVerify">sslSkipVerify</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStackConfig.property.token">token</a></code> | <code>string</code> | *No description.* |
 
 ---
 
-##### `defaultWorkspaceConfig`<sup>Optional</sup> <a name="defaultWorkspaceConfig" id="cdktf-multi-stack-tfe.BaseStackOptions.property.defaultWorkspaceConfig"></a>
+##### `defaultWorkspaceConfig`<sup>Optional</sup> <a name="defaultWorkspaceConfig" id="cdktf-multi-stack-tfe.BaseStackConfig.property.defaultWorkspaceConfig"></a>
 
 ```typescript
 public readonly defaultWorkspaceConfig: WorkspaceConfig;
@@ -1083,7 +1140,7 @@ public readonly defaultWorkspaceConfig: WorkspaceConfig;
 
 ---
 
-##### `hostname`<sup>Optional</sup> <a name="hostname" id="cdktf-multi-stack-tfe.BaseStackOptions.property.hostname"></a>
+##### `hostname`<sup>Optional</sup> <a name="hostname" id="cdktf-multi-stack-tfe.BaseStackConfig.property.hostname"></a>
 
 ```typescript
 public readonly hostname: string;
@@ -1093,7 +1150,7 @@ public readonly hostname: string;
 
 ---
 
-##### `sslSkipVerify`<sup>Optional</sup> <a name="sslSkipVerify" id="cdktf-multi-stack-tfe.BaseStackOptions.property.sslSkipVerify"></a>
+##### `sslSkipVerify`<sup>Optional</sup> <a name="sslSkipVerify" id="cdktf-multi-stack-tfe.BaseStackConfig.property.sslSkipVerify"></a>
 
 ```typescript
 public readonly sslSkipVerify: boolean;
@@ -1103,7 +1160,7 @@ public readonly sslSkipVerify: boolean;
 
 ---
 
-##### `token`<sup>Optional</sup> <a name="token" id="cdktf-multi-stack-tfe.BaseStackOptions.property.token"></a>
+##### `token`<sup>Optional</sup> <a name="token" id="cdktf-multi-stack-tfe.BaseStackConfig.property.token"></a>
 
 ```typescript
 public readonly token: string;
@@ -1113,28 +1170,28 @@ public readonly token: string;
 
 ---
 
-### RemoteBackendOptions <a name="RemoteBackendOptions" id="cdktf-multi-stack-tfe.RemoteBackendOptions"></a>
+### RemoteBackendConfig <a name="RemoteBackendConfig" id="cdktf-multi-stack-tfe.RemoteBackendConfig"></a>
 
-#### Initializer <a name="Initializer" id="cdktf-multi-stack-tfe.RemoteBackendOptions.Initializer"></a>
+#### Initializer <a name="Initializer" id="cdktf-multi-stack-tfe.RemoteBackendConfig.Initializer"></a>
 
 ```typescript
-import { RemoteBackendOptions } from 'cdktf-multi-stack-tfe'
+import { RemoteBackendConfig } from 'cdktf-multi-stack-tfe'
 
-const remoteBackendOptions: RemoteBackendOptions = { ... }
+const remoteBackendConfig: RemoteBackendConfig = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions.property.organization">organization</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions.property.workspaces">workspaces</a></code> | <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace">RemoteBackendOptionsWorkspace</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions.property.hostname">hostname</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptions.property.token">token</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendConfig.property.organization">organization</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendConfig.property.workspaces">workspaces</a></code> | <code><a href="#cdktf-multi-stack-tfe.RemoteBackendConfigWorkspace">RemoteBackendConfigWorkspace</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendConfig.property.hostname">hostname</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendConfig.property.token">token</a></code> | <code>string</code> | *No description.* |
 
 ---
 
-##### `organization`<sup>Required</sup> <a name="organization" id="cdktf-multi-stack-tfe.RemoteBackendOptions.property.organization"></a>
+##### `organization`<sup>Required</sup> <a name="organization" id="cdktf-multi-stack-tfe.RemoteBackendConfig.property.organization"></a>
 
 ```typescript
 public readonly organization: string;
@@ -1144,17 +1201,17 @@ public readonly organization: string;
 
 ---
 
-##### `workspaces`<sup>Required</sup> <a name="workspaces" id="cdktf-multi-stack-tfe.RemoteBackendOptions.property.workspaces"></a>
+##### `workspaces`<sup>Required</sup> <a name="workspaces" id="cdktf-multi-stack-tfe.RemoteBackendConfig.property.workspaces"></a>
 
 ```typescript
-public readonly workspaces: RemoteBackendOptionsWorkspace;
+public readonly workspaces: RemoteBackendConfigWorkspace;
 ```
 
-- *Type:* <a href="#cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace">RemoteBackendOptionsWorkspace</a>
+- *Type:* <a href="#cdktf-multi-stack-tfe.RemoteBackendConfigWorkspace">RemoteBackendConfigWorkspace</a>
 
 ---
 
-##### `hostname`<sup>Optional</sup> <a name="hostname" id="cdktf-multi-stack-tfe.RemoteBackendOptions.property.hostname"></a>
+##### `hostname`<sup>Optional</sup> <a name="hostname" id="cdktf-multi-stack-tfe.RemoteBackendConfig.property.hostname"></a>
 
 ```typescript
 public readonly hostname: string;
@@ -1164,7 +1221,7 @@ public readonly hostname: string;
 
 ---
 
-##### `token`<sup>Optional</sup> <a name="token" id="cdktf-multi-stack-tfe.RemoteBackendOptions.property.token"></a>
+##### `token`<sup>Optional</sup> <a name="token" id="cdktf-multi-stack-tfe.RemoteBackendConfig.property.token"></a>
 
 ```typescript
 public readonly token: string;
@@ -1174,25 +1231,25 @@ public readonly token: string;
 
 ---
 
-### RemoteBackendOptionsWorkspace <a name="RemoteBackendOptionsWorkspace" id="cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace"></a>
+### RemoteBackendConfigWorkspace <a name="RemoteBackendConfigWorkspace" id="cdktf-multi-stack-tfe.RemoteBackendConfigWorkspace"></a>
 
-#### Initializer <a name="Initializer" id="cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace.Initializer"></a>
+#### Initializer <a name="Initializer" id="cdktf-multi-stack-tfe.RemoteBackendConfigWorkspace.Initializer"></a>
 
 ```typescript
-import { RemoteBackendOptionsWorkspace } from 'cdktf-multi-stack-tfe'
+import { RemoteBackendConfigWorkspace } from 'cdktf-multi-stack-tfe'
 
-const remoteBackendOptionsWorkspace: RemoteBackendOptionsWorkspace = { ... }
+const remoteBackendConfigWorkspace: RemoteBackendConfigWorkspace = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.RemoteBackendConfigWorkspace.property.name">name</a></code> | <code>string</code> | *No description.* |
 
 ---
 
-##### `name`<sup>Required</sup> <a name="name" id="cdktf-multi-stack-tfe.RemoteBackendOptionsWorkspace.property.name"></a>
+##### `name`<sup>Required</sup> <a name="name" id="cdktf-multi-stack-tfe.RemoteBackendConfigWorkspace.property.name"></a>
 
 ```typescript
 public readonly name: string;

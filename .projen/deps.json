@@ -2,11 +2,7 @@
   "dependencies": [
     {
       "name": "@cdktf/provider-tfe",
-      "version": "0.2.0",
-      "type": "build"
-    },
-    {
-      "name": "@dschmidt/cdktf-construct-base",
+      "version": "5.0.0",
       "type": "build"
     },
     {
@@ -30,11 +26,12 @@
     },
     {
       "name": "cdktf-cli",
+      "version": ">=0.15.0",
       "type": "build"
     },
     {
       "name": "cdktf",
-      "version": "0.10.1",
+      "version": "0.15.0",
       "type": "build"
     },
     {
@@ -89,6 +86,10 @@
       "type": "build"
     },
     {
+      "name": "jsii-pacmak",
+      "type": "build"
+    },
+    {
       "name": "json-schema",
       "type": "build"
     },
@@ -116,7 +117,7 @@
     },
     {
       "name": "ts-node",
-      "version": "^9",
+      "version": "10.9.1",
       "type": "build"
     },
     {
@@ -125,12 +126,12 @@
     },
     {
       "name": "@cdktf/provider-tfe",
-      "version": ">=0.2.0",
+      "version": ">=5.0.0",
       "type": "peer"
     },
     {
       "name": "cdktf",
-      "version": "^0.10.1",
+      "version": ">=0.15.0",
       "type": "peer"
     },
     {

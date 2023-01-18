@@ -1,6 +1,6 @@
 import { TerraformLocal, Testing } from "cdktf";
 import { Construct } from "constructs";
-import { BaseStack, Stack, WorkspaceConfig, Variable } from "../src";
+import { BaseStack, Stack, WorkspaceConfig, TFVariable } from "../src";
 
 test("sets up all stacks created", () => {
   const app = Testing.app();
@@ -92,7 +92,7 @@ test("sets up all stacks created", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.26.1\\"
+            \\"version\\": \\"0.41.0\\"
           }
         }
       }
@@ -197,7 +197,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
           },
           \\"tfe-multi-stack-workspace-staging-vpc\\": {
             \\"depends_on\\": [
-              \\"tfe_workspace.tfe-multi-stack-workspace-staging-cluster\\"
+              \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-cluster}\\"
             ],
             \\"name\\": \\"my-prefix-staging-vpc\\",
             \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
@@ -222,7 +222,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.26.1\\"
+            \\"version\\": \\"0.41.0\\"
           }
         }
       }
@@ -392,7 +392,7 @@ test("uses workspace name override", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.26.1\\"
+            \\"version\\": \\"0.41.0\\"
           }
         }
       }
@@ -502,7 +502,7 @@ test("uses workspace config options", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.26.1\\"
+            \\"version\\": \\"0.41.0\\"
           }
         }
       }
@@ -606,7 +606,7 @@ test("uses workspace config options with per stack override", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.26.1\\"
+            \\"version\\": \\"0.41.0\\"
           }
         }
       }
@@ -614,7 +614,7 @@ test("uses workspace config options with per stack override", () => {
   `);
 });
 
-test("can propagate variables from the base stack", () => {
+test("can propagate TFVariables from the base stack", () => {
   const app = Testing.app();
 
   class MyAppBaseStack extends BaseStack {
@@ -630,12 +630,12 @@ test("can propagate variables from the base stack", () => {
     constructor(scope: Construct, stackName: string) {
       super(scope, stackName);
 
-      new Variable(this, "vpc-name", {
+      new TFVariable(this, "vpc-name", {
         default: `${stackName}-vpc`,
         type: "string",
       });
 
-      new Variable(this, "vpc-secret", {
+      new TFVariable(this, "vpc-secret", {
         sensitive: true,
       });
     }
@@ -663,12 +663,12 @@ test("can propagate variables from the base stack", () => {
         └── tfe-var-production-vpc-vpc-secret (Variable)
     ├── staging-vpc (VpcStack)
         ├── backend (RemoteBackend)
-        ├── vpc-name (Variable)
-        └── vpc-secret (Variable)
+        ├── vpc-name (TFVariable)
+        └── vpc-secret (TFVariable)
     └── production-vpc (VpcStack)
         ├── backend (RemoteBackend)
-        ├── vpc-name (Variable)
-        └── vpc-secret (Variable)
+        ├── vpc-name (TFVariable)
+        └── vpc-secret (TFVariable)
     "
   `);
 
@@ -757,7 +757,7 @@ test("can propagate variables from the base stack", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.26.1\\"
+            \\"version\\": \\"0.41.0\\"
           }
         }
       },
