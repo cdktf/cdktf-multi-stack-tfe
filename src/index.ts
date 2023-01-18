@@ -142,9 +142,9 @@ export class BaseStack extends TerraformStack {
     return base;
   }
 
-  public tfeProvider: tfe.TfeProvider;
-  public organization: tfe.DataTfeOrganization;
-  private stackTfeWorkspaceMap: Record<string, tfe.Workspace> = {};
+  public tfeProvider: tfe.provider.TfeProvider;
+  public organization: tfe.dataTfeOrganization.DataTfeOrganization;
+  private stackTfeWorkspaceMap: Record<string, tfe.workspace.Workspace> = {};
 
   constructor(
     scope: Construct,
@@ -154,7 +154,7 @@ export class BaseStack extends TerraformStack {
   ) {
     super(scope, "base");
     Object.defineProperty(this, MULTI_STACK_BASE_SYMBOL, { value: true });
-    this.tfeProvider = new tfe.TfeProvider(this, "tfe", {
+    this.tfeProvider = new tfe.provider.TfeProvider(this, "tfe", {
       hostname: options.hostname,
       token: options.token,
       sslSkipVerify: options.sslSkipVerify,
@@ -162,9 +162,13 @@ export class BaseStack extends TerraformStack {
 
     new RemoteBackend(this, this.getRemoteBackendConfig("base"));
 
-    this.organization = new tfe.DataTfeOrganization(this, "organization", {
-      name: organizationName,
-    });
+    this.organization = new tfe.dataTfeOrganization.DataTfeOrganization(
+      this,
+      "organization",
+      {
+        name: organizationName,
+      }
+    );
   }
 
   public getRemoteBackendConfig(stackName: string): RemoteBackendConfig {
@@ -194,7 +198,7 @@ export class BaseStack extends TerraformStack {
       ...(this.options.defaultWorkspaceConfig || {}),
       ...stackConfig,
     };
-    const workspace = new tfe.Workspace(
+    const workspace = new tfe.workspace.Workspace(
       this,
       `tfe-multi-stack-workspace-${stackName}`,
       {
@@ -229,15 +233,19 @@ export class BaseStack extends TerraformStack {
     );
     variableInBaseStack.overrideLogicalId(secretName);
 
-    new tfe.Variable(this, `tfe-var-${targetStackName}-${secretName}`, {
-      key: secretName,
-      value: variableInBaseStack.value,
-      category: "terraform",
-      description: config.description,
-      hcl: false,
-      sensitive: config.sensitive,
-      workspaceId: workspace.id,
-    });
+    new tfe.variable.Variable(
+      this,
+      `tfe-var-${targetStackName}-${secretName}`,
+      {
+        key: secretName,
+        value: variableInBaseStack.value,
+        category: "terraform",
+        description: config.description,
+        hcl: false,
+        sensitive: config.sensitive,
+        workspaceId: workspace.id,
+      }
+    );
   }
 }
 
@@ -266,7 +274,7 @@ export class Stack extends TerraformStack {
     }
   }
 
-  public workspace: tfe.Workspace;
+  public workspace: tfe.workspace.Workspace;
   constructor(scope: Construct, stackName: string, config?: WorkspaceConfig) {
     super(scope, stackName);
     Object.defineProperty(this, MULTI_STACK_STACK_SYMBOL, { value: true });
@@ -297,7 +305,7 @@ export class Stack extends TerraformStack {
 }
 
 // Creates a TerraformVariable from creating a tfe.Variable in the base stack
-export class Variable extends TerraformVariable {
+export class TFVariable extends TerraformVariable {
   constructor(scope: Construct, id: string, config: TerraformVariableConfig) {
     super(scope, id, {
       ...config,
