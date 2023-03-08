@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import { TerraformLocal, Testing } from "cdktf";
 import { Construct } from "constructs";
 import { BaseStack, Stack, WorkspaceConfig, TFVariable } from "../src";

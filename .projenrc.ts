@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import { ConstructLibraryCdktf } from "projen/lib/cdktf";
 const cdktfVersion = ">=0.15.0";
 const constructVersion = "^10.0.107";
