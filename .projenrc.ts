@@ -26,6 +26,10 @@ const project = new ConstructLibraryCdktf({
     distName: name,
     module: name.replace(/-/g, "_"),
   },
+  workflowGitIdentity: {
+    name: "team-tf-cdk",
+    email: "github-team-tf-cdk@hashicorp.com",
+  },
 });
 
 project.addPeerDeps(`constructs@${constructVersion}`, `cdktf@${cdktfVersion}`);
