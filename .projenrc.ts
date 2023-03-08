@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 import { ConstructLibraryCdktf } from "projen/lib/cdktf";
 const cdktfVersion = ">=0.15.0";
 const constructVersion = "^10.0.107";
@@ -26,6 +31,10 @@ const project = new ConstructLibraryCdktf({
     distName: name,
     module: name.replace(/-/g, "_"),
   },
+  workflowGitIdentity: {
+    name: "team-tf-cdk",
+    email: "github-team-tf-cdk@hashicorp.com",
+  },
 });
 
 project.addPeerDeps(`constructs@${constructVersion}`, `cdktf@${cdktfVersion}`);
@@ -38,5 +47,15 @@ project.testTask.exec(`npx cdktf synth`, {
 });
 project.gitignore.include("examples/typescript/tsconfig.json");
 project.jest?.addIgnorePattern("dist");
+
+// Run copywrite tool to add copyright headers to all files
+project.buildWorkflow?.addPostBuildSteps(
+  {
+    name: "Setup Copywrite tool",
+    uses: "hashicorp/setup-copywrite@3ace06ad72e6ec679ea8572457b17dbc3960b8ce", // v1.0.0
+    with: { token: "${{ secrets.GITHUB_TOKEN }}" },
+  },
+  { name: "Add headers using Copywrite tool", run: "copywrite headers" }
+);
 
 project.synth();
