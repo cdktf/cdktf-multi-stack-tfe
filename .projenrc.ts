@@ -3,14 +3,34 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
+import { IResolver, License } from "projen";
 import { ConstructLibraryCdktf } from "projen/lib/cdktf";
+import { TypeScriptProject } from "projen/lib/typescript";
+
+const SPDX = "MPL-2.0";
 const cdktfVersion = ">=0.15.0";
 const constructVersion = "^10.0.107";
 const name = "cdktf-multi-stack-tfe";
 
+class CustomizedLicense extends License {
+  constructor(project: TypeScriptProject) {
+    super(project, { spdx: SPDX });
+
+    project.addFields({ license: SPDX });
+  }
+
+  synthesizeContent(resolver: IResolver) {
+    return (
+      "Copyright (c) 2022 HashiCorp, Inc.\n\n" +
+      super.synthesizeContent(resolver)
+    );
+  }
+}
+
 const project = new ConstructLibraryCdktf({
-  author: "Daniel Schmidt",
-  authorAddress: "danielmschmidt92@gmail.com",
+  author: "HashiCorp",
+  authorAddress: "https://hashicorp.com",
+  authorOrganization: true,
   defaultReleaseBranch: "main",
   name,
   cdktfVersion,
@@ -19,7 +39,7 @@ const project = new ConstructLibraryCdktf({
   devDeps: ["ts-node", "cdktf-cli"],
   peerDeps: ["@cdktf/provider-tfe@>=5.0.0"],
   description: `Sets up TFE / TFC workspaces for all stacks based on a seed stack.`,
-  license: "MIT",
+  licensed: false,
   prettier: true,
   projenrcTs: true,
   autoApproveOptions: {
@@ -36,6 +56,8 @@ const project = new ConstructLibraryCdktf({
     email: "github-team-tf-cdk@hashicorp.com",
   },
 });
+
+new CustomizedLicense(project);
 
 project.addPeerDeps(`constructs@${constructVersion}`, `cdktf@${cdktfVersion}`);
 project.addKeywords("cdktf");
