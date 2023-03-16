@@ -33,9 +33,9 @@
     "projen": "npx projen"
   },
   "author": {
-    "name": "Daniel Schmidt",
-    "email": "danielmschmidt92@gmail.com",
-    "organization": false
+    "name": "HashiCorp",
+    "url": "https://hashicorp.com",
+    "organization": true
   },
   "devDependencies": {
     "@cdktf/provider-tfe": "5.0.0",
@@ -77,7 +77,7 @@
     "cdktf"
   ],
   "main": "lib/index.js",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "version": "0.0.0",
   "jest": {
     "testMatch": [
