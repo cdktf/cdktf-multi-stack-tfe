@@ -7,7 +7,6 @@
 !/.github/workflows/auto-approve.yml
 !/.github/workflows/stale.yml
 !/package.json
-!/LICENSE
 !/.npmignore
 logs
 *.log
@@ -53,5 +52,6 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+!/LICENSE
 !examples/typescript/tsconfig.json
 !/.github/workflows/upgrade-main.yml
