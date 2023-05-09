@@ -133,12 +133,12 @@ public ensureBackendExists(): TerraformBackend
 ##### `getLogicalId` <a name="getLogicalId" id="cdktf-multi-stack-tfe.BaseStack.getLogicalId"></a>
 
 ```typescript
-public getLogicalId(tfElement: TerraformElement | Node): string
+public getLogicalId(tfElement: Node | TerraformElement): string
 ```
 
 ###### `tfElement`<sup>Required</sup> <a name="tfElement" id="cdktf-multi-stack-tfe.BaseStack.getLogicalId.parameter.tfElement"></a>
 
-- *Type:* cdktf.TerraformElement | constructs.Node
+- *Type:* constructs.Node | cdktf.TerraformElement
 
 ---
 
@@ -539,12 +539,12 @@ public ensureBackendExists(): TerraformBackend
 ##### `getLogicalId` <a name="getLogicalId" id="cdktf-multi-stack-tfe.Stack.getLogicalId"></a>
 
 ```typescript
-public getLogicalId(tfElement: TerraformElement | Node): string
+public getLogicalId(tfElement: Node | TerraformElement): string
 ```
 
 ###### `tfElement`<sup>Required</sup> <a name="tfElement" id="cdktf-multi-stack-tfe.Stack.getLogicalId.parameter.tfElement"></a>
 
-- *Type:* cdktf.TerraformElement | constructs.Node
+- *Type:* constructs.Node | cdktf.TerraformElement
 
 ---
 
