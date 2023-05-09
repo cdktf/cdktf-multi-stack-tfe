@@ -87,7 +87,7 @@
       "description": "Only compile",
       "steps": [
         {
-          "exec": "jsii --silence-warnings=reserved-word --no-fix-peer-dependencies"
+          "exec": "jsii --silence-warnings=reserved-word"
         }
       ]
     },
@@ -126,7 +126,25 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools .projenrc.js"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
+        }
+      ]
+    },
+    "install": {
+      "name": "install",
+      "description": "Install project dependencies and update lockfile (non-frozen)",
+      "steps": [
+        {
+          "exec": "yarn install --check-files"
+        }
+      ]
+    },
+    "install:ci": {
+      "name": "install:ci",
+      "description": "Install project dependencies using frozen lockfile",
+      "steps": [
+        {
+          "exec": "yarn install --check-files --frozen-lockfile"
         }
       ]
     },
@@ -135,7 +153,7 @@
       "description": "Creates the distribution package",
       "steps": [
         {
-          "exec": "if [ ! -z ${CI} ]; then mkdir -p dist && rsync -a . dist --exclude .git --exclude node_modules; else npx projen package-all; fi"
+          "exec": "if [ ! -z ${CI} ]; then rsync -a . .repo --exclude .git --exclude node_modules && rm -rf dist && mv .repo dist; else npx projen package-all; fi"
         }
       ]
     },
@@ -215,7 +233,8 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --all --updateSnapshot"
+          "exec": "jest --passWithNoTests --updateSnapshot",
+          "receiveArgs": true
         },
         {
           "spawn": "eslint"
@@ -224,15 +243,6 @@
           "exec": "npx cdktf synth",
           "name": "synth TS example",
           "cwd": "./examples/typescript"
-        }
-      ]
-    },
-    "test:update": {
-      "name": "test:update",
-      "description": "Update jest snapshots",
-      "steps": [
-        {
-          "exec": "jest --updateSnapshot"
         }
       ]
     },
@@ -269,61 +279,28 @@
       },
       "steps": [
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,ts-node,projen'"
+          "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,ts-node,projen'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,jsii,ts-node'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,ts-node,projen'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,jsii,ts-node'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,ts-node,projen'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,jsii,ts-node'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,ts-node,projen'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,jsii,ts-node'"
         },
         {
-          "exec": "yarn install --check-files"
-        },
-        {
-          "exec": "yarn upgrade @cdktf/provider-tfe @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser cdktf-cli cdktf constructs eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii jsii-diff jsii-docgen jsii-pacmak json-schema npm-check-updates prettier standard-version ts-jest ts-node typescript @cdktf/provider-tfe cdktf constructs"
-        },
-        {
-          "exec": "npx projen"
-        },
-        {
-          "spawn": "post-upgrade"
-        }
-      ]
-    },
-    "upgrade-projen": {
-      "name": "upgrade-projen",
-      "description": "upgrade projen",
-      "env": {
-        "CI": "0"
-      },
-      "steps": [
-        {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --filter='projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --filter='projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --filter='projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --filter='projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --filter='projen'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@cdktf/provider-tfe,cdktf-cli,cdktf,constructs,jsii,ts-node'"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade projen"
+          "exec": "yarn upgrade"
         },
         {
           "exec": "npx projen"
@@ -338,7 +315,7 @@
       "description": "Watch & compile in the background",
       "steps": [
         {
-          "exec": "jsii -w --silence-warnings=reserved-word --no-fix-peer-dependencies"
+          "exec": "jsii -w --silence-warnings=reserved-word"
         }
       ]
     }
@@ -346,5 +323,5 @@
   "env": {
     "PATH": "$(npx -c \"node -e \\\"console.log(process.env.PATH)\\\"\")"
   },
-  "//": "~~ Generated by projen. To modify, edit .projenrc.js and run \"npx projen\"."
+  "//": "~~ Generated by projen. To modify, edit .projenrc.ts and run \"npx projen\"."
 }
