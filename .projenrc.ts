@@ -43,10 +43,15 @@ const project = new ConstructLibraryCdktf({
   prettier: true,
   projenrcTs: true,
   autoApproveOptions: {
-    allowedUsernames: ["DanielMSchmidt"],
+    allowedUsernames: ["team-tf-cdk"],
     label: "auto-approve",
   },
   autoApproveUpgrades: true,
+  depsUpgradeOptions: {
+    workflowOptions: {
+      labels: ["auto-approve", "dependencies"],
+    },
+  },
   publishToPypi: {
     distName: name,
     module: name.replace(/-/g, "_"),
