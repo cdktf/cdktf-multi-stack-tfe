@@ -15,6 +15,7 @@ fi
 echo "asd"
 
 echo "Updating to cdktf version $CDKTF_VERSION"
+git checkout -b "cdktf-$CDKTF_VERSION"
 cd $PROJECT_ROOT
 
 yarn
@@ -22,4 +23,14 @@ yarn
 sed -i "s/const cdktfVersion = \".*\";/const cdktfVersion = \">=$CDKTF_VERSION\";/" "$PROJECT_ROOT/.projenrc.ts"
 
 npx projen
-echo "Please update the peer dependencies in the .projenrc.ts file to match the new version of cdktf."
+
+git add .
+git commit -m "feat: update to cdktf $CDKTF_VERSION"
+git push origin "cdktf-$CDKTF_VERSION"
+
+BODY=$(cat <<EOF
+- [ ] Update peer dependencies to cdktf $CDKTF_VERSION
+EOF
+)
+
+gh pr create --fill --base main --head "cdktf-$CDKTF_VERSION" --title "feat: update to cdktf $CDKTF_VERSION" --body "$BODY" --label "cdktf-update-$CDKTF_VERSION"
