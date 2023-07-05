@@ -9,7 +9,7 @@ import { UpgradeDependenciesSchedule } from "projen/lib/javascript";
 import { TypeScriptProject } from "projen/lib/typescript";
 
 const SPDX = "MPL-2.0";
-const cdktfVersion = ">=0.15.0";
+const cdktfVersion = ">=0.17.0";
 const constructVersion = "^10.0.107";
 const name = "cdktf-multi-stack-tfe";
 
@@ -38,7 +38,7 @@ const project = new ConstructLibraryCdktf({
   repositoryUrl: "https://github.com/cdktf/cdktf-multi-stack-tfe.git",
   deps: [],
   devDeps: ["ts-node", "cdktf-cli"],
-  peerDeps: ["@cdktf/provider-tfe@>=5.0.0"],
+  peerDeps: ["@cdktf/provider-tfe@>=7.0.0"],
   description: `Sets up TFE / TFC workspaces for all stacks based on a seed stack.`,
   licensed: false,
   prettier: true,

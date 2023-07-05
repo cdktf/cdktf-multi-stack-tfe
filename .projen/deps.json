@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@cdktf/provider-tfe",
-      "version": "5.0.0",
+      "version": "7.0.0",
       "type": "build"
     },
     {
@@ -27,12 +27,12 @@
     },
     {
       "name": "cdktf-cli",
-      "version": ">=0.15.0",
+      "version": ">=0.17.0",
       "type": "build"
     },
     {
       "name": "cdktf",
-      "version": "0.15.0",
+      "version": "0.17.0",
       "type": "build"
     },
     {
@@ -136,12 +136,12 @@
     },
     {
       "name": "@cdktf/provider-tfe",
-      "version": ">=5.0.0",
+      "version": ">=7.0.0",
       "type": "peer"
     },
     {
       "name": "cdktf",
-      "version": ">=0.15.0",
+      "version": ">=0.17.0",
       "type": "peer"
     },
     {

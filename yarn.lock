@@ -416,10 +416,10 @@
     fs-extra "^8.1.0"
     jsii-srcmak "^0.1.867"
 
-"@cdktf/provider-tfe@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@cdktf/provider-tfe/-/provider-tfe-5.0.0.tgz#6f2f6edf1948f8c6995668e6d8f1974c40773aa3"
-  integrity sha512-yBLBGpMb7smNbGst1kc5U4oL6pI6CQnrjkT/eB5WAIooR4s7IsXfWQ5mfp7MEVy9p7NXQtBnRa0VOMJqCfVuHw==
+"@cdktf/provider-tfe@7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@cdktf/provider-tfe/-/provider-tfe-7.0.0.tgz#18fcd0ad3122ee2a1e904fbd83c70620508ee79c"
+  integrity sha512-C061W/lnBEkj7kg7g7Gj46Gw2ep4TGRjrw5UtSy2OcZw7fN7hMJfSvTCYNIRABy2dKwvsG+O4ECA+tdL3+gKgw==
 
 "@colors/colors@1.5.0":
   version "1.5.0"
@@ -1962,7 +1962,7 @@ case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdktf-cli@>=0.15.0:
+cdktf-cli@>=0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/cdktf-cli/-/cdktf-cli-0.17.0.tgz#78bec36fb11f92a37748820fe970f095dfc2c3d0"
   integrity sha512-D2vZRtmFenYLDLUXF+uxuxUkJM3uYNce7Jn7/nWk/+qlcH/3n7TOEqV9UAgZFvjMLotGrA5/FIEDv4xse7sKRg==
@@ -1991,15 +1991,6 @@ cdktf-cli@>=0.15.0:
     yargs "^17.6"
     yoga-layout-prebuilt "^1.10.0"
     zod "^1.11.17"
-
-cdktf@0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/cdktf/-/cdktf-0.15.0.tgz#b1fc18586852e6431a2a9508793907a8b40834fa"
-  integrity sha512-Dzv/pfJWTFzxMxjcgI3cttK7hPLy69bUPzcZgUK0sI+k3kY4I67pmxKuXDh1XVK9AX+pCaiZT7wzQbCznTrQkQ==
-  dependencies:
-    archiver "5.3.1"
-    json-stable-stringify "^1.0.2"
-    semver "^7.3.8"
 
 cdktf@0.17.0:
   version "0.17.0"
