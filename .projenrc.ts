@@ -3,30 +3,25 @@
  * SPDX-License-Identifier: MPL-2.0
  */
 
-import { IResolver, License } from "projen";
 import { ConstructLibraryCdktf } from "projen/lib/cdktf";
 import { UpgradeDependenciesSchedule } from "projen/lib/javascript";
-import { TypeScriptProject } from "projen/lib/typescript";
+import { AutoApprove } from "./projenrc/auto-approve";
+import { AutoMerge } from "./projenrc/automerge";
+import { CustomizedLicense } from "./projenrc/customized-license";
 
-const SPDX = "MPL-2.0";
 const cdktfVersion = ">=0.17.0";
 const constructVersion = "^10.0.107";
 const name = "cdktf-multi-stack-tfe";
 
-class CustomizedLicense extends License {
-  constructor(project: TypeScriptProject) {
-    super(project, { spdx: SPDX });
-
-    project.addFields({ license: SPDX });
-  }
-
-  synthesizeContent(resolver: IResolver) {
-    return (
-      "Copyright (c) 2022 HashiCorp, Inc.\n\n" +
-      super.synthesizeContent(resolver)
-    );
-  }
-}
+const githubActionPinnedVersions = {
+  "actions/checkout": "c85c95e3d7251135ab7dc9ce3241c5835cc595a9", // v3.5.3
+  "actions/download-artifact": "9bc31d5ccc31df68ecc42ccf4149144866c47d8a", // v3.0.2
+  "actions/setup-node": "64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c", // v3.6.0
+  "actions/upload-artifact": "0b7f8abb1508181956e8e162db84b466c27e18ce", // v3.1.2
+  "amannn/action-semantic-pull-request":
+    "c3cd5d1ea3580753008872425915e343e351ab54", // v5.2.0
+  "peter-evans/create-pull-request": "284f54f989303d2699d373481a0cfa13ad5a6666", // v5.0.1
+};
 
 const project = new ConstructLibraryCdktf({
   author: "HashiCorp",
@@ -43,14 +38,10 @@ const project = new ConstructLibraryCdktf({
   licensed: false,
   prettier: true,
   projenrcTs: true,
-  autoApproveOptions: {
-    allowedUsernames: ["team-tf-cdk"],
-    label: "auto-approve",
-  },
-  autoApproveUpgrades: true,
+  mergify: false,
   depsUpgradeOptions: {
     workflowOptions: {
-      labels: ["auto-approve", "dependencies"],
+      labels: ["auto-approve", "automerge", "dependencies"],
       schedule: UpgradeDependenciesSchedule.WEEKLY,
     },
   },
@@ -65,6 +56,8 @@ const project = new ConstructLibraryCdktf({
 });
 
 new CustomizedLicense(project);
+new AutoApprove(project);
+new AutoMerge(project);
 
 project.addPeerDeps(`constructs@${constructVersion}`, `cdktf@${cdktfVersion}`);
 project.addKeywords("cdktf");
@@ -85,5 +78,10 @@ project.buildWorkflow?.addPostBuildSteps(
   },
   { name: "Add headers using Copywrite tool", run: "copywrite headers" }
 );
+
+// Use pinned versions of github actions
+Object.entries(githubActionPinnedVersions).forEach(([action, sha]) => {
+  project.github?.actions.set(action, `${action}@${sha}`);
+});
 
 project.synth();
