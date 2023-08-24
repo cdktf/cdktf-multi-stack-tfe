@@ -10,7 +10,7 @@ import { AutoMerge } from "./projenrc/automerge";
 import { CustomizedLicense } from "./projenrc/customized-license";
 import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
 
-const cdktfVersion = ">=0.17.0";
+const cdktfVersion = ">=0.18.0";
 const constructVersion = "^10.0.107";
 const name = "cdktf-multi-stack-tfe";
 
