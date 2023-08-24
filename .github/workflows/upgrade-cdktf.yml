@@ -50,9 +50,8 @@ jobs:
             Unfortunately, not everything can be automated, and the following steps need to be completed manually:
              
             - [ ] Update `@cdktf/provider-tfe` to a version compatible with `cdktf@${{ steps.latest_version.outputs.value }}` [here](https://github.com/cdktf/cdktf-multi-stack-tfe/blob/d354d32382b3aa20cdc28c332131d04b730623c0/.projenrc.ts#L36)
-            - [ ] Run `npx projen` again
              
-            Please checkout this PR, complete the above steps, push the changes to this PR, and then mark this PR as ready for review to complete the upgrade. Thanks!
+            Please checkout this PR, complete the above steps, push the changes to this branch, and then mark this PR as ready for review to complete the upgrade. Thanks!
           labels: automerge,auto-approve,dependencies
           token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
           author: team-tf-cdk <github-team-tf-cdk@hashicorp.com>

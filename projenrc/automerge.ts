@@ -32,7 +32,7 @@ export class AutoMerge {
     workflow.addJobs({
       automerge: {
         runsOn: ["ubuntu-latest"],
-        if: "contains(github.event.pull_request.labels.*.name, 'automerge')",
+        if: "contains(github.event.pull_request.labels.*.name, 'automerge') && github.event.pull_request.draft == false",
         steps: [
           {
             name: "Checkout",

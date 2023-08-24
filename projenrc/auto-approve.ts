@@ -24,7 +24,7 @@ export class AutoApprove {
     workflow.addJobs({
       approve: {
         runsOn: ["ubuntu-latest"],
-        if: "contains(github.event.pull_request.labels.*.name, 'auto-approve')",
+        if: "contains(github.event.pull_request.labels.*.name, 'auto-approve') && github.event.pull_request.draft == false",
         steps: [
           {
             name: "Checkout PR",
