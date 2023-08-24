@@ -433,10 +433,10 @@
     fs-extra "^8.1.0"
     jsii-srcmak "^0.1.951"
 
-"@cdktf/provider-tfe@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@cdktf/provider-tfe/-/provider-tfe-7.0.0.tgz#18fcd0ad3122ee2a1e904fbd83c70620508ee79c"
-  integrity sha512-C061W/lnBEkj7kg7g7Gj46Gw2ep4TGRjrw5UtSy2OcZw7fN7hMJfSvTCYNIRABy2dKwvsG+O4ECA+tdL3+gKgw==
+"@cdktf/provider-tfe@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@cdktf/provider-tfe/-/provider-tfe-9.0.0.tgz#16829b26da1fba45094ae9e733954e54d0055d59"
+  integrity sha512-E796168iEDKxoza9qOBwaor9Vkw+WOUwwntWNHk6G599ikDMZFRv4G2qSpwK5wXi1flCCZCh3yHYNvYjXARICA==
 
 "@colors/colors@1.5.0":
   version "1.5.0"
