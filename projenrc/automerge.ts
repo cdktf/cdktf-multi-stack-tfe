@@ -47,8 +47,11 @@ export class AutoMerge {
           },
         ],
         permissions: {
+          actions: JobPermission.READ,
+          checks: JobPermission.READ,
           contents: JobPermission.READ,
           pullRequests: JobPermission.WRITE,
+          statuses: JobPermission.READ,
         },
       },
     });

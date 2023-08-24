@@ -14,8 +14,11 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     permissions:
+      actions: read
+      checks: read
       contents: read
       pull-requests: write
+      statuses: read
     if: contains(github.event.pull_request.labels.*.name, 'automerge')
     steps:
       - name: Checkout
