@@ -24,6 +24,7 @@ export class AutoApprove {
     workflow.addJobs({
       approve: {
         runsOn: ["ubuntu-latest"],
+        if: "contains(github.event.pull_request.labels.*.name, 'auto-approve')",
         steps: [
           {
             name: "Checkout PR",
@@ -36,7 +37,7 @@ export class AutoApprove {
           },
           {
             name: "Auto-approve PRs by other users as team-tf-cdk",
-            if: "contains(github.event.pull_request.labels.*.name, 'auto-approve') && (github.event.pull_request.user.login != 'team-tf-cdk')",
+            if: "github.event.pull_request.user.login != 'team-tf-cdk'",
             run: "gh pr review ${{ github.event.pull_request.number }} --approve",
             env: {
               GH_TOKEN: "${{ secrets.PROJEN_GITHUB_TOKEN }}",
@@ -44,7 +45,7 @@ export class AutoApprove {
           },
           {
             name: "Auto-approve PRs by team-tf-cdk as github-actions[bot]",
-            if: "contains(github.event.pull_request.labels.*.name, 'auto-approve') && (github.event.pull_request.user.login == 'team-tf-cdk')",
+            if: "github.event.pull_request.user.login == 'team-tf-cdk'",
             run: "gh pr review ${{ github.event.pull_request.number }} --approve",
             env: {
               GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
