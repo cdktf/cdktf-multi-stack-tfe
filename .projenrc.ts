@@ -10,7 +10,7 @@ import { AutoMerge } from "./projenrc/automerge";
 import { CustomizedLicense } from "./projenrc/customized-license";
 import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
 
-const cdktfVersion = ">=0.17.0";
+const cdktfVersion = ">=0.18.0";
 const constructVersion = "^10.0.107";
 const name = "cdktf-multi-stack-tfe";
 
@@ -35,7 +35,7 @@ const project = new ConstructLibraryCdktf({
   repositoryUrl: "https://github.com/cdktf/cdktf-multi-stack-tfe.git",
   deps: [],
   devDeps: ["ts-node", "cdktf-cli"],
-  peerDeps: ["@cdktf/provider-tfe@>=7.0.0"],
+  peerDeps: ["@cdktf/provider-tfe@>=9.0.0"],
   description: `Sets up TFE / TFC workspaces for all stacks based on a seed stack.`,
   jsiiVersion: "^5.1.0",
   licensed: false,
