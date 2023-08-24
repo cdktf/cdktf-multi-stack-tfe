@@ -8,6 +8,7 @@ import { UpgradeDependenciesSchedule } from "projen/lib/javascript";
 import { AutoApprove } from "./projenrc/auto-approve";
 import { AutoMerge } from "./projenrc/automerge";
 import { CustomizedLicense } from "./projenrc/customized-license";
+import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
 
 const cdktfVersion = ">=0.17.0";
 const constructVersion = "^10.0.107";
@@ -16,6 +17,7 @@ const name = "cdktf-multi-stack-tfe";
 const githubActionPinnedVersions = {
   "actions/checkout": "c85c95e3d7251135ab7dc9ce3241c5835cc595a9", // v3.5.3
   "actions/download-artifact": "9bc31d5ccc31df68ecc42ccf4149144866c47d8a", // v3.0.2
+  "actions/github-script": "d7906e4ad0b1822421a7e6a35d5ca353c962f410", // v6.4.1
   "actions/setup-node": "64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c", // v3.6.0
   "actions/upload-artifact": "0b7f8abb1508181956e8e162db84b466c27e18ce", // v3.1.2
   "amannn/action-semantic-pull-request":
@@ -59,6 +61,7 @@ const project = new ConstructLibraryCdktf({
 new CustomizedLicense(project);
 new AutoApprove(project);
 new AutoMerge(project);
+new UpgradeCDKTF(project);
 
 project.addPeerDeps(`constructs@${constructVersion}`, `cdktf@${cdktfVersion}`);
 project.addKeywords("cdktf");
