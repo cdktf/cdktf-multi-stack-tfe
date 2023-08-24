@@ -33,9 +33,6 @@ const project = new ConstructLibraryCdktf({
   name,
   cdktfVersion,
   repositoryUrl: "https://github.com/cdktf/cdktf-multi-stack-tfe.git",
-  deps: [],
-  devDeps: ["ts-node", "cdktf-cli"],
-  peerDeps: ["@cdktf/provider-tfe@>=9.0.0"],
   description: `Sets up TFE / TFC workspaces for all stacks based on a seed stack.`,
   jsiiVersion: "^5.1.0",
   licensed: false,
@@ -63,8 +60,11 @@ new AutoApprove(project);
 new AutoMerge(project);
 new UpgradeCDKTF(project);
 
-project.addPeerDeps(`constructs@${constructVersion}`, `cdktf@${cdktfVersion}`);
-project.addKeywords("cdktf");
+project.addPeerDeps(
+  `cdktf@${cdktfVersion}`,
+  "@cdktf/provider-tfe@>=9.0.0",
+  `constructs@${constructVersion}`
+);
 project.addDevDeps("ts-node@10.9.1", `cdktf-cli@${cdktfVersion}`);
 
 project.testTask.exec(`npx cdktf synth`, {
