@@ -16,7 +16,7 @@ export class AutoMerge {
     if (!workflow) throw new Error("no workflow defined");
 
     workflow.on({
-      pullRequestTarget: {
+      pullRequest: {
         types: [
           "opened",
           "labeled",
@@ -32,6 +32,7 @@ export class AutoMerge {
     workflow.addJobs({
       automerge: {
         runsOn: ["ubuntu-latest"],
+        if: "contains(github.event.pull_request.labels.*.name, 'automerge')",
         steps: [
           {
             name: "Checkout",

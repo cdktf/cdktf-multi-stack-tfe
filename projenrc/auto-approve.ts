@@ -16,7 +16,7 @@ export class AutoApprove {
     if (!workflow) throw new Error("no workflow defined");
 
     workflow.on({
-      pullRequestTarget: {
+      pullRequest: {
         types: ["opened", "labeled", "ready_for_review", "reopened"],
       },
     });
