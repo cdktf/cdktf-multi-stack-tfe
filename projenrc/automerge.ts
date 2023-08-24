@@ -42,16 +42,12 @@ export class AutoMerge {
             name: "Turn on automerge for this PR",
             run: "gh pr merge --auto --squash ${{ github.event.pull_request.number }}",
             env: {
-              GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}",
+              GH_TOKEN: "${{ secrets.PROJEN_GITHUB_TOKEN }}",
             },
           },
         ],
         permissions: {
-          actions: JobPermission.READ,
-          checks: JobPermission.READ,
           contents: JobPermission.READ,
-          pullRequests: JobPermission.WRITE,
-          statuses: JobPermission.READ,
         },
       },
     });
