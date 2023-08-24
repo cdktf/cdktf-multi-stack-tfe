@@ -49,7 +49,7 @@ jobs:
             This PR initiates the upgrade of CDKTF from version `${{ steps.current_version.outputs.value }}` to version `${{ steps.latest_version.outputs.value }}`.
             Unfortunately, not everything can be automated, and the following steps need to be completed manually:
              
-            - [ ] Update `@cdktf/provider-tfe` to a version compatible with `cdktf@${{ steps.latest_version.outputs.value }}` [here](https://github.com/cdktf/cdktf-multi-stack-tfe/blob/d354d32382b3aa20cdc28c332131d04b730623c0/.projenrc.ts#L36). Look up the version [here](https://github.com/cdktf/cdktf-provider-tfe/releases/).
+            - [ ] Update `@cdktf/provider-tfe` to a version compatible with `cdktf@${{ steps.latest_version.outputs.value }}` [here](https://github.com/cdktf/cdktf-multi-stack-tfe/blob/2aa8e48abe9dd9ccc6b3714403a2eea72eaf00b5/.projenrc.ts#L65). Look up the version [here](https://github.com/cdktf/cdktf-provider-tfe/releases/).
             - [ ] Run `npx projen`
              
             Please checkout this PR, complete the above steps, push the changes to this branch, and then mark this PR as ready for review to complete the upgrade. Thanks!
