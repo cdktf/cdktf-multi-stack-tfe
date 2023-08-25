@@ -65,7 +65,11 @@ project.addPeerDeps(
   "@cdktf/provider-tfe@>=9.0.0",
   `constructs@${constructVersion}`
 );
-project.addDevDeps("ts-node@10.9.1", `cdktf-cli@${cdktfVersion}`);
+project.addDevDeps(
+  "ts-node@10.9.1",
+  `cdktf-cli@${cdktfVersion}`,
+  "jsii-docgen@^9.0.0"
+);
 
 project.testTask.exec(`npx cdktf synth`, {
   name: "synth TS example",
