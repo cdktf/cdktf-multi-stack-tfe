@@ -53,6 +53,7 @@ const project = new ConstructLibraryCdktf({
     name: "team-tf-cdk",
     email: "github-team-tf-cdk@hashicorp.com",
   },
+  pullRequestTemplate: false,
 });
 
 new CustomizedLicense(project);
