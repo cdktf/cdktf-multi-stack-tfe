@@ -154,7 +154,7 @@ export class BaseStack extends TerraformStack {
   constructor(
     scope: Construct,
     private organizationName: string,
-    private prefix: string,
+    public readonly prefix: string,
     private options: BaseStackConfig = {}
   ) {
     super(scope, "base");
