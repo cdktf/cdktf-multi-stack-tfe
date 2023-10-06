@@ -463,6 +463,7 @@ BaseStack.isBaseStack(x: any)
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.prefix">prefix</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.organization">organization</a></code> | <code>@cdktf/provider-tfe.dataTfeOrganization.DataTfeOrganization</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.tfeProvider">tfeProvider</a></code> | <code>@cdktf/provider-tfe.provider.TfeProvider</code> | *No description.* |
 
@@ -497,6 +498,16 @@ public readonly synthesizer: IStackSynthesizer;
 ```
 
 - *Type:* cdktf.IStackSynthesizer
+
+---
+
+##### `prefix`<sup>Required</sup> <a name="prefix" id="cdktf-multi-stack-tfe.BaseStack.property.prefix"></a>
+
+```typescript
+public readonly prefix: string;
+```
+
+- *Type:* string
 
 ---
 
