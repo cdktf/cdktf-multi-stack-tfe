@@ -1,11 +1,6 @@
 {
   "dependencies": [
     {
-      "name": "@cdktf/provider-tfe",
-      "version": "9.0.0",
-      "type": "build"
-    },
-    {
       "name": "@types/jest",
       "type": "build"
     },
@@ -27,16 +22,6 @@
     {
       "name": "cdktf-cli",
       "version": ">=0.18.0",
-      "type": "build"
-    },
-    {
-      "name": "cdktf",
-      "version": "0.18.0",
-      "type": "build"
-    },
-    {
-      "name": "constructs",
-      "version": "10.0.107",
       "type": "build"
     },
     {
