@@ -10,7 +10,7 @@ import { AutoMerge } from "./projenrc/automerge";
 import { CustomizedLicense } from "./projenrc/customized-license";
 import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
 
-const cdktfVersion = ">=0.18.0";
+const cdktfVersion = ">=0.19.0";
 const constructVersion = "^10.0.107";
 const name = "cdktf-multi-stack-tfe";
 
@@ -63,7 +63,7 @@ new UpgradeCDKTF(project);
 
 project.addPeerDeps(
   `cdktf@${cdktfVersion}`,
-  "@cdktf/provider-tfe@>=9.0.0",
+  "@cdktf/provider-tfe@>=10.0.0",
   `constructs@${constructVersion}`
 );
 project.addDevDeps("ts-node@10.9.1", `cdktf-cli@${cdktfVersion}`);

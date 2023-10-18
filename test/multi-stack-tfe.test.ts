@@ -97,7 +97,7 @@ test("sets up all stacks created", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.48.0\\"
+            \\"version\\": \\"0.49.2\\"
           }
         }
       }
@@ -227,7 +227,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.48.0\\"
+            \\"version\\": \\"0.49.2\\"
           }
         }
       }
@@ -397,7 +397,7 @@ test("uses workspace name override", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.48.0\\"
+            \\"version\\": \\"0.49.2\\"
           }
         }
       }
@@ -507,7 +507,7 @@ test("uses workspace config options", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.48.0\\"
+            \\"version\\": \\"0.49.2\\"
           }
         }
       }
@@ -611,7 +611,7 @@ test("uses workspace config options with per stack override", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.48.0\\"
+            \\"version\\": \\"0.49.2\\"
           }
         }
       }
@@ -762,7 +762,7 @@ test("can propagate TFVariables from the base stack", () => {
         \\"required_providers\\": {
           \\"tfe\\": {
             \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.48.0\\"
+            \\"version\\": \\"0.49.2\\"
           }
         }
       },
