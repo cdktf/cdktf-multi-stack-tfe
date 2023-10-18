@@ -63,7 +63,7 @@ new UpgradeCDKTF(project);
 
 project.addPeerDeps(
   `cdktf@${cdktfVersion}`,
-  "@cdktf/provider-tfe@>=9.0.0",
+  "@cdktf/provider-tfe@>=10.0.0",
   `constructs@${constructVersion}`
 );
 project.addDevDeps("ts-node@10.9.1", `cdktf-cli@${cdktfVersion}`);
