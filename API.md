@@ -462,6 +462,7 @@ BaseStack.isBaseStack(x: any)
 | --- | --- | --- |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.moveTargets">moveTargets</a></code> | <code>cdktf.TerraformResourceTargets</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.prefix">prefix</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.property.organization">organization</a></code> | <code>@cdktf/provider-tfe.dataTfeOrganization.DataTfeOrganization</code> | *No description.* |
@@ -488,6 +489,16 @@ public readonly dependencies: TerraformStack[];
 ```
 
 - *Type:* cdktf.TerraformStack[]
+
+---
+
+##### `moveTargets`<sup>Required</sup> <a name="moveTargets" id="cdktf-multi-stack-tfe.BaseStack.property.moveTargets"></a>
+
+```typescript
+public readonly moveTargets: TerraformResourceTargets;
+```
+
+- *Type:* cdktf.TerraformResourceTargets
 
 ---
 
@@ -811,6 +822,7 @@ Stack.multiStackOf(construct: IConstruct)
 | --- | --- | --- |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.Stack.property.moveTargets">moveTargets</a></code> | <code>cdktf.TerraformResourceTargets</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.property.workspace">workspace</a></code> | <code>@cdktf/provider-tfe.workspace.Workspace</code> | *No description.* |
 
@@ -835,6 +847,16 @@ public readonly dependencies: TerraformStack[];
 ```
 
 - *Type:* cdktf.TerraformStack[]
+
+---
+
+##### `moveTargets`<sup>Required</sup> <a name="moveTargets" id="cdktf-multi-stack-tfe.Stack.property.moveTargets"></a>
+
+```typescript
+public readonly moveTargets: TerraformResourceTargets;
+```
+
+- *Type:* cdktf.TerraformResourceTargets
 
 ---
 
