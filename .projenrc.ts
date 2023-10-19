@@ -6,7 +6,7 @@
 import { ConstructLibraryCdktf } from "projen/lib/cdktf";
 import { UpgradeDependenciesSchedule } from "projen/lib/javascript";
 import { AutoApprove } from "./projenrc/auto-approve";
-import { AutoMerge } from "./projenrc/automerge";
+import { Automerge } from "./projenrc/automerge";
 import { CustomizedLicense } from "./projenrc/customized-license";
 import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
 
@@ -58,7 +58,7 @@ const project = new ConstructLibraryCdktf({
 
 new CustomizedLicense(project);
 new AutoApprove(project);
-new AutoMerge(project);
+new Automerge(project);
 new UpgradeCDKTF(project);
 
 project.addPeerDeps(
