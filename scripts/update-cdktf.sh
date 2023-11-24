@@ -16,3 +16,6 @@ echo "Updating to cdktf version $CDKTF_VERSION"
 yarn
 sed -i "s/const cdktfVersion = \".*\";/const cdktfVersion = \">=$CDKTF_VERSION\";/" "$PROJECT_ROOT/.projenrc.ts"
 CI=0 npx projen
+
+echo "Updating README"
+sed -i 's/`cdktf` >= .*/`cdktf` >= '"$CDKTF_VERSION"'/' "$PROJECT_ROOT/README.md"
