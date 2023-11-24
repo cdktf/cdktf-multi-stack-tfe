@@ -46,58 +46,58 @@ test("sets up all stacks created", () => {
 
   expect(Testing.synth(base)).toMatchInlineSnapshot(`
     "{
-      \\"data\\": {
-        \\"tfe_organization\\": {
-          \\"organization\\": {
-            \\"name\\": \\"my-company\\"
+      "data": {
+        "tfe_organization": {
+          "organization": {
+            "name": "my-company"
           }
         }
       },
-      \\"provider\\": {
-        \\"tfe\\": [
+      "provider": {
+        "tfe": [
           {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"token\\": \\"my-token\\"
+            "hostname": "app.terraform.io",
+            "token": "my-token"
           }
         ]
       },
-      \\"resource\\": {
-        \\"tfe_workspace\\": {
-          \\"tfe-multi-stack-workspace-production-vpc\\": {
-            \\"name\\": \\"my-prefix-production-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"remote_state_consumer_ids\\": [
+      "resource": {
+        "tfe_workspace": {
+          "tfe-multi-stack-workspace-production-vpc": {
+            "name": "my-prefix-production-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\"
+            "tag_names": [
+              "my-prefix"
             ]
           },
-          \\"tfe-multi-stack-workspace-staging-vpc\\": {
-            \\"name\\": \\"my-prefix-staging-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"remote_state_consumer_ids\\": [
+          "tfe-multi-stack-workspace-staging-vpc": {
+            "name": "my-prefix-staging-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\"
+            "tag_names": [
+              "my-prefix"
             ]
           }
         }
       },
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"organization\\": \\"my-company\\",
-            \\"token\\": \\"my-token\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"my-prefix-base\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "hostname": "app.terraform.io",
+            "organization": "my-company",
+            "token": "my-token",
+            "workspaces": {
+              "name": "my-prefix-base"
             }
           }
         },
-        \\"required_providers\\": {
-          \\"tfe\\": {
-            \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.49.2\\"
+        "required_providers": {
+          "tfe": {
+            "source": "hashicorp/tfe",
+            "version": "0.49.2"
           }
         }
       }
@@ -105,14 +105,14 @@ test("sets up all stacks created", () => {
   `);
   expect(Testing.synth(vpc)).toMatchInlineSnapshot(`
     "{
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"organization\\": \\"my-company\\",
-            \\"token\\": \\"my-token\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"my-prefix-staging-vpc\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "hostname": "app.terraform.io",
+            "organization": "my-company",
+            "token": "my-token",
+            "workspaces": {
+              "name": "my-prefix-staging-vpc"
             }
           }
         }
@@ -176,58 +176,58 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
 
   expect(Testing.synth(base)).toMatchInlineSnapshot(`
     "{
-      \\"data\\": {
-        \\"tfe_organization\\": {
-          \\"organization\\": {
-            \\"name\\": \\"my-company\\"
+      "data": {
+        "tfe_organization": {
+          "organization": {
+            "name": "my-company"
           }
         }
       },
-      \\"provider\\": {
-        \\"tfe\\": [
+      "provider": {
+        "tfe": [
           {
           }
         ]
       },
-      \\"resource\\": {
-        \\"tfe_workspace\\": {
-          \\"tfe-multi-stack-workspace-staging-cluster\\": {
-            \\"name\\": \\"my-prefix-staging-cluster\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"remote_state_consumer_ids\\": [
+      "resource": {
+        "tfe_workspace": {
+          "tfe-multi-stack-workspace-staging-cluster": {
+            "name": "my-prefix-staging-cluster",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\"
+            "tag_names": [
+              "my-prefix"
             ]
           },
-          \\"tfe-multi-stack-workspace-staging-vpc\\": {
-            \\"depends_on\\": [
-              \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-cluster}\\"
+          "tfe-multi-stack-workspace-staging-vpc": {
+            "depends_on": [
+              "\${tfe_workspace.tfe-multi-stack-workspace-staging-cluster}"
             ],
-            \\"name\\": \\"my-prefix-staging-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"remote_state_consumer_ids\\": [
-              \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-cluster.id}\\"
+            "name": "my-prefix-staging-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "remote_state_consumer_ids": [
+              "\${tfe_workspace.tfe-multi-stack-workspace-staging-cluster.id}"
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\"
+            "tag_names": [
+              "my-prefix"
             ]
           }
         }
       },
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"organization\\": \\"my-company\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"my-prefix-base\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "organization": "my-company",
+            "workspaces": {
+              "name": "my-prefix-base"
             }
           }
         },
-        \\"required_providers\\": {
-          \\"tfe\\": {
-            \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.49.2\\"
+        "required_providers": {
+          "tfe": {
+            "source": "hashicorp/tfe",
+            "version": "0.49.2"
           }
         }
       }
@@ -346,58 +346,58 @@ test("uses workspace name override", () => {
 
   expect(Testing.synth(base)).toMatchInlineSnapshot(`
     "{
-      \\"data\\": {
-        \\"tfe_organization\\": {
-          \\"organization\\": {
-            \\"name\\": \\"my-company\\"
+      "data": {
+        "tfe_organization": {
+          "organization": {
+            "name": "my-company"
           }
         }
       },
-      \\"provider\\": {
-        \\"tfe\\": [
+      "provider": {
+        "tfe": [
           {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"token\\": \\"my-token\\"
+            "hostname": "app.terraform.io",
+            "token": "my-token"
           }
         ]
       },
-      \\"resource\\": {
-        \\"tfe_workspace\\": {
-          \\"tfe-multi-stack-workspace-production-vpc\\": {
-            \\"name\\": \\"our-production-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"remote_state_consumer_ids\\": [
+      "resource": {
+        "tfe_workspace": {
+          "tfe-multi-stack-workspace-production-vpc": {
+            "name": "our-production-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\"
+            "tag_names": [
+              "my-prefix"
             ]
           },
-          \\"tfe-multi-stack-workspace-staging-vpc\\": {
-            \\"name\\": \\"our-staging-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"remote_state_consumer_ids\\": [
+          "tfe-multi-stack-workspace-staging-vpc": {
+            "name": "our-staging-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\"
+            "tag_names": [
+              "my-prefix"
             ]
           }
         }
       },
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"organization\\": \\"my-company\\",
-            \\"token\\": \\"my-token\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"our-base\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "hostname": "app.terraform.io",
+            "organization": "my-company",
+            "token": "my-token",
+            "workspaces": {
+              "name": "our-base"
             }
           }
         },
-        \\"required_providers\\": {
-          \\"tfe\\": {
-            \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.49.2\\"
+        "required_providers": {
+          "tfe": {
+            "source": "hashicorp/tfe",
+            "version": "0.49.2"
           }
         }
       }
@@ -405,14 +405,14 @@ test("uses workspace name override", () => {
   `);
   expect(Testing.synth(vpc)).toMatchInlineSnapshot(`
     "{
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"organization\\": \\"my-company\\",
-            \\"token\\": \\"my-token\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"our-staging-vpc\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "hostname": "app.terraform.io",
+            "organization": "my-company",
+            "token": "my-token",
+            "workspaces": {
+              "name": "our-staging-vpc"
             }
           }
         }
@@ -450,64 +450,64 @@ test("uses workspace config options", () => {
 
   expect(Testing.synth(base)).toMatchInlineSnapshot(`
     "{
-      \\"data\\": {
-        \\"tfe_organization\\": {
-          \\"organization\\": {
-            \\"name\\": \\"my-company\\"
+      "data": {
+        "tfe_organization": {
+          "organization": {
+            "name": "my-company"
           }
         }
       },
-      \\"provider\\": {
-        \\"tfe\\": [
+      "provider": {
+        "tfe": [
           {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"token\\": \\"my-token\\"
+            "hostname": "app.terraform.io",
+            "token": "my-token"
           }
         ]
       },
-      \\"resource\\": {
-        \\"tfe_workspace\\": {
-          \\"tfe-multi-stack-workspace-production-vpc\\": {
-            \\"agent_pool_id\\": \\"42\\",
-            \\"name\\": \\"my-prefix-production-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"queue_all_runs\\": true,
-            \\"remote_state_consumer_ids\\": [
+      "resource": {
+        "tfe_workspace": {
+          "tfe-multi-stack-workspace-production-vpc": {
+            "agent_pool_id": "42",
+            "name": "my-prefix-production-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "queue_all_runs": true,
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\",
-              \\"another-tag\\"
+            "tag_names": [
+              "my-prefix",
+              "another-tag"
             ]
           },
-          \\"tfe-multi-stack-workspace-staging-vpc\\": {
-            \\"agent_pool_id\\": \\"42\\",
-            \\"name\\": \\"my-prefix-staging-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"queue_all_runs\\": true,
-            \\"remote_state_consumer_ids\\": [
+          "tfe-multi-stack-workspace-staging-vpc": {
+            "agent_pool_id": "42",
+            "name": "my-prefix-staging-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "queue_all_runs": true,
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\",
-              \\"another-tag\\"
+            "tag_names": [
+              "my-prefix",
+              "another-tag"
             ]
           }
         }
       },
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"organization\\": \\"my-company\\",
-            \\"token\\": \\"my-token\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"my-prefix-base\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "hostname": "app.terraform.io",
+            "organization": "my-company",
+            "token": "my-token",
+            "workspaces": {
+              "name": "my-prefix-base"
             }
           }
         },
-        \\"required_providers\\": {
-          \\"tfe\\": {
-            \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.49.2\\"
+        "required_providers": {
+          "tfe": {
+            "source": "hashicorp/tfe",
+            "version": "0.49.2"
           }
         }
       }
@@ -553,65 +553,65 @@ test("uses workspace config options with per stack override", () => {
 
   expect(Testing.synth(base)).toMatchInlineSnapshot(`
     "{
-      \\"data\\": {
-        \\"tfe_organization\\": {
-          \\"organization\\": {
-            \\"name\\": \\"my-company\\"
+      "data": {
+        "tfe_organization": {
+          "organization": {
+            "name": "my-company"
           }
         }
       },
-      \\"provider\\": {
-        \\"tfe\\": [
+      "provider": {
+        "tfe": [
           {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"token\\": \\"my-token\\"
+            "hostname": "app.terraform.io",
+            "token": "my-token"
           }
         ]
       },
-      \\"resource\\": {
-        \\"tfe_workspace\\": {
-          \\"tfe-multi-stack-workspace-production-vpc\\": {
-            \\"agent_pool_id\\": \\"42\\",
-            \\"name\\": \\"my-prefix-production-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"queue_all_runs\\": true,
-            \\"remote_state_consumer_ids\\": [
+      "resource": {
+        "tfe_workspace": {
+          "tfe-multi-stack-workspace-production-vpc": {
+            "agent_pool_id": "42",
+            "name": "my-prefix-production-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "queue_all_runs": true,
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\",
-              \\"production-tag\\"
+            "tag_names": [
+              "my-prefix",
+              "production-tag"
             ]
           },
-          \\"tfe-multi-stack-workspace-staging-vpc\\": {
-            \\"agent_pool_id\\": \\"42\\",
-            \\"execution_mode\\": \\"remote\\",
-            \\"name\\": \\"my-prefix-staging-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"queue_all_runs\\": true,
-            \\"remote_state_consumer_ids\\": [
+          "tfe-multi-stack-workspace-staging-vpc": {
+            "agent_pool_id": "42",
+            "execution_mode": "remote",
+            "name": "my-prefix-staging-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "queue_all_runs": true,
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\",
-              \\"staging-tag\\"
+            "tag_names": [
+              "my-prefix",
+              "staging-tag"
             ]
           }
         }
       },
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"organization\\": \\"my-company\\",
-            \\"token\\": \\"my-token\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"my-prefix-base\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "hostname": "app.terraform.io",
+            "organization": "my-company",
+            "token": "my-token",
+            "workspaces": {
+              "name": "my-prefix-base"
             }
           }
         },
-        \\"required_providers\\": {
-          \\"tfe\\": {
-            \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.49.2\\"
+        "required_providers": {
+          "tfe": {
+            "source": "hashicorp/tfe",
+            "version": "0.49.2"
           }
         }
       }
@@ -679,125 +679,125 @@ test("can propagate TFVariables from the base stack", () => {
 
   expect(Testing.synth(base)).toMatchInlineSnapshot(`
     "{
-      \\"data\\": {
-        \\"tfe_organization\\": {
-          \\"organization\\": {
-            \\"name\\": \\"my-company\\"
+      "data": {
+        "tfe_organization": {
+          "organization": {
+            "name": "my-company"
           }
         }
       },
-      \\"provider\\": {
-        \\"tfe\\": [
+      "provider": {
+        "tfe": [
           {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"token\\": \\"my-token\\"
+            "hostname": "app.terraform.io",
+            "token": "my-token"
           }
         ]
       },
-      \\"resource\\": {
-        \\"tfe_variable\\": {
-          \\"tfe-var-production-vpc-vpc-name\\": {
-            \\"category\\": \\"terraform\\",
-            \\"hcl\\": false,
-            \\"key\\": \\"vpc-name\\",
-            \\"value\\": \\"\${var.vpc-name}\\",
-            \\"workspace_id\\": \\"\${tfe_workspace.tfe-multi-stack-workspace-production-vpc.id}\\"
+      "resource": {
+        "tfe_variable": {
+          "tfe-var-production-vpc-vpc-name": {
+            "category": "terraform",
+            "hcl": false,
+            "key": "vpc-name",
+            "value": "\${var.vpc-name}",
+            "workspace_id": "\${tfe_workspace.tfe-multi-stack-workspace-production-vpc.id}"
           },
-          \\"tfe-var-production-vpc-vpc-secret\\": {
-            \\"category\\": \\"terraform\\",
-            \\"hcl\\": false,
-            \\"key\\": \\"vpc-secret\\",
-            \\"sensitive\\": true,
-            \\"value\\": \\"\${var.vpc-secret}\\",
-            \\"workspace_id\\": \\"\${tfe_workspace.tfe-multi-stack-workspace-production-vpc.id}\\"
+          "tfe-var-production-vpc-vpc-secret": {
+            "category": "terraform",
+            "hcl": false,
+            "key": "vpc-secret",
+            "sensitive": true,
+            "value": "\${var.vpc-secret}",
+            "workspace_id": "\${tfe_workspace.tfe-multi-stack-workspace-production-vpc.id}"
           },
-          \\"tfe-var-staging-vpc-vpc-name\\": {
-            \\"category\\": \\"terraform\\",
-            \\"hcl\\": false,
-            \\"key\\": \\"vpc-name\\",
-            \\"value\\": \\"\${var.vpc-name}\\",
-            \\"workspace_id\\": \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-vpc.id}\\"
+          "tfe-var-staging-vpc-vpc-name": {
+            "category": "terraform",
+            "hcl": false,
+            "key": "vpc-name",
+            "value": "\${var.vpc-name}",
+            "workspace_id": "\${tfe_workspace.tfe-multi-stack-workspace-staging-vpc.id}"
           },
-          \\"tfe-var-staging-vpc-vpc-secret\\": {
-            \\"category\\": \\"terraform\\",
-            \\"hcl\\": false,
-            \\"key\\": \\"vpc-secret\\",
-            \\"sensitive\\": true,
-            \\"value\\": \\"\${var.vpc-secret}\\",
-            \\"workspace_id\\": \\"\${tfe_workspace.tfe-multi-stack-workspace-staging-vpc.id}\\"
+          "tfe-var-staging-vpc-vpc-secret": {
+            "category": "terraform",
+            "hcl": false,
+            "key": "vpc-secret",
+            "sensitive": true,
+            "value": "\${var.vpc-secret}",
+            "workspace_id": "\${tfe_workspace.tfe-multi-stack-workspace-staging-vpc.id}"
           }
         },
-        \\"tfe_workspace\\": {
-          \\"tfe-multi-stack-workspace-production-vpc\\": {
-            \\"name\\": \\"my-prefix-production-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"remote_state_consumer_ids\\": [
+        "tfe_workspace": {
+          "tfe-multi-stack-workspace-production-vpc": {
+            "name": "my-prefix-production-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\"
+            "tag_names": [
+              "my-prefix"
             ]
           },
-          \\"tfe-multi-stack-workspace-staging-vpc\\": {
-            \\"name\\": \\"my-prefix-staging-vpc\\",
-            \\"organization\\": \\"\${data.tfe_organization.organization.name}\\",
-            \\"remote_state_consumer_ids\\": [
+          "tfe-multi-stack-workspace-staging-vpc": {
+            "name": "my-prefix-staging-vpc",
+            "organization": "\${data.tfe_organization.organization.name}",
+            "remote_state_consumer_ids": [
             ],
-            \\"tag_names\\": [
-              \\"my-prefix\\"
+            "tag_names": [
+              "my-prefix"
             ]
           }
         }
       },
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"organization\\": \\"my-company\\",
-            \\"token\\": \\"my-token\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"my-prefix-base\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "hostname": "app.terraform.io",
+            "organization": "my-company",
+            "token": "my-token",
+            "workspaces": {
+              "name": "my-prefix-base"
             }
           }
         },
-        \\"required_providers\\": {
-          \\"tfe\\": {
-            \\"source\\": \\"hashicorp/tfe\\",
-            \\"version\\": \\"0.49.2\\"
+        "required_providers": {
+          "tfe": {
+            "source": "hashicorp/tfe",
+            "version": "0.49.2"
           }
         }
       },
-      \\"variable\\": {
-        \\"vpc-name\\": {
-          \\"default\\": \\"production-vpc-vpc\\",
-          \\"type\\": \\"string\\"
+      "variable": {
+        "vpc-name": {
+          "default": "production-vpc-vpc",
+          "type": "string"
         },
-        \\"vpc-secret\\": {
-          \\"sensitive\\": true
+        "vpc-secret": {
+          "sensitive": true
         }
       }
     }"
   `);
   expect(Testing.synth(vpc)).toMatchInlineSnapshot(`
     "{
-      \\"terraform\\": {
-        \\"backend\\": {
-          \\"remote\\": {
-            \\"hostname\\": \\"app.terraform.io\\",
-            \\"organization\\": \\"my-company\\",
-            \\"token\\": \\"my-token\\",
-            \\"workspaces\\": {
-              \\"name\\": \\"my-prefix-staging-vpc\\"
+      "terraform": {
+        "backend": {
+          "remote": {
+            "hostname": "app.terraform.io",
+            "organization": "my-company",
+            "token": "my-token",
+            "workspaces": {
+              "name": "my-prefix-staging-vpc"
             }
           }
         }
       },
-      \\"variable\\": {
-        \\"vpc-name\\": {
-          \\"default\\": \\"staging-vpc-vpc\\",
-          \\"type\\": \\"string\\"
+      "variable": {
+        "vpc-name": {
+          "default": "staging-vpc-vpc",
+          "type": "string"
         },
-        \\"vpc-secret\\": {
-          \\"sensitive\\": true
+        "vpc-secret": {
+          "sensitive": true
         }
       }
     }"
