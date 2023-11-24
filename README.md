@@ -1,6 +1,23 @@
 # cdktf-multi-stack-tfe
 
+![Status: Tech Preview](https://img.shields.io/badge/status-experimental-EAAA32) [![Releases](https://img.shields.io/github/release/cdktf/cdktf-multi-stack-tfe.svg)](https://github.com/cdktf/cdktf-multi-stack-tfe/releases)
+[![LICENSE](https://img.shields.io/github/license/cdktf/cdktf-multi-stack-tfe.svg)](https://github.com/cdktf/cdktf-multi-stack-tfe/blob/main/LICENSE)
+[![build](https://github.com/cdktf/cdktf-multi-stack-tfe/actions/workflows/build.yml/badge.svg)](https://github.com/cdktf/cdktf-multi-stack-tfe/actions/workflows/build.yml)
+
 Setting up Terraform Cloud / Terraform Enterprise workspaces can be tiring when dealing with CDK for Terraform applications spanning multiple stacks and therefore workspaces. This library aims to automate this.
+
+_cdktf-multi-stack-tfe_ is in technical preview, which means it's a community supported project. It still requires extensive testing and polishing to mature into a HashiCorp officially supported project. Please [file issues](https://github.com/cdktf/cdktf-multi-stack-tfe/issues/new/choose) generously and detail your experience while using the library. We welcome your feedback.
+
+By using the software in this repository, you acknowledge that: 
+* _cdktf-multi-stack-tfe_ is still in development, may change, and has not been released as a commercial product by HashiCorp and is not currently supported in any way by HashiCorp.
+* _cdktf-multi-stack-tfe_ is provided on an "as-is" basis, and may include bugs, errors, or other issues.
+* _cdktf-multi-stack-tfe_ is NOT INTENDED FOR PRODUCTION USE, use of the Software may result in unexpected results, loss of data, or other unexpected results, and HashiCorp disclaims any and all liability resulting from use of _cdktf-multi-stack-tfe_.
+* HashiCorp reserves all rights to make all decisions about the features, functionality and commercial release (or non-release) of _cdktf-multi-stack-tfe_, at any time and without any obligation or liability whatsoever.
+
+## Compatibility
+
+- `cdktf` >= 0.19.0
+- `constructs` >= 10.0.107
 
 ## Usage
 
