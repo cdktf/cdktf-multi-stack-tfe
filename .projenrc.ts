@@ -35,6 +35,7 @@ const project = new ConstructLibraryCdktf({
   repositoryUrl: "https://github.com/cdktf/cdktf-multi-stack-tfe.git",
   description: `Sets up TFE / TFC workspaces for all stacks based on a seed stack.`,
   jsiiVersion: "~5.2.0",
+  typescriptVersion: "~5.2.0", // should always be the same major/minor as JSII
   licensed: false,
   prettier: true,
   projenrcTs: true,
