@@ -36,7 +36,7 @@
     "organization": true
   },
   "devDependencies": {
-    "@cdktf/provider-tfe": "10.0.0",
+    "@cdktf/provider-tfe": "11.0.0",
     "@types/jest": "^29",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
@@ -64,7 +64,7 @@
     "typescript": "~5.2.0"
   },
   "peerDependencies": {
-    "@cdktf/provider-tfe": ">=10.0.0",
+    "@cdktf/provider-tfe": ">=11.0.0",
     "cdktf": ">=0.20.0",
     "constructs": "^10.0.107"
   },
