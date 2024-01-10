@@ -11,7 +11,7 @@ import { CustomizedLicense } from "./projenrc/customized-license";
 import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
 
 const cdktfVersion = ">=0.20.0";
-const constructVersion = "^10.0.107";
+const constructVersion = "^10.3.0";
 const name = "cdktf-multi-stack-tfe";
 
 const githubActionPinnedVersions = {
