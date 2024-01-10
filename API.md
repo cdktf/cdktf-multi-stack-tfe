@@ -56,10 +56,12 @@ new BaseStack(scope: Construct, organizationName: string, prefix: string, option
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.dependsOn">dependsOn</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.ensureBackendExists">ensureBackendExists</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.getLogicalId">getLogicalId</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.hasResourceMove">hasResourceMove</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.prepareStack">prepareStack</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.registerIncomingCrossStackReference">registerIncomingCrossStackReference</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.registerOutgoingCrossStackReference">registerOutgoingCrossStackReference</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.runAllValidations">runAllValidations</a></code> | Run all validations on the stack. |
+| <code><a href="#cdktf-multi-stack-tfe.BaseStack.toHclTerraform">toHclTerraform</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.toTerraform">toTerraform</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.bootstrapWorkspace">bootstrapWorkspace</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.BaseStack.createSecret">createSecret</a></code> | *No description.* |
@@ -142,6 +144,12 @@ public getLogicalId(tfElement: Node | TerraformElement): string
 
 ---
 
+##### `hasResourceMove` <a name="hasResourceMove" id="cdktf-multi-stack-tfe.BaseStack.hasResourceMove"></a>
+
+```typescript
+public hasResourceMove(): boolean
+```
+
 ##### `prepareStack` <a name="prepareStack" id="cdktf-multi-stack-tfe.BaseStack.prepareStack"></a>
 
 ```typescript
@@ -179,6 +187,12 @@ public runAllValidations(): void
 ```
 
 Run all validations on the stack.
+
+##### `toHclTerraform` <a name="toHclTerraform" id="cdktf-multi-stack-tfe.BaseStack.toHclTerraform"></a>
+
+```typescript
+public toHclTerraform(): {[ key: string ]: any}
+```
 
 ##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.BaseStack.toTerraform"></a>
 
@@ -488,10 +502,12 @@ new Stack(scope: Construct, stackName: string, config?: WorkspaceConfig)
 | <code><a href="#cdktf-multi-stack-tfe.Stack.dependsOn">dependsOn</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.ensureBackendExists">ensureBackendExists</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.getLogicalId">getLogicalId</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.Stack.hasResourceMove">hasResourceMove</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.prepareStack">prepareStack</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.registerIncomingCrossStackReference">registerIncomingCrossStackReference</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.registerOutgoingCrossStackReference">registerOutgoingCrossStackReference</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.runAllValidations">runAllValidations</a></code> | Run all validations on the stack. |
+| <code><a href="#cdktf-multi-stack-tfe.Stack.toHclTerraform">toHclTerraform</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.Stack.toTerraform">toTerraform</a></code> | *No description.* |
 
 ---
@@ -570,6 +586,12 @@ public getLogicalId(tfElement: Node | TerraformElement): string
 
 ---
 
+##### `hasResourceMove` <a name="hasResourceMove" id="cdktf-multi-stack-tfe.Stack.hasResourceMove"></a>
+
+```typescript
+public hasResourceMove(): boolean
+```
+
 ##### `prepareStack` <a name="prepareStack" id="cdktf-multi-stack-tfe.Stack.prepareStack"></a>
 
 ```typescript
@@ -607,6 +629,12 @@ public runAllValidations(): void
 ```
 
 Run all validations on the stack.
+
+##### `toHclTerraform` <a name="toHclTerraform" id="cdktf-multi-stack-tfe.Stack.toHclTerraform"></a>
+
+```typescript
+public toHclTerraform(): {[ key: string ]: any}
+```
 
 ##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.Stack.toTerraform"></a>
 
@@ -823,10 +851,12 @@ new TFVariable(scope: Construct, id: string, config: TerraformVariableConfig)
 | <code><a href="#cdktf-multi-stack-tfe.TFVariable.addOverride">addOverride</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.TFVariable.overrideLogicalId">overrideLogicalId</a></code> | Overrides the auto-generated logical ID with a specific ID. |
 | <code><a href="#cdktf-multi-stack-tfe.TFVariable.resetOverrideLogicalId">resetOverrideLogicalId</a></code> | Resets a previously passed logical Id to use the auto-generated logical id again. |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.toHclTerraform">toHclTerraform</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.TFVariable.toMetadata">toMetadata</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.TFVariable.toTerraform">toTerraform</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.TFVariable.addValidation">addValidation</a></code> | *No description.* |
 | <code><a href="#cdktf-multi-stack-tfe.TFVariable.synthesizeAttributes">synthesizeAttributes</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.TFVariable.synthesizeHclAttributes">synthesizeHclAttributes</a></code> | *No description.* |
 
 ---
 
@@ -880,6 +910,12 @@ public resetOverrideLogicalId(): void
 
 Resets a previously passed logical Id to use the auto-generated logical id again.
 
+##### `toHclTerraform` <a name="toHclTerraform" id="cdktf-multi-stack-tfe.TFVariable.toHclTerraform"></a>
+
+```typescript
+public toHclTerraform(): any
+```
+
 ##### `toMetadata` <a name="toMetadata" id="cdktf-multi-stack-tfe.TFVariable.toMetadata"></a>
 
 ```typescript
@@ -908,6 +944,12 @@ public addValidation(validation: TerraformVariableValidationConfig): void
 
 ```typescript
 public synthesizeAttributes(): {[ key: string ]: any}
+```
+
+##### `synthesizeHclAttributes` <a name="synthesizeHclAttributes" id="cdktf-multi-stack-tfe.TFVariable.synthesizeHclAttributes"></a>
+
+```typescript
+public synthesizeHclAttributes(): {[ key: string ]: any}
 ```
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
