@@ -51,9 +51,6 @@ export class UpgradeJSIIAndTypeScript {
           {
             name: "Setup Node.js",
             uses: "actions/setup-node@v3",
-            with: {
-              "node-version": project.minNodeVersion,
-            },
           },
           {
             name: "Install",
