@@ -9,9 +9,12 @@ import { AutoApprove } from "./projenrc/auto-approve";
 import { Automerge } from "./projenrc/automerge";
 import { CustomizedLicense } from "./projenrc/customized-license";
 import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
+import { UpgradeJSIIAndTypeScript } from "./projenrc/upgrade-jsii-typescript";
 
 const cdktfVersion = ">=0.20.0";
 const constructVersion = "^10.3.0";
+/** JSII and TSII should always use the same major/minor version range */
+const typescriptVersion = "~5.4.0";
 const name = "cdktf-multi-stack-tfe";
 
 const githubActionPinnedVersions = {
@@ -36,8 +39,8 @@ const project = new ConstructLibraryCdktf({
   cdktfVersion,
   repositoryUrl: "https://github.com/cdktf/cdktf-multi-stack-tfe.git",
   description: `Sets up TFE / TFC workspaces for all stacks based on a seed stack.`,
-  jsiiVersion: "~5.4.0",
-  typescriptVersion: "~5.4.0", // should always be the same major/minor as JSII
+  typescriptVersion,
+  jsiiVersion: typescriptVersion,
   licensed: false,
   prettier: true,
   projenrcTs: true,
@@ -63,13 +66,19 @@ new CustomizedLicense(project);
 new AutoApprove(project);
 new Automerge(project);
 new UpgradeCDKTF(project);
+new UpgradeJSIIAndTypeScript(project, typescriptVersion);
 
 project.addPeerDeps(
   `cdktf@${cdktfVersion}`,
   "@cdktf/provider-tfe@>=11.0.0",
   `constructs@${constructVersion}`
 );
-project.addDevDeps("ts-node@^10.9.1", `cdktf-cli@${cdktfVersion}`);
+project.addDevDeps(
+  "semver",
+  "@types/semver",
+  "ts-node@^10.9.1",
+  `cdktf-cli@${cdktfVersion}`
+);
 
 project.testTask.exec(`npx cdktf synth`, {
   name: "synth TS example",
