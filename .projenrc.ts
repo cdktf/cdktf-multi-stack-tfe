@@ -73,12 +73,7 @@ project.addPeerDeps(
   "@cdktf/provider-tfe@>=11.0.0",
   `constructs@${constructVersion}`
 );
-project.addDevDeps(
-  "semver",
-  "@types/semver",
-  "ts-node@^10.9.1",
-  `cdktf-cli@${cdktfVersion}`
-);
+project.addDevDeps("ts-node@^10.9.1", `cdktf-cli@${cdktfVersion}`);
 
 project.testTask.exec(`npx cdktf synth`, {
   name: "synth TS example",
