@@ -74,8 +74,6 @@ project.addPeerDeps(
   `constructs@${constructVersion}`
 );
 project.addDevDeps(
-  "semver",
-  "@types/semver",
   "ts-node@^10.9.1",
   `cdktf-cli@${cdktfVersion}`
 );
