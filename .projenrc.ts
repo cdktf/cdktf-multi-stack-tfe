@@ -14,7 +14,7 @@ import { UpgradeJSIIAndTypeScript } from "./projenrc/upgrade-jsii-typescript";
 const cdktfVersion = ">=0.20.0";
 const constructVersion = "^10.3.0";
 /** JSII and TS should always use the same major/minor version range */
-const typescriptVersion = "~5.6.0";
+const typescriptVersion = "~5.7.0";
 const name = "cdktf-multi-stack-tfe";
 
 const githubActionPinnedVersions = {
