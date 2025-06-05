@@ -11,8 +11,8 @@ import { CustomizedLicense } from "./projenrc/customized-license";
 import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
 import { UpgradeJSIIAndTypeScript } from "./projenrc/upgrade-jsii-typescript";
 
-const cdktfVersion = ">=0.20.0";
-const constructVersion = "^10.3.0";
+const cdktfVersion = ">=0.21.0";
+const constructVersion = "10.4.2";
 /** JSII and TS should always use the same major/minor version range */
 const typescriptVersion = "~5.7.0";
 const name = "cdktf-multi-stack-tfe";
@@ -70,7 +70,7 @@ new UpgradeJSIIAndTypeScript(project, typescriptVersion);
 
 project.addPeerDeps(
   `cdktf@${cdktfVersion}`,
-  "@cdktf/provider-tfe@>=11.0.0",
+  "@cdktf/provider-tfe@>=12.0.0",
   `constructs@${constructVersion}`
 );
 project.addDevDeps("ts-node@^10.9.1", `cdktf-cli@${cdktfVersion}`);

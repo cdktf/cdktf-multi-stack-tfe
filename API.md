@@ -221,12 +221,12 @@ public bootstrapWorkspace(stackName: string, stackConfig?: WorkspaceConfig): Wor
 ##### `createSecret` <a name="createSecret" id="cdktf-multi-stack-tfe.BaseStack.createSecret"></a>
 
 ```typescript
-public createSecret(targetStack: Stack, secretName: string, config: TerraformVariableConfig): void
+public createSecret(targetStack: WorkspaceStack, secretName: string, config: TerraformVariableConfig): void
 ```
 
 ###### `targetStack`<sup>Required</sup> <a name="targetStack" id="cdktf-multi-stack-tfe.BaseStack.createSecret.parameter.targetStack"></a>
 
-- *Type:* <a href="#cdktf-multi-stack-tfe.Stack">Stack</a>
+- *Type:* <a href="#cdktf-multi-stack-tfe.WorkspaceStack">WorkspaceStack</a>
 
 ---
 
@@ -451,358 +451,6 @@ public readonly tfeProvider: TfeProvider;
 ```
 
 - *Type:* @cdktf/provider-tfe.provider.TfeProvider
-
----
-
-
-### Stack <a name="Stack" id="cdktf-multi-stack-tfe.Stack"></a>
-
-#### Initializers <a name="Initializers" id="cdktf-multi-stack-tfe.Stack.Initializer"></a>
-
-```typescript
-import { Stack } from 'cdktf-multi-stack-tfe'
-
-new Stack(scope: Construct, stackName: string, config?: WorkspaceConfig)
-```
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.Initializer.parameter.stackName">stackName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.Initializer.parameter.config">config</a></code> | <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a></code> | *No description.* |
-
----
-
-##### `scope`<sup>Required</sup> <a name="scope" id="cdktf-multi-stack-tfe.Stack.Initializer.parameter.scope"></a>
-
-- *Type:* constructs.Construct
-
----
-
-##### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.Stack.Initializer.parameter.stackName"></a>
-
-- *Type:* string
-
----
-
-##### `config`<sup>Optional</sup> <a name="config" id="cdktf-multi-stack-tfe.Stack.Initializer.parameter.config"></a>
-
-- *Type:* <a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a>
-
----
-
-#### Methods <a name="Methods" id="Methods"></a>
-
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.toString">toString</a></code> | Returns a string representation of this construct. |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.addDependency">addDependency</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.addOverride">addOverride</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.allProviders">allProviders</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.dependsOn">dependsOn</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.ensureBackendExists">ensureBackendExists</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.getLogicalId">getLogicalId</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.hasResourceMove">hasResourceMove</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.prepareStack">prepareStack</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.registerIncomingCrossStackReference">registerIncomingCrossStackReference</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.registerOutgoingCrossStackReference">registerOutgoingCrossStackReference</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.runAllValidations">runAllValidations</a></code> | Run all validations on the stack. |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.toHclTerraform">toHclTerraform</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.toTerraform">toTerraform</a></code> | *No description.* |
-
----
-
-##### `toString` <a name="toString" id="cdktf-multi-stack-tfe.Stack.toString"></a>
-
-```typescript
-public toString(): string
-```
-
-Returns a string representation of this construct.
-
-##### `addDependency` <a name="addDependency" id="cdktf-multi-stack-tfe.Stack.addDependency"></a>
-
-```typescript
-public addDependency(dependency: TerraformStack): void
-```
-
-###### `dependency`<sup>Required</sup> <a name="dependency" id="cdktf-multi-stack-tfe.Stack.addDependency.parameter.dependency"></a>
-
-- *Type:* cdktf.TerraformStack
-
----
-
-##### `addOverride` <a name="addOverride" id="cdktf-multi-stack-tfe.Stack.addOverride"></a>
-
-```typescript
-public addOverride(path: string, value: any): void
-```
-
-###### `path`<sup>Required</sup> <a name="path" id="cdktf-multi-stack-tfe.Stack.addOverride.parameter.path"></a>
-
-- *Type:* string
-
----
-
-###### `value`<sup>Required</sup> <a name="value" id="cdktf-multi-stack-tfe.Stack.addOverride.parameter.value"></a>
-
-- *Type:* any
-
----
-
-##### `allProviders` <a name="allProviders" id="cdktf-multi-stack-tfe.Stack.allProviders"></a>
-
-```typescript
-public allProviders(): TerraformProvider[]
-```
-
-##### `dependsOn` <a name="dependsOn" id="cdktf-multi-stack-tfe.Stack.dependsOn"></a>
-
-```typescript
-public dependsOn(stack: TerraformStack): boolean
-```
-
-###### `stack`<sup>Required</sup> <a name="stack" id="cdktf-multi-stack-tfe.Stack.dependsOn.parameter.stack"></a>
-
-- *Type:* cdktf.TerraformStack
-
----
-
-##### `ensureBackendExists` <a name="ensureBackendExists" id="cdktf-multi-stack-tfe.Stack.ensureBackendExists"></a>
-
-```typescript
-public ensureBackendExists(): TerraformBackend
-```
-
-##### `getLogicalId` <a name="getLogicalId" id="cdktf-multi-stack-tfe.Stack.getLogicalId"></a>
-
-```typescript
-public getLogicalId(tfElement: Node | TerraformElement): string
-```
-
-###### `tfElement`<sup>Required</sup> <a name="tfElement" id="cdktf-multi-stack-tfe.Stack.getLogicalId.parameter.tfElement"></a>
-
-- *Type:* constructs.Node | cdktf.TerraformElement
-
----
-
-##### `hasResourceMove` <a name="hasResourceMove" id="cdktf-multi-stack-tfe.Stack.hasResourceMove"></a>
-
-```typescript
-public hasResourceMove(): boolean
-```
-
-##### `prepareStack` <a name="prepareStack" id="cdktf-multi-stack-tfe.Stack.prepareStack"></a>
-
-```typescript
-public prepareStack(): void
-```
-
-##### `registerIncomingCrossStackReference` <a name="registerIncomingCrossStackReference" id="cdktf-multi-stack-tfe.Stack.registerIncomingCrossStackReference"></a>
-
-```typescript
-public registerIncomingCrossStackReference(fromStack: TerraformStack): TerraformRemoteState
-```
-
-###### `fromStack`<sup>Required</sup> <a name="fromStack" id="cdktf-multi-stack-tfe.Stack.registerIncomingCrossStackReference.parameter.fromStack"></a>
-
-- *Type:* cdktf.TerraformStack
-
----
-
-##### `registerOutgoingCrossStackReference` <a name="registerOutgoingCrossStackReference" id="cdktf-multi-stack-tfe.Stack.registerOutgoingCrossStackReference"></a>
-
-```typescript
-public registerOutgoingCrossStackReference(identifier: string): TerraformOutput
-```
-
-###### `identifier`<sup>Required</sup> <a name="identifier" id="cdktf-multi-stack-tfe.Stack.registerOutgoingCrossStackReference.parameter.identifier"></a>
-
-- *Type:* string
-
----
-
-##### `runAllValidations` <a name="runAllValidations" id="cdktf-multi-stack-tfe.Stack.runAllValidations"></a>
-
-```typescript
-public runAllValidations(): void
-```
-
-Run all validations on the stack.
-
-##### `toHclTerraform` <a name="toHclTerraform" id="cdktf-multi-stack-tfe.Stack.toHclTerraform"></a>
-
-```typescript
-public toHclTerraform(): {[ key: string ]: any}
-```
-
-##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.Stack.toTerraform"></a>
-
-```typescript
-public toTerraform(): any
-```
-
-#### Static Functions <a name="Static Functions" id="Static Functions"></a>
-
-| **Name** | **Description** |
-| --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.isStack">isStack</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.of">of</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.isMultiStackStack">isMultiStackStack</a></code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.multiStackOf">multiStackOf</a></code> | *No description.* |
-
----
-
-##### `isConstruct` <a name="isConstruct" id="cdktf-multi-stack-tfe.Stack.isConstruct"></a>
-
-```typescript
-import { Stack } from 'cdktf-multi-stack-tfe'
-
-Stack.isConstruct(x: any)
-```
-
-Checks if `x` is a construct.
-
-Use this method instead of `instanceof` to properly detect `Construct`
-instances, even when the construct library is symlinked.
-
-Explanation: in JavaScript, multiple copies of the `constructs` library on
-disk are seen as independent, completely different libraries. As a
-consequence, the class `Construct` in each copy of the `constructs` library
-is seen as a different class, and an instance of one class will not test as
-`instanceof` the other class. `npm install` will not create installations
-like this, but users may manually symlink construct libraries together or
-use a monorepo tool: in those cases, multiple copies of the `constructs`
-library can be accidentally installed, and `instanceof` will behave
-unpredictably. It is safest to avoid using `instanceof`, and using
-this type-testing method instead.
-
-###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.Stack.isConstruct.parameter.x"></a>
-
-- *Type:* any
-
-Any object.
-
----
-
-##### `isStack` <a name="isStack" id="cdktf-multi-stack-tfe.Stack.isStack"></a>
-
-```typescript
-import { Stack } from 'cdktf-multi-stack-tfe'
-
-Stack.isStack(x: any)
-```
-
-###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.Stack.isStack.parameter.x"></a>
-
-- *Type:* any
-
----
-
-##### `of` <a name="of" id="cdktf-multi-stack-tfe.Stack.of"></a>
-
-```typescript
-import { Stack } from 'cdktf-multi-stack-tfe'
-
-Stack.of(construct: IConstruct)
-```
-
-###### `construct`<sup>Required</sup> <a name="construct" id="cdktf-multi-stack-tfe.Stack.of.parameter.construct"></a>
-
-- *Type:* constructs.IConstruct
-
----
-
-##### `isMultiStackStack` <a name="isMultiStackStack" id="cdktf-multi-stack-tfe.Stack.isMultiStackStack"></a>
-
-```typescript
-import { Stack } from 'cdktf-multi-stack-tfe'
-
-Stack.isMultiStackStack(x: any)
-```
-
-###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.Stack.isMultiStackStack.parameter.x"></a>
-
-- *Type:* any
-
----
-
-##### `multiStackOf` <a name="multiStackOf" id="cdktf-multi-stack-tfe.Stack.multiStackOf"></a>
-
-```typescript
-import { Stack } from 'cdktf-multi-stack-tfe'
-
-Stack.multiStackOf(construct: IConstruct)
-```
-
-###### `construct`<sup>Required</sup> <a name="construct" id="cdktf-multi-stack-tfe.Stack.multiStackOf.parameter.construct"></a>
-
-- *Type:* constructs.IConstruct
-
----
-
-#### Properties <a name="Properties" id="Properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.property.moveTargets">moveTargets</a></code> | <code>cdktf.TerraformResourceTargets</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
-| <code><a href="#cdktf-multi-stack-tfe.Stack.property.workspace">workspace</a></code> | <code>@cdktf/provider-tfe.workspace.Workspace</code> | *No description.* |
-
----
-
-##### `node`<sup>Required</sup> <a name="node" id="cdktf-multi-stack-tfe.Stack.property.node"></a>
-
-```typescript
-public readonly node: Node;
-```
-
-- *Type:* constructs.Node
-
-The tree node.
-
----
-
-##### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdktf-multi-stack-tfe.Stack.property.dependencies"></a>
-
-```typescript
-public readonly dependencies: TerraformStack[];
-```
-
-- *Type:* cdktf.TerraformStack[]
-
----
-
-##### `moveTargets`<sup>Required</sup> <a name="moveTargets" id="cdktf-multi-stack-tfe.Stack.property.moveTargets"></a>
-
-```typescript
-public readonly moveTargets: TerraformResourceTargets;
-```
-
-- *Type:* cdktf.TerraformResourceTargets
-
----
-
-##### `synthesizer`<sup>Required</sup> <a name="synthesizer" id="cdktf-multi-stack-tfe.Stack.property.synthesizer"></a>
-
-```typescript
-public readonly synthesizer: IStackSynthesizer;
-```
-
-- *Type:* cdktf.IStackSynthesizer
-
----
-
-##### `workspace`<sup>Required</sup> <a name="workspace" id="cdktf-multi-stack-tfe.Stack.property.workspace"></a>
-
-```typescript
-public readonly workspace: Workspace;
-```
-
-- *Type:* @cdktf/provider-tfe.workspace.Workspace
 
 ---
 
@@ -1178,6 +826,358 @@ public readonly validation: TerraformVariableValidationConfig[];
 ```
 
 - *Type:* cdktf.TerraformVariableValidationConfig[]
+
+---
+
+
+### WorkspaceStack <a name="WorkspaceStack" id="cdktf-multi-stack-tfe.WorkspaceStack"></a>
+
+#### Initializers <a name="Initializers" id="cdktf-multi-stack-tfe.WorkspaceStack.Initializer"></a>
+
+```typescript
+import { WorkspaceStack } from 'cdktf-multi-stack-tfe'
+
+new WorkspaceStack(scope: Construct, stackName: string, config?: WorkspaceConfig)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.Initializer.parameter.stackName">stackName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.Initializer.parameter.config">config</a></code> | <code><a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="cdktf-multi-stack-tfe.WorkspaceStack.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `stackName`<sup>Required</sup> <a name="stackName" id="cdktf-multi-stack-tfe.WorkspaceStack.Initializer.parameter.stackName"></a>
+
+- *Type:* string
+
+---
+
+##### `config`<sup>Optional</sup> <a name="config" id="cdktf-multi-stack-tfe.WorkspaceStack.Initializer.parameter.config"></a>
+
+- *Type:* <a href="#cdktf-multi-stack-tfe.WorkspaceConfig">WorkspaceConfig</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.addDependency">addDependency</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.addOverride">addOverride</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.allProviders">allProviders</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.dependsOn">dependsOn</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.ensureBackendExists">ensureBackendExists</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.getLogicalId">getLogicalId</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.hasResourceMove">hasResourceMove</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.prepareStack">prepareStack</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.registerIncomingCrossStackReference">registerIncomingCrossStackReference</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.registerOutgoingCrossStackReference">registerOutgoingCrossStackReference</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.runAllValidations">runAllValidations</a></code> | Run all validations on the stack. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.toHclTerraform">toHclTerraform</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.toTerraform">toTerraform</a></code> | *No description.* |
+
+---
+
+##### `toString` <a name="toString" id="cdktf-multi-stack-tfe.WorkspaceStack.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `addDependency` <a name="addDependency" id="cdktf-multi-stack-tfe.WorkspaceStack.addDependency"></a>
+
+```typescript
+public addDependency(dependency: TerraformStack): void
+```
+
+###### `dependency`<sup>Required</sup> <a name="dependency" id="cdktf-multi-stack-tfe.WorkspaceStack.addDependency.parameter.dependency"></a>
+
+- *Type:* cdktf.TerraformStack
+
+---
+
+##### `addOverride` <a name="addOverride" id="cdktf-multi-stack-tfe.WorkspaceStack.addOverride"></a>
+
+```typescript
+public addOverride(path: string, value: any): void
+```
+
+###### `path`<sup>Required</sup> <a name="path" id="cdktf-multi-stack-tfe.WorkspaceStack.addOverride.parameter.path"></a>
+
+- *Type:* string
+
+---
+
+###### `value`<sup>Required</sup> <a name="value" id="cdktf-multi-stack-tfe.WorkspaceStack.addOverride.parameter.value"></a>
+
+- *Type:* any
+
+---
+
+##### `allProviders` <a name="allProviders" id="cdktf-multi-stack-tfe.WorkspaceStack.allProviders"></a>
+
+```typescript
+public allProviders(): TerraformProvider[]
+```
+
+##### `dependsOn` <a name="dependsOn" id="cdktf-multi-stack-tfe.WorkspaceStack.dependsOn"></a>
+
+```typescript
+public dependsOn(stack: TerraformStack): boolean
+```
+
+###### `stack`<sup>Required</sup> <a name="stack" id="cdktf-multi-stack-tfe.WorkspaceStack.dependsOn.parameter.stack"></a>
+
+- *Type:* cdktf.TerraformStack
+
+---
+
+##### `ensureBackendExists` <a name="ensureBackendExists" id="cdktf-multi-stack-tfe.WorkspaceStack.ensureBackendExists"></a>
+
+```typescript
+public ensureBackendExists(): TerraformBackend
+```
+
+##### `getLogicalId` <a name="getLogicalId" id="cdktf-multi-stack-tfe.WorkspaceStack.getLogicalId"></a>
+
+```typescript
+public getLogicalId(tfElement: Node | TerraformElement): string
+```
+
+###### `tfElement`<sup>Required</sup> <a name="tfElement" id="cdktf-multi-stack-tfe.WorkspaceStack.getLogicalId.parameter.tfElement"></a>
+
+- *Type:* constructs.Node | cdktf.TerraformElement
+
+---
+
+##### `hasResourceMove` <a name="hasResourceMove" id="cdktf-multi-stack-tfe.WorkspaceStack.hasResourceMove"></a>
+
+```typescript
+public hasResourceMove(): boolean
+```
+
+##### `prepareStack` <a name="prepareStack" id="cdktf-multi-stack-tfe.WorkspaceStack.prepareStack"></a>
+
+```typescript
+public prepareStack(): void
+```
+
+##### `registerIncomingCrossStackReference` <a name="registerIncomingCrossStackReference" id="cdktf-multi-stack-tfe.WorkspaceStack.registerIncomingCrossStackReference"></a>
+
+```typescript
+public registerIncomingCrossStackReference(fromStack: TerraformStack): TerraformRemoteState
+```
+
+###### `fromStack`<sup>Required</sup> <a name="fromStack" id="cdktf-multi-stack-tfe.WorkspaceStack.registerIncomingCrossStackReference.parameter.fromStack"></a>
+
+- *Type:* cdktf.TerraformStack
+
+---
+
+##### `registerOutgoingCrossStackReference` <a name="registerOutgoingCrossStackReference" id="cdktf-multi-stack-tfe.WorkspaceStack.registerOutgoingCrossStackReference"></a>
+
+```typescript
+public registerOutgoingCrossStackReference(identifier: string): TerraformOutput
+```
+
+###### `identifier`<sup>Required</sup> <a name="identifier" id="cdktf-multi-stack-tfe.WorkspaceStack.registerOutgoingCrossStackReference.parameter.identifier"></a>
+
+- *Type:* string
+
+---
+
+##### `runAllValidations` <a name="runAllValidations" id="cdktf-multi-stack-tfe.WorkspaceStack.runAllValidations"></a>
+
+```typescript
+public runAllValidations(): void
+```
+
+Run all validations on the stack.
+
+##### `toHclTerraform` <a name="toHclTerraform" id="cdktf-multi-stack-tfe.WorkspaceStack.toHclTerraform"></a>
+
+```typescript
+public toHclTerraform(): {[ key: string ]: any}
+```
+
+##### `toTerraform` <a name="toTerraform" id="cdktf-multi-stack-tfe.WorkspaceStack.toTerraform"></a>
+
+```typescript
+public toTerraform(): any
+```
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.isStack">isStack</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.of">of</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.isMultiStackStack">isMultiStackStack</a></code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.multiStackOf">multiStackOf</a></code> | *No description.* |
+
+---
+
+##### `isConstruct` <a name="isConstruct" id="cdktf-multi-stack-tfe.WorkspaceStack.isConstruct"></a>
+
+```typescript
+import { WorkspaceStack } from 'cdktf-multi-stack-tfe'
+
+WorkspaceStack.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
+
+###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.WorkspaceStack.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isStack` <a name="isStack" id="cdktf-multi-stack-tfe.WorkspaceStack.isStack"></a>
+
+```typescript
+import { WorkspaceStack } from 'cdktf-multi-stack-tfe'
+
+WorkspaceStack.isStack(x: any)
+```
+
+###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.WorkspaceStack.isStack.parameter.x"></a>
+
+- *Type:* any
+
+---
+
+##### `of` <a name="of" id="cdktf-multi-stack-tfe.WorkspaceStack.of"></a>
+
+```typescript
+import { WorkspaceStack } from 'cdktf-multi-stack-tfe'
+
+WorkspaceStack.of(construct: IConstruct)
+```
+
+###### `construct`<sup>Required</sup> <a name="construct" id="cdktf-multi-stack-tfe.WorkspaceStack.of.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `isMultiStackStack` <a name="isMultiStackStack" id="cdktf-multi-stack-tfe.WorkspaceStack.isMultiStackStack"></a>
+
+```typescript
+import { WorkspaceStack } from 'cdktf-multi-stack-tfe'
+
+WorkspaceStack.isMultiStackStack(x: any)
+```
+
+###### `x`<sup>Required</sup> <a name="x" id="cdktf-multi-stack-tfe.WorkspaceStack.isMultiStackStack.parameter.x"></a>
+
+- *Type:* any
+
+---
+
+##### `multiStackOf` <a name="multiStackOf" id="cdktf-multi-stack-tfe.WorkspaceStack.multiStackOf"></a>
+
+```typescript
+import { WorkspaceStack } from 'cdktf-multi-stack-tfe'
+
+WorkspaceStack.multiStackOf(construct: IConstruct)
+```
+
+###### `construct`<sup>Required</sup> <a name="construct" id="cdktf-multi-stack-tfe.WorkspaceStack.multiStackOf.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.property.dependencies">dependencies</a></code> | <code>cdktf.TerraformStack[]</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.property.moveTargets">moveTargets</a></code> | <code>cdktf.TerraformResourceTargets</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.property.synthesizer">synthesizer</a></code> | <code>cdktf.IStackSynthesizer</code> | *No description.* |
+| <code><a href="#cdktf-multi-stack-tfe.WorkspaceStack.property.workspace">workspace</a></code> | <code>@cdktf/provider-tfe.workspace.Workspace</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="cdktf-multi-stack-tfe.WorkspaceStack.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `dependencies`<sup>Required</sup> <a name="dependencies" id="cdktf-multi-stack-tfe.WorkspaceStack.property.dependencies"></a>
+
+```typescript
+public readonly dependencies: TerraformStack[];
+```
+
+- *Type:* cdktf.TerraformStack[]
+
+---
+
+##### `moveTargets`<sup>Required</sup> <a name="moveTargets" id="cdktf-multi-stack-tfe.WorkspaceStack.property.moveTargets"></a>
+
+```typescript
+public readonly moveTargets: TerraformResourceTargets;
+```
+
+- *Type:* cdktf.TerraformResourceTargets
+
+---
+
+##### `synthesizer`<sup>Required</sup> <a name="synthesizer" id="cdktf-multi-stack-tfe.WorkspaceStack.property.synthesizer"></a>
+
+```typescript
+public readonly synthesizer: IStackSynthesizer;
+```
+
+- *Type:* cdktf.IStackSynthesizer
+
+---
+
+##### `workspace`<sup>Required</sup> <a name="workspace" id="cdktf-multi-stack-tfe.WorkspaceStack.property.workspace"></a>
+
+```typescript
+public readonly workspace: Workspace;
+```
+
+- *Type:* @cdktf/provider-tfe.workspace.Workspace
 
 ---
 

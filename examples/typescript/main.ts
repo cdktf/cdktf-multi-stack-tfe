@@ -5,7 +5,7 @@
 
 import { Construct } from "constructs";
 import { App, TerraformLocal } from "cdktf";
-import { BaseStack, Stack, TFVariable } from "../../src/index";
+import { BaseStack, WorkspaceStack, TFVariable } from "../../src/index";
 
 class Base extends BaseStack {
   constructor(scope: Construct) {
@@ -15,7 +15,7 @@ class Base extends BaseStack {
   }
 }
 
-class DemoStack extends Stack {
+class DemoStack extends WorkspaceStack {
   public value: string;
   constructor(scope: Construct, stackName: string, foreignValue?: string) {
     super(scope, stackName);

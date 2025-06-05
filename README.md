@@ -8,16 +8,17 @@ Setting up Terraform Cloud / Terraform Enterprise workspaces can be tiring when 
 
 _cdktf-multi-stack-tfe_ is in technical preview, which means it's a community supported project. It still requires extensive testing and polishing to mature into a HashiCorp officially supported project. Please [file issues](https://github.com/cdktf/cdktf-multi-stack-tfe/issues/new/choose) generously and detail your experience while using the library. We welcome your feedback.
 
-By using the software in this repository, you acknowledge that: 
-* _cdktf-multi-stack-tfe_ is still in development, may change, and has not been released as a commercial product by HashiCorp and is not currently supported in any way by HashiCorp.
-* _cdktf-multi-stack-tfe_ is provided on an "as-is" basis, and may include bugs, errors, or other issues.
-* _cdktf-multi-stack-tfe_ is NOT INTENDED FOR PRODUCTION USE, use of the Software may result in unexpected results, loss of data, or other unexpected results, and HashiCorp disclaims any and all liability resulting from use of _cdktf-multi-stack-tfe_.
-* HashiCorp reserves all rights to make all decisions about the features, functionality and commercial release (or non-release) of _cdktf-multi-stack-tfe_, at any time and without any obligation or liability whatsoever.
+By using the software in this repository, you acknowledge that:
+
+- _cdktf-multi-stack-tfe_ is still in development, may change, and has not been released as a commercial product by HashiCorp and is not currently supported in any way by HashiCorp.
+- _cdktf-multi-stack-tfe_ is provided on an "as-is" basis, and may include bugs, errors, or other issues.
+- _cdktf-multi-stack-tfe_ is NOT INTENDED FOR PRODUCTION USE, use of the Software may result in unexpected results, loss of data, or other unexpected results, and HashiCorp disclaims any and all liability resulting from use of _cdktf-multi-stack-tfe_.
+- HashiCorp reserves all rights to make all decisions about the features, functionality and commercial release (or non-release) of _cdktf-multi-stack-tfe_, at any time and without any obligation or liability whatsoever.
 
 ## Compatibility
 
-- `cdktf` >= 0.20.0
-- `constructs` >= 10.3.0
+- `cdktf` >= 0.21.0
+- `constructs` >= 10.4.2
 
 ## Usage
 
@@ -26,7 +27,7 @@ You need to create the initial workspace yourself, in this case `my-app-base`.
 ```ts
 import * as cdktf from "cdktf";
 import Construct from "constructs";
-import { BaseStack, Stack, Variable } from "cdktf-multi-stack-tfe";
+import { BaseStack, WorkspaceStack, Variable } from "cdktf-multi-stack-tfe";
 
 // We need to have an already created "base" TFE workspace as a basis.
 // It will store the TFE workspace configuration and state for all stacks.
@@ -46,7 +47,7 @@ class MyAppBaseStack extends BaseStack {
   }
 }
 
-class VpcStack extends Stack {
+class VpcStack extends WorkspaceStack {
   public vpcId: string
 
   // This stack will depend on the base stack and it
@@ -60,7 +61,7 @@ class VpcStack extends Stack {
   }
 }
 
-class WebStack extends Stack {
+class WebStack extends WorkspaceStack {
   constructor(scope: Construct, stackName: string, vpcId: string) {
     super(scope, stackName);
 

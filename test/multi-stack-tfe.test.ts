@@ -5,7 +5,7 @@
 
 import { TerraformLocal, Testing } from "cdktf";
 import { Construct } from "constructs";
-import { BaseStack, Stack, WorkspaceConfig, TFVariable } from "../src";
+import { BaseStack, WorkspaceStack, WorkspaceConfig, TFVariable } from "../src";
 
 test("sets up all stacks created", () => {
   const app = Testing.app();
@@ -19,7 +19,7 @@ test("sets up all stacks created", () => {
     }
   }
 
-  class VpcStack extends Stack {
+  class VpcStack extends WorkspaceStack {
     constructor(scope: Construct, stackName: string) {
       super(scope, stackName);
     }
@@ -97,7 +97,7 @@ test("sets up all stacks created", () => {
         "required_providers": {
           "tfe": {
             "source": "hashicorp/tfe",
-            "version": "0.51.1"
+            "version": "0.66.0"
           }
         }
       }
@@ -130,7 +130,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
     }
   }
 
-  class VpcStack extends Stack {
+  class VpcStack extends WorkspaceStack {
     public vpcId: string;
 
     constructor(scope: Construct, stackName: string) {
@@ -144,7 +144,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
     }
   }
 
-  class ClusterStack extends Stack {
+  class ClusterStack extends WorkspaceStack {
     constructor(scope: Construct, stackName: string, vpcId: string) {
       super(scope, stackName);
 
@@ -227,7 +227,7 @@ test("sets the remoteStateConsumerIds when dependenies are set", () => {
         "required_providers": {
           "tfe": {
             "source": "hashicorp/tfe",
-            "version": "0.51.1"
+            "version": "0.66.0"
           }
         }
       }
@@ -244,7 +244,7 @@ test("only one stack is created when using two cross stack references", () => {
     }
   }
 
-  class VpcStack extends Stack {
+  class VpcStack extends WorkspaceStack {
     public vpcId: string;
     public subnetId: string;
 
@@ -265,7 +265,7 @@ test("only one stack is created when using two cross stack references", () => {
     }
   }
 
-  class ClusterStack extends Stack {
+  class ClusterStack extends WorkspaceStack {
     constructor(
       scope: Construct,
       stackName: string,
@@ -319,7 +319,7 @@ test("uses workspace name override", () => {
     }
   }
 
-  class VpcStack extends Stack {
+  class VpcStack extends WorkspaceStack {
     constructor(scope: Construct, stackName: string) {
       super(scope, stackName);
     }
@@ -397,7 +397,7 @@ test("uses workspace name override", () => {
         "required_providers": {
           "tfe": {
             "source": "hashicorp/tfe",
-            "version": "0.51.1"
+            "version": "0.66.0"
           }
         }
       }
@@ -438,7 +438,7 @@ test("uses workspace config options", () => {
     }
   }
 
-  class VpcStack extends Stack {
+  class VpcStack extends WorkspaceStack {
     constructor(scope: Construct, stackName: string) {
       super(scope, stackName);
     }
@@ -507,7 +507,7 @@ test("uses workspace config options", () => {
         "required_providers": {
           "tfe": {
             "source": "hashicorp/tfe",
-            "version": "0.51.1"
+            "version": "0.66.0"
           }
         }
       }
@@ -532,7 +532,7 @@ test("uses workspace config options with per stack override", () => {
     }
   }
 
-  class VpcStack extends Stack {
+  class VpcStack extends WorkspaceStack {
     constructor(
       scope: Construct,
       stackName: string,
@@ -611,7 +611,7 @@ test("uses workspace config options with per stack override", () => {
         "required_providers": {
           "tfe": {
             "source": "hashicorp/tfe",
-            "version": "0.51.1"
+            "version": "0.66.0"
           }
         }
       }
@@ -631,7 +631,7 @@ test("can propagate TFVariables from the base stack", () => {
     }
   }
 
-  class VpcStack extends Stack {
+  class VpcStack extends WorkspaceStack {
     constructor(scope: Construct, stackName: string) {
       super(scope, stackName);
 
@@ -762,7 +762,7 @@ test("can propagate TFVariables from the base stack", () => {
         "required_providers": {
           "tfe": {
             "source": "hashicorp/tfe",
-            "version": "0.51.1"
+            "version": "0.66.0"
           }
         }
       },
