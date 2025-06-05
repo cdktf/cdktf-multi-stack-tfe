@@ -219,7 +219,7 @@ export class BaseStack extends TerraformStack {
   }
 
   public createSecret(
-    targetStack: Stack,
+    targetStack: WorkspaceStack,
     secretName: string,
     config: TerraformVariableConfig
   ): void {
@@ -254,16 +254,16 @@ export class BaseStack extends TerraformStack {
   }
 }
 
-export class Stack extends TerraformStack {
-  public static isMultiStackStack(x: any): x is Stack {
+export class WorkspaceStack extends TerraformStack {
+  public static isMultiStackStack(x: any): x is WorkspaceStack {
     return x !== null && typeof x === "object" && MULTI_STACK_STACK_SYMBOL in x;
   }
 
-  public static multiStackOf(construct: IConstruct): Stack {
+  public static multiStackOf(construct: IConstruct): WorkspaceStack {
     return _lookup(construct);
 
-    function _lookup(c: IConstruct): Stack {
-      if (Stack.isMultiStackStack(c)) {
+    function _lookup(c: IConstruct): WorkspaceStack {
+      if (WorkspaceStack.isMultiStackStack(c)) {
         return c;
       }
 
@@ -293,7 +293,7 @@ export class Stack extends TerraformStack {
   addDependency(dependency: TerraformStack): void {
     if (
       !this.dependencies.includes(dependency) &&
-      Stack.isMultiStackStack(dependency)
+      WorkspaceStack.isMultiStackStack(dependency)
     ) {
       dependency.workspace.remoteStateConsumerIdsInput?.push(this.workspace.id);
 
@@ -318,6 +318,6 @@ export class TFVariable extends TerraformVariable {
     this.overrideLogicalId(id);
 
     const baseStack = BaseStack.baseStackOf(this);
-    baseStack.createSecret(Stack.multiStackOf(this), id, config);
+    baseStack.createSecret(WorkspaceStack.multiStackOf(this), id, config);
   }
 }
