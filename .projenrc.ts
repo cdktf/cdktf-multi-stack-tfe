@@ -70,7 +70,7 @@ new UpgradeJSIIAndTypeScript(project, typescriptVersion);
 
 project.addPeerDeps(
   `cdktf@${cdktfVersion}`,
-  "@cdktf/provider-tfe@>=11.0.0",
+  "@cdktf/provider-tfe@>=12.0.0",
   `constructs@${constructVersion}`
 );
 project.addDevDeps("ts-node@^10.9.1", `cdktf-cli@${cdktfVersion}`);
