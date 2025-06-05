@@ -11,7 +11,7 @@ import { CustomizedLicense } from "./projenrc/customized-license";
 import { UpgradeCDKTF } from "./projenrc/upgrade-cdktf";
 import { UpgradeJSIIAndTypeScript } from "./projenrc/upgrade-jsii-typescript";
 
-const cdktfVersion = ">=0.20.0";
+const cdktfVersion = ">=0.21.0";
 const constructVersion = "^10.3.0";
 /** JSII and TS should always use the same major/minor version range */
 const typescriptVersion = "~5.7.0";
